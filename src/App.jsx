@@ -1,22 +1,73 @@
+import { useState } from 'react'
 import './App.css'
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = () => {
+    setMenuOpen(false)
+  }
+
+  const skills = [
+    {
+      icon: '🐍',
+      title: 'Python',
+      description: 'Programming, automation and AI development',
+    },
+    {
+      icon: 'JS',
+      title: 'JavaScript',
+      description: 'Modern web development and interactive applications',
+    },
+    {
+      icon: '⚛',
+      title: 'React',
+      description: 'Building modern and responsive user interfaces',
+    },
+    {
+      icon: '▰',
+      title: 'SQL',
+      description: 'Database queries and data management',
+    },
+    {
+      icon: '✦',
+      title: 'Artificial Intelligence',
+      description: 'AI concepts, intelligent systems and generative AI',
+    },
+    {
+      icon: '⌘',
+      title: 'Git & GitHub',
+      description: 'Version control and software project management',
+    },
+  ]
+
   return (
     <div className="portfolio">
 
       {/* ================= NAVBAR ================= */}
       <nav className="navbar">
 
-        <div className="logo">
+        <a href="#home" className="logo" onClick={closeMenu}>
           Dion<span>.</span>
-        </div>
+        </a>
 
-        <div className="navLinks">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+        <button
+          className={`menuButton ${menuOpen ? 'menuActive' : ''}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div className={`navLinks ${menuOpen ? 'navOpen' : ''}`}>
+          <a href="#home" onClick={closeMenu}>Home</a>
+          <a href="#about" onClick={closeMenu}>About</a>
+          <a href="#skills" onClick={closeMenu}>Skills</a>
+          <a href="#projects" onClick={closeMenu}>Projects</a>
+          <a href="#contact" onClick={closeMenu}>Contact</a>
         </div>
 
       </nav>
@@ -25,7 +76,7 @@ function App() {
       {/* ================= HERO ================= */}
       <section className="hero" id="home">
 
-        <div className="heroContent">
+        <div className="heroContent heroAnimation">
 
           <p className="intro">Hello, I'm</p>
 
@@ -38,8 +89,6 @@ function App() {
             and turn ideas into practical digital experiences.
           </p>
 
-
-          {/* HERO BUTTONS */}
           <div className="heroButtons">
 
             <a
@@ -69,8 +118,8 @@ function App() {
         </div>
 
 
-        {/* ================= PROFILE IMAGE ================= */}
-        <div className="profileArea">
+        {/* PROFILE IMAGE */}
+        <div className="profileArea profileAnimation">
 
           <div className="profileImageWrapper">
 
@@ -94,7 +143,6 @@ function App() {
           <p>Get to know me</p>
           <h2>About Me</h2>
         </div>
-
 
         <div className="aboutContent">
 
@@ -153,50 +201,33 @@ function App() {
           <h2>My Skills</h2>
         </div>
 
-
         <div className="skillsGrid">
 
-          <div className="skillCard">
-            <h3>Python</h3>
-            <p>
-              Programming, automation and AI development
-            </p>
-          </div>
+          {skills.map((skill, index) => (
+            <div
+              className="skillCard"
+              key={skill.title}
+              style={{ animationDelay: `${index * 0.08}s` }}
+            >
 
-          <div className="skillCard">
-            <h3>JavaScript</h3>
-            <p>
-              Modern web development and interactive applications
-            </p>
-          </div>
+              <div className="skillIcon">
+                {skill.icon}
+              </div>
 
-          <div className="skillCard">
-            <h3>React</h3>
-            <p>
-              Building modern and responsive user interfaces
-            </p>
-          </div>
+              <div className="skillInfo">
 
-          <div className="skillCard">
-            <h3>SQL</h3>
-            <p>
-              Database queries and data management
-            </p>
-          </div>
+                <h3>
+                  {skill.title}
+                </h3>
 
-          <div className="skillCard">
-            <h3>Artificial Intelligence</h3>
-            <p>
-              AI concepts, intelligent systems and generative AI
-            </p>
-          </div>
+                <p>
+                  {skill.description}
+                </p>
 
-          <div className="skillCard">
-            <h3>Git & GitHub</h3>
-            <p>
-              Version control and software project management
-            </p>
-          </div>
+              </div>
+
+            </div>
+          ))}
 
         </div>
 
@@ -211,17 +242,19 @@ function App() {
           <h2>Featured Projects</h2>
         </div>
 
-
         <div className="projectsGrid">
 
-          {/* JARVIS PROJECT */}
+
+          {/* JARVIS */}
           <div className="projectCard">
 
             <div className="projectNumber">
               01
             </div>
 
-            <h3>JARVIS AI Assistant</h3>
+            <h3>
+              JARVIS AI Assistant
+            </h3>
 
             <p>
               A personal AI assistant built with Python featuring voice
@@ -250,14 +283,16 @@ function App() {
           </div>
 
 
-          {/* TOURISM PROJECT */}
+          {/* TOURISM PLANNER */}
           <div className="projectCard">
 
             <div className="projectNumber">
               02
             </div>
 
-            <h3>AI Smart Tourism Planner</h3>
+            <h3>
+              AI Smart Tourism Planner
+            </h3>
 
             <p>
               An AI-powered tourism planning concept designed to create
@@ -292,7 +327,9 @@ function App() {
               03
             </div>
 
-            <h3>Software Engineering Projects</h3>
+            <h3>
+              Software Engineering Projects
+            </h3>
 
             <p>
               A collection of university projects demonstrating programming,
@@ -334,7 +371,6 @@ function App() {
           <h2>Contact Me</h2>
         </div>
 
-
         <div className="contactContent">
 
           <h3>
@@ -346,7 +382,6 @@ function App() {
             and exploring new opportunities in software development and
             artificial intelligence.
           </p>
-
 
           <div className="contactButtons">
 

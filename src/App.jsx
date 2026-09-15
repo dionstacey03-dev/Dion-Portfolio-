@@ -272,8 +272,10 @@ function App() {
             <div className="projectLinks">
 
               <a
-                href="#"
+                href="https://github.com/dionstacey03-dev/JARVIS-AI-Assistant"
                 className="projectButton"
+                target="_blank"
+                rel="noreferrer"
               >
                 View Project
               </a>

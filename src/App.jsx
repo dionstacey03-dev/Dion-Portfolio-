@@ -1,6 +1,39 @@
 import { useState } from 'react'
 import './App.css'
 
+const skills = [
+  {
+    icon: '🐍',
+    title: 'Python',
+    description: 'Programming, automation and AI development',
+  },
+  {
+    icon: 'JS',
+    title: 'JavaScript',
+    description: 'Modern web development and interactive applications',
+  },
+  {
+    icon: '⚛',
+    title: 'React',
+    description: 'Building modern and responsive user interfaces',
+  },
+  {
+    icon: '▰',
+    title: 'SQL',
+    description: 'Database queries and data management',
+  },
+  {
+    icon: '✦',
+    title: 'Artificial Intelligence',
+    description: 'AI concepts, intelligent systems and generative AI',
+  },
+  {
+    icon: '⌘',
+    title: 'Git & GitHub',
+    description: 'Version control and software project management',
+  },
+]
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -8,45 +41,10 @@ function App() {
     setMenuOpen(false)
   }
 
-  const skills = [
-    {
-      icon: '🐍',
-      title: 'Python',
-      description: 'Programming, automation and AI development',
-    },
-    {
-      icon: 'JS',
-      title: 'JavaScript',
-      description: 'Modern web development and interactive applications',
-    },
-    {
-      icon: '⚛',
-      title: 'React',
-      description: 'Building modern and responsive user interfaces',
-    },
-    {
-      icon: '▰',
-      title: 'SQL',
-      description: 'Database queries and data management',
-    },
-    {
-      icon: '✦',
-      title: 'Artificial Intelligence',
-      description: 'AI concepts, intelligent systems and generative AI',
-    },
-    {
-      icon: '⌘',
-      title: 'Git & GitHub',
-      description: 'Version control and software project management',
-    },
-  ]
-
   return (
     <div className="portfolio">
-
-      {/* ================= NAVBAR ================= */}
-      <nav className="navbar">
-
+      {/* ================= NAVIGATION ================= */}
+      <header className="navbar">
         <a href="#home" className="logo" onClick={closeMenu}>
           Dion<span>.</span>
         </a>
@@ -54,7 +52,7 @@ function App() {
         <button
           className={`menuButton ${menuOpen ? 'menuActive' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation menu"
+          aria-label="Toggle navigation"
           aria-expanded={menuOpen}
         >
           <span></span>
@@ -62,372 +60,326 @@ function App() {
           <span></span>
         </button>
 
-        <div className={`navLinks ${menuOpen ? 'navOpen' : ''}`}>
-          <a href="#home" onClick={closeMenu}>Home</a>
-          <a href="#about" onClick={closeMenu}>About</a>
-          <a href="#skills" onClick={closeMenu}>Skills</a>
-          <a href="#projects" onClick={closeMenu}>Projects</a>
-          <a href="#contact" onClick={closeMenu}>Contact</a>
-        </div>
+        <nav className={`navLinks ${menuOpen ? 'navOpen' : ''}`}>
+          <a href="#home" onClick={closeMenu}>
+            Home
+          </a>
 
-      </nav>
+          <a href="#about" onClick={closeMenu}>
+            About
+          </a>
 
+          <a href="#skills" onClick={closeMenu}>
+            Skills
+          </a>
 
-      {/* ================= HERO ================= */}
-      <section className="hero" id="home">
+          <a href="#projects" onClick={closeMenu}>
+            Projects
+          </a>
 
-        <div className="heroContent heroAnimation">
+          <a href="#contact" onClick={closeMenu}>
+            Contact
+          </a>
+        </nav>
+      </header>
 
-          <p className="intro">Hello, I'm</p>
+      <main>
+        {/* ================= HERO ================= */}
+        <section className="hero" id="home">
+          <div className="heroContent heroAnimation">
+            <p className="heroIntro">HELLO, I'M</p>
 
-          <h1>Dion Stacey Sellar</h1>
+            <h1>
+              Dion Stacey
+              <span> Sellar</span>
+            </h1>
 
-          <h2>Software Engineering Student</h2>
+            <h2>Software Engineering Student & Developer</h2>
 
-          <p className="description">
-            I build software solutions, explore artificial intelligence,
-            and turn ideas into practical digital experiences.
-          </p>
-
-          <div className="heroButtons">
-
-            <a
-              href="#projects"
-              className="primaryButton"
-            >
-              View My Projects
-            </a>
-
-            <a
-              href="#contact"
-              className="secondaryButton"
-            >
-              Contact Me
-            </a>
-
-            <a
-              href="/Dion-Stacey-Sellar-CV.pdf"
-              className="secondaryButton"
-              download
-            >
-              Download CV
-            </a>
-
-          </div>
-
-        </div>
-
-
-        {/* PROFILE IMAGE */}
-        <div className="profileArea profileAnimation">
-
-          <div className="profileImageWrapper">
-
-            <img
-              src="/profile.jpg"
-              alt="Dion Stacey Sellar"
-              className="profileImage"
-            />
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= ABOUT ================= */}
-      <section className="about" id="about">
-
-        <div className="sectionTitle">
-          <p>Get to know me</p>
-          <h2>About Me</h2>
-        </div>
-
-        <div className="aboutContent">
-
-          <div className="aboutText">
-
-            <p>
-              I am a Software Engineering student at NSBM Green University
-              with a strong interest in software development and artificial
-              intelligence.
+            <p className="heroDescription">
+              I build software, AI-powered applications and modern web
+              experiences while studying Software Engineering at NSBM Green
+              University.
             </p>
 
-            <p>
-              I enjoy building practical applications, learning new
-              technologies, solving problems, and turning ideas into real
-              digital solutions.
-            </p>
-
-            <p>
-              My goal is to continuously improve my programming skills and
-              build meaningful software projects that demonstrate my
-              knowledge and creativity.
-            </p>
-
-          </div>
-
-
-          <div className="aboutCards">
-
-            <div className="aboutCard">
-              <h3>Education</h3>
-              <p>BSc Software Engineering</p>
-            </div>
-
-            <div className="aboutCard">
-              <h3>University</h3>
-              <p>NSBM Green University</p>
-            </div>
-
-            <div className="aboutCard">
-              <h3>Focus</h3>
-              <p>Software Development & AI</p>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= SKILLS ================= */}
-      <section className="skills" id="skills">
-
-        <div className="sectionTitle">
-          <p>What I work with</p>
-          <h2>My Skills</h2>
-        </div>
-
-        <div className="skillsGrid">
-
-          {skills.map((skill, index) => (
-            <div
-              className="skillCard"
-              key={skill.title}
-              style={{ animationDelay: `${index * 0.08}s` }}
-            >
-
-              <div className="skillIcon">
-                {skill.icon}
-              </div>
-
-              <div className="skillInfo">
-
-                <h3>
-                  {skill.title}
-                </h3>
-
-                <p>
-                  {skill.description}
-                </p>
-
-              </div>
-
-            </div>
-          ))}
-
-        </div>
-
-      </section>
-
-
-      {/* ================= PROJECTS ================= */}
-      <section className="projects" id="projects">
-
-        <div className="sectionTitle">
-          <p>What I've built</p>
-          <h2>Featured Projects</h2>
-        </div>
-
-        <div className="projectsGrid">
-
-
-          {/* JARVIS */}
-          <div className="projectCard">
-
-            <div className="projectNumber">
-              01
-            </div>
-
-            <h3>
-              JARVIS AI Assistant
-            </h3>
-
-            <p>
-              A personal AI assistant built with Python featuring voice
-              interaction, speech recognition, text-to-speech and AI-powered
-              responses.
-            </p>
-
-            <div className="projectTech">
-              <span>Python</span>
-              <span>AI</span>
-              <span>Speech Recognition</span>
-              <span>Ollama</span>
-            </div>
-
-            <div className="projectLinks">
+            <div className="heroButtons">
+              <a href="#projects" className="primaryButton">
+                View My Projects
+              </a>
 
               <a
-                href="https://github.com/dionstacey03-dev/JARVIS-AI-Assistant"
-                className="projectButton"
+                href="/Dion-Stacey-Sellar-CV.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="secondaryButton"
+              >
+                View CV
+              </a>
+            </div>
+
+            <div className="socialLinks">
+              <a
+                href="https://github.com/dionstacey03-dev"
                 target="_blank"
                 rel="noreferrer"
               >
-                View Project
+                GitHub ↗
               </a>
-
-            </div>
-
-          </div>
-
-
-          {/* TOURISM PLANNER */}
-          <div className="projectCard">
-
-            <div className="projectNumber">
-              02
-            </div>
-
-            <h3>
-              AI Smart Tourism Planner
-            </h3>
-
-            <p>
-              An AI-powered tourism planning concept designed to create
-              personalized travel experiences in Sri Lanka while considering
-              factors such as weather, destinations and travel conditions.
-            </p>
-
-            <div className="projectTech">
-              <span>Artificial Intelligence</span>
-              <span>Travel Planning</span>
-              <span>Smart Tourism</span>
-            </div>
-
-            <div className="projectLinks">
 
               <a
-                href="#"
-                className="projectButton"
+                href="https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/"
+                target="_blank"
+                rel="noreferrer"
               >
-                View Project
+                LinkedIn ↗
               </a>
-
             </div>
-
           </div>
 
+          <div className="heroImage profileAnimation">
+            <div className="imageGlow"></div>
 
-          {/* SOFTWARE ENGINEERING PROJECTS */}
-          <div className="projectCard">
+            <div className="profileImageWrapper">
+              <img
+                src="/profile.jpg"
+                alt="Dion Stacey Sellar"
+                className="profileImage"
+              />
+            </div>
+          </div>
+        </section>
 
-            <div className="projectNumber">
-              03
+        {/* ================= ABOUT ================= */}
+        <section className="about section" id="about">
+          <div className="sectionHeading">
+            <p>GET TO KNOW ME</p>
+            <h2>About Me</h2>
+          </div>
+
+          <div className="aboutContent">
+            <div className="aboutText">
+              <p>
+                I'm Dion Stacey Sellar, a Software Engineering student
+                passionate about software development, artificial intelligence
+                and building useful technology.
+              </p>
+
+              <p>
+                I enjoy developing projects that combine programming,
+                problem-solving and modern technologies. My goal is to continue
+                improving my skills while creating practical applications that
+                solve real-world problems.
+              </p>
             </div>
 
-            <h3>
-              Software Engineering Projects
-            </h3>
+            <div className="aboutCards">
+              <article className="infoCard">
+                <span>01</span>
+                <h3>Education</h3>
+                <p>BSc Software Engineering</p>
+                <small>NSBM Green University</small>
+                <small>University of Plymouth</small>
+              </article>
 
-            <p>
-              A collection of university projects demonstrating programming,
-              database management, problem solving and software engineering
-              concepts.
-            </p>
+              <article className="infoCard">
+                <span>02</span>
+                <h3>Focus</h3>
+                <p>Software Development</p>
+                <small>Artificial Intelligence</small>
+                <small>Web Development</small>
+              </article>
 
-            <div className="projectTech">
-              <span>Programming</span>
-              <span>SQL</span>
-              <span>Software Engineering</span>
+              <article className="infoCard">
+                <span>03</span>
+                <h3>Location</h3>
+                <p>Batticaloa</p>
+                <small>Sri Lanka</small>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= SKILLS ================= */}
+        <section className="skills section" id="skills">
+          <div className="sectionHeading">
+            <p>WHAT I WORK WITH</p>
+            <h2>Skills & Technologies</h2>
+          </div>
+
+          <div className="skillsGrid">
+            {skills.map((skill) => (
+              <article className="skillCard" key={skill.title}>
+                <div className="skillIcon">{skill.icon}</div>
+
+                <div className="skillInfo">
+                  <h3>{skill.title}</h3>
+                  <p>{skill.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ================= PROJECTS ================= */}
+        <section className="projects section" id="projects">
+          <div className="sectionHeading">
+            <p>MY WORK</p>
+            <h2>Featured Projects</h2>
+          </div>
+
+          <div className="projectsGrid">
+            {/* JARVIS */}
+            <article className="projectCard">
+              <div className="projectNumber">01</div>
+
+              <div className="projectContent">
+                <p className="projectType">AI / PYTHON</p>
+
+                <h3>JARVIS AI Assistant</h3>
+
+                <p>
+                  A local desktop voice assistant built with Python featuring
+                  wake-word activation, voice commands, persistent memory,
+                  desktop controls and local AI integration using Ollama.
+                </p>
+
+                <div className="projectTags">
+                  <span>Python</span>
+                  <span>Ollama</span>
+                  <span>Voice AI</span>
+                  <span>Automation</span>
+                </div>
+
+                <a
+                  href="https://github.com/dionstacey03-dev/JARVIS-AI-Assistant"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="projectLink"
+                >
+                  View Project →
+                </a>
+              </div>
+            </article>
+
+            {/* AI SMART TOURISM PLANNER */}
+            <article className="projectCard">
+              <div className="projectNumber">02</div>
+
+              <div className="projectContent">
+                <p className="projectType">REACT / SMART TOURISM</p>
+
+                <h3>AI Smart Tourism Planner</h3>
+
+                <p>
+                  A smart tourism planning prototype for Sri Lanka that creates
+                  personalized travel itineraries based on trip duration,
+                  budget, interests, traveler count and preferred travel style.
+                </p>
+
+                <div className="projectTags">
+                  <span>React</span>
+                  <span>JavaScript</span>
+                  <span>Vite</span>
+                  <span>Smart Tourism</span>
+                </div>
+
+                <a
+                  href="https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="projectLink"
+                >
+                  View Project →
+                </a>
+              </div>
+            </article>
+
+            {/* SOFTWARE ENGINEERING PROJECTS */}
+            <article className="projectCard">
+              <div className="projectNumber">03</div>
+
+              <div className="projectContent">
+                <p className="projectType">SOFTWARE ENGINEERING</p>
+
+                <h3>Software Engineering Projects</h3>
+
+                <p>
+                  A growing collection of university and personal software
+                  engineering projects covering programming, databases,
+                  problem-solving and modern application development.
+                </p>
+
+                <div className="projectTags">
+                  <span>Java</span>
+                  <span>SQL</span>
+                  <span>Git</span>
+                  <span>Development</span>
+                </div>
+
+                <a
+                  href="https://github.com/dionstacey03-dev"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="projectLink"
+                >
+                  View GitHub →
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        {/* ================= CONTACT ================= */}
+        <section className="contact section" id="contact">
+          <div className="contactContent">
+            <div>
+              <p className="contactLabel">LET'S CONNECT</p>
+
+              <h2>
+                Interested in my
+                <span> work?</span>
+              </h2>
+
+              <p>
+                I'm always interested in learning, collaborating and exploring
+                new opportunities in software engineering and artificial
+                intelligence.
+              </p>
             </div>
 
-            <div className="projectLinks">
+            <div className="contactLinks">
+              <a href="mailto:dion.stacey.03@gmail.com">
+                <span>Email</span>
+                <strong>dion.stacey.03@gmail.com ↗</strong>
+              </a>
 
               <a
                 href="https://github.com/dionstacey03-dev"
-                className="projectButton"
                 target="_blank"
                 rel="noreferrer"
               >
-                View Projects
+                <span>GitHub</span>
+                <strong>dionstacey03-dev ↗</strong>
               </a>
 
+              <a
+                href="https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>LinkedIn</span>
+                <strong>Dion Stacey Sellar ↗</strong>
+              </a>
             </div>
-
           </div>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= CONTACT ================= */}
-      <section className="contact" id="contact">
-
-        <div className="sectionTitle">
-          <p>Let's connect</p>
-          <h2>Contact Me</h2>
-        </div>
-
-        <div className="contactContent">
-
-          <h3>
-            Let's build something great.
-          </h3>
-
-          <p>
-            I'm always interested in learning, collaborating on projects,
-            and exploring new opportunities in software development and
-            artificial intelligence.
-          </p>
-
-          <div className="contactButtons">
-
-            <a
-              href="mailto:dion.stacey.03@gmail.com"
-              className="primaryButton"
-            >
-              Email Me
-            </a>
-
-            <a
-              href="https://github.com/dionstacey03-dev"
-              className="secondaryButton"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/"
-              className="secondaryButton"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
-
-          </div>
-
-        </div>
-
-      </section>
-
+        </section>
+      </main>
 
       {/* ================= FOOTER ================= */}
       <footer className="footer">
-
-        <p>
-          © 2026 Dion Stacey Sellar. Built with React.
-        </p>
-
+        <p>© 2026 Dion Stacey Sellar.</p>
+        <p>Built with React.</p>
       </footer>
-
     </div>
   )
 }

@@ -311,12 +311,21 @@ function App() {
             <div className="projectLinks">
 
               <a
-                href="https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner"
+                href="https://ai-smart-tourism-planner.vercel.app"
                 className="projectButton"
                 target="_blank"
                 rel="noreferrer"
               >
-                View Project
+                Live Demo
+              </a>
+
+              <a
+                href="https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner"
+                className="projectButton"
+                target="_blank"
+                rel="noreferrer"
+                >
+                  GitHub
               </a>
 
             </div>

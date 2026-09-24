@@ -48,7 +48,13 @@ The portfolio is deployed on Vercel. For a new deployment, import this GitHub re
 
 ## Screenshots
 
-Screenshot placeholder: add a current desktop capture at `docs/portfolio-desktop.png` and a mobile capture at `docs/portfolio-mobile.png`, then embed them here. The live site above shows the current layout until screenshots are added.
+Desktop preview from the latest source, running locally:
+
+![Desktop view of Dion's portfolio](docs/portfolio-desktop.png)
+
+Mobile preview at a 390 px viewport:
+
+![Mobile view of Dion's portfolio](docs/portfolio-mobile.png)
 
 ## Contact
 

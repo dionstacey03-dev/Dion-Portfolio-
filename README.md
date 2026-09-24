@@ -1,16 +1,55 @@
-# React + Vite
+# Dion Stacey Sellar — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive portfolio showcasing my software development and AI projects. I am a Software Engineering student at NSBM Green University, studying for a BSc in Software Engineering (University of Plymouth).
 
-Currently, two official plugins are available:
+**[View the portfolio](https://dion-portfolio-65zniy6fq-dionstacey03-9459.vercel.app)** · [GitHub profile](https://github.com/dionstacey03-dev) · [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## About this site
 
-## React Compiler
+The site has sections for my background, skills, featured projects, and contact details. It includes responsive navigation and a downloadable CV.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Stack:** React 19, JavaScript, CSS, and Vite 8. The project uses ESLint and is deployed on Vercel.
 
-## Expanding the ESLint configuration
+## Featured projects
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Project | Overview | Links |
+| --- | --- | --- |
+| **JARVIS AI Assistant** | A Python desktop assistant with voice interaction, speech recognition, text to speech, and AI responses using Ollama. | [GitHub](https://github.com/dionstacey03-dev/JARVIS-AI-Assistant) |
+| **AI Smart Tourism Planner** | A Sri Lanka travel planning concept that considers destinations, weather, and travel conditions. | [Live demo](https://ai-smart-tourism-planner.vercel.app) · [GitHub](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
+
+JARVIS is a desktop project, so its repository is the project link; no browser demo is listed.
+
+## Skills
+
+Python · JavaScript · React · SQL · Artificial Intelligence · Git & GitHub
+
+## Run locally
+
+Install [Node.js](https://nodejs.org/) and npm, then:
+
+```bash
+git clone https://github.com/dionstacey03-dev/Dion-Portfolio-.git
+cd Dion-Portfolio-
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite. Other available commands:
+
+```bash
+npm run lint       # check the source with ESLint
+npm run build      # create the production build in dist/
+npm run preview    # serve the production build locally
+```
+
+## Deployment
+
+The portfolio is deployed on Vercel. For a new deployment, import this GitHub repository into Vercel, select the **Vite** framework preset, use `npm run build` as the build command, and publish the `dist` output directory. Keep deployment visibility settings appropriate to your intended audience.
+
+## Screenshots
+
+Screenshot placeholder: add a current desktop capture at `docs/portfolio-desktop.png` and a mobile capture at `docs/portfolio-mobile.png`, then embed them here. The live site above shows the current layout until screenshots are added.
+
+## Contact
+
+[Email](mailto:dion.stacey.03@gmail.com) · [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/) · [GitHub](https://github.com/dionstacey03-dev)

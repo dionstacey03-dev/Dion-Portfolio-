@@ -175,6 +175,107 @@ function App() {
         </div>
       </section>
 
+{/* =========================
+    EDUCATION
+========================= */}
+<section className="education" id="education">
+  <div className="sectionTitle">
+    <p>My academic journey</p>
+    <h2>Academic Background</h2>
+  </div>
+
+  <div className="educationGrid">
+    {/* University */}
+    <article className="educationCard">
+      <div className="educationIcon">🎓</div>
+
+      <div className="educationContent">
+        <h3>BSc (Hons) Software Engineering</h3>
+
+        <h4>
+          NSBM Green University
+          <span>University of Plymouth</span>
+        </h4>
+
+        <span className="educationYear">
+          2026 – 2029 · In Progress
+        </span>
+
+        <p>
+          Undergraduate Software Engineering student developing skills in
+          programming, software development, databases, artificial
+          intelligence, and modern web technologies.
+        </p>
+      </div>
+    </article>
+
+    {/* ESOFT */}
+    <article className="educationCard">
+      <div className="educationIcon">💻</div>
+
+      <div className="educationContent">
+        <h3>
+          Diploma in Information Technology
+          <span className="educationTitleBreak">& English Language</span>
+        </h3>
+
+        <h4>ESOFT Metro Campus</h4>
+
+        <span className="educationYear">2025</span>
+
+        <p>
+          Diploma studies focused on information technology fundamentals,
+          computer applications, and English language skills.
+        </p>
+      </div>
+    </article>
+
+    {/* Advanced Level */}
+    <article className="educationCard">
+      <div className="educationIcon">📜</div>
+
+      <div className="educationContent">
+        <h3>G.C.E. Advanced Level</h3>
+
+        <h4>
+          St. Michael&apos;s College
+          <span>Batticaloa</span>
+        </h4>
+
+        <span className="educationYear">2023 – 2025</span>
+
+        <p>
+          Commerce Stream
+          <span className="educationSubjects">
+            Business Studies · ICT · Accounting
+          </span>
+        </p>
+      </div>
+    </article>
+
+    {/* Ordinary Level */}
+    <article className="educationCard">
+      <div className="educationIcon">🏫</div>
+
+      <div className="educationContent">
+        <h3>G.C.E. Ordinary Level</h3>
+
+        <h4>
+          St. Michael&apos;s College
+          <span>Batticaloa</span>
+        </h4>
+
+        <span className="educationYear">2022 (2023)</span>
+
+        <p>
+          Completed G.C.E. Ordinary Level studies before progressing to
+          Advanced Level in the Commerce stream.
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+
       {/* ================= SKILLS ================= */}
       <section className="skills" id="skills">
         <div className="sectionTitle">

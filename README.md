@@ -1,8 +1,8 @@
-# Dion Stacey Sellar — Portfolio
+﻿# Dion Stacey Sellar â€” Portfolio
 
 A responsive portfolio showcasing my software development and AI projects. I am a Software Engineering student at NSBM Green University, studying for a BSc in Software Engineering (University of Plymouth).
 
-**[View the portfolio](https://dion-portfolio-65zniy6fq-dionstacey03-9459.vercel.app)** · [GitHub profile](https://github.com/dionstacey03-dev) · [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/)
+**[View the portfolio](https://dion-portfolio-sigma.vercel.app)** Â· [GitHub profile](https://github.com/dionstacey03-dev) Â· [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/)
 
 ## About this site
 
@@ -15,13 +15,13 @@ The site has sections for my background, skills, featured projects, and contact 
 | Project | Overview | Links |
 | --- | --- | --- |
 | **JARVIS AI Assistant** | A Python desktop assistant with voice interaction, speech recognition, text to speech, and AI responses using Ollama. | [GitHub](https://github.com/dionstacey03-dev/JARVIS-AI-Assistant) |
-| **AI Smart Tourism Planner** | A Sri Lanka travel planning concept that considers destinations, weather, and travel conditions. | [Live demo](https://ai-smart-tourism-planner.vercel.app) · [GitHub](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
+| **AI Smart Tourism Planner** | A Sri Lanka travel planning concept that considers destinations, weather, and travel conditions. | [Live demo](https://ai-smart-tourism-planner.vercel.app) Â· [GitHub](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
 
 JARVIS is a desktop project, so its repository is the project link; no browser demo is listed.
 
 ## Skills
 
-Python · JavaScript · React · SQL · Artificial Intelligence · Git & GitHub
+Python Â· JavaScript Â· React Â· SQL Â· Artificial Intelligence Â· Git & GitHub
 
 ## Run locally
 
@@ -58,4 +58,5 @@ Mobile preview at a 390 px viewport:
 
 ## Contact
 
-[Email](mailto:dion.stacey.03@gmail.com) · [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/) · [GitHub](https://github.com/dionstacey03-dev)
+[Email](mailto:dion.stacey.03@gmail.com) Â· [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/) Â· [GitHub](https://github.com/dionstacey03-dev)
+

@@ -3,50 +3,63 @@ import './App.css'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSkillCategory, setActiveSkillCategory] = useState('All')
 
   const closeMenu = () => {
     setMenuOpen(false)
   }
 
-  const skills = [
-    {
-      icon: '🐍',
-      title: 'Python',
-      description: 'Programming, automation and AI development',
-    },
-    {
-      icon: 'JS',
-      title: 'JavaScript',
-      description: 'Modern web development and interactive applications',
-    },
-    {
-      icon: '⚛',
-      title: 'React',
-      description: 'Building modern and responsive user interfaces',
-    },
-    {
-      icon: '▰',
-      title: 'SQL',
-      description: 'Database queries and data management',
-    },
-    {
-      icon: '✦',
-      title: 'Artificial Intelligence',
-      description: 'AI concepts, intelligent systems and generative AI',
-    },
-    {
-      icon: '⌘',
-      title: 'Git & GitHub',
-      description: 'Version control and software project management',
-    },
+  const skillCategories = [
+    'All',
+    'Languages',
+    'Frontend',
+    'Backend',
+    'AI / ML',
+    'Databases',
+    'Tools',
   ]
+
+  const skills = [
+    // Languages
+    { icon: '🐍', title: 'Python', category: 'Languages' },
+    { icon: '⚡', title: 'JavaScript', category: 'Languages' },
+    { icon: '☕', title: 'Java', category: 'Languages' },
+    { icon: '🌐', title: 'HTML', category: 'Languages' },
+    { icon: '🎨', title: 'CSS', category: 'Languages' },
+    { icon: '▰', title: 'SQL', category: 'Languages' },
+
+    // Frontend
+    { icon: '⚛️', title: 'React', category: 'Frontend' },
+    { icon: '⚡', title: 'Vite', category: 'Frontend' },
+
+    // Backend
+    { icon: '🚀', title: 'FastAPI', category: 'Backend' },
+
+    // AI / ML
+    { icon: '🤖', title: 'Artificial Intelligence', category: 'AI / ML' },
+    { icon: '🧠', title: 'LLMs', category: 'AI / ML' },
+    { icon: '🦙', title: 'Ollama', category: 'AI / ML' },
+
+    // Databases
+    { icon: '🐬', title: 'MySQL', category: 'Databases' },
+
+    // Tools
+    { icon: '🌿', title: 'Git', category: 'Tools' },
+    { icon: '🐙', title: 'GitHub', category: 'Tools' },
+    { icon: '💻', title: 'VS Code', category: 'Tools' },
+    { icon: '▲', title: 'Vercel', category: 'Tools' },
+  ]
+
+  const filteredSkills =
+    activeSkillCategory === 'All'
+      ? skills
+      : skills.filter((skill) => skill.category === activeSkillCategory)
 
   return (
     <div className="portfolio">
 
       {/* ================= NAVBAR ================= */}
       <nav className="navbar">
-
         <a href="#home" className="logo" onClick={closeMenu}>
           Dion<span>.</span>
         </a>
@@ -69,15 +82,11 @@ function App() {
           <a href="#projects" onClick={closeMenu}>Projects</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
         </div>
-
       </nav>
-
 
       {/* ================= HERO ================= */}
       <section className="hero" id="home">
-
         <div className="heroContent heroAnimation">
-
           <p className="intro">Hello, I'm</p>
 
           <h1>Dion Stacey Sellar</h1>
@@ -90,18 +99,11 @@ function App() {
           </p>
 
           <div className="heroButtons">
-
-            <a
-              href="#projects"
-              className="primaryButton"
-            >
+            <a href="#projects" className="primaryButton">
               View My Projects
             </a>
 
-            <a
-              href="#contact"
-              className="secondaryButton"
-            >
+            <a href="#contact" className="secondaryButton">
               Contact Me
             </a>
 
@@ -112,42 +114,29 @@ function App() {
             >
               Download CV
             </a>
-
           </div>
-
         </div>
 
-
-        {/* PROFILE IMAGE */}
         <div className="profileArea profileAnimation">
-
           <div className="profileImageWrapper">
-
             <img
               src="/profile.jpg"
               alt="Dion Stacey Sellar"
               className="profileImage"
             />
-
           </div>
-
         </div>
-
       </section>
-
 
       {/* ================= ABOUT ================= */}
       <section className="about" id="about">
-
         <div className="sectionTitle">
           <p>Get to know me</p>
           <h2>About Me</h2>
         </div>
 
         <div className="aboutContent">
-
           <div className="aboutText">
-
             <p>
               I am a Software Engineering student at NSBM Green University
               with a strong interest in software development and artificial
@@ -165,12 +154,9 @@ function App() {
               build meaningful software projects that demonstrate my
               knowledge and creativity.
             </p>
-
           </div>
 
-
           <div className="aboutCards">
-
             <div className="aboutCard">
               <h3>Education</h3>
               <p>BSc Software Engineering</p>
@@ -185,58 +171,61 @@ function App() {
               <h3>Focus</h3>
               <p>Software Development & AI</p>
             </div>
-
           </div>
-
         </div>
-
       </section>
-
 
       {/* ================= SKILLS ================= */}
       <section className="skills" id="skills">
-
         <div className="sectionTitle">
-          <p>What I work with</p>
+          <p>Technologies I work with</p>
           <h2>My Skills</h2>
         </div>
 
-        <div className="skillsGrid">
+        {/* Skill Filters */}
+        <div className="skillFilters">
+          {skillCategories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              className={`skillFilterButton ${
+                activeSkillCategory === category
+                  ? 'activeSkillFilter'
+                  : ''
+              }`}
+              onClick={() => setActiveSkillCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
 
-          {skills.map((skill, index) => (
+        {/* Skill Cards */}
+        <div className="skillsGrid">
+          {filteredSkills.map((skill, index) => (
             <div
               className="skillCard"
               key={skill.title}
-              style={{ animationDelay: `${index * 0.08}s` }}
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
-
               <div className="skillIcon">
                 {skill.icon}
               </div>
 
               <div className="skillInfo">
+                <h3>{skill.title}</h3>
 
-                <h3>
-                  {skill.title}
-                </h3>
-
-                <p>
-                  {skill.description}
-                </p>
-
+                <span className="skillCategory">
+                  {skill.category}
+                </span>
               </div>
-
             </div>
           ))}
-
         </div>
-
       </section>
-
 
       {/* ================= PROJECTS ================= */}
       <section className="projects" id="projects">
-
         <div className="sectionTitle">
           <p>What I've built</p>
           <h2>Featured Projects</h2>
@@ -244,17 +233,11 @@ function App() {
 
         <div className="projectsGrid">
 
-
           {/* JARVIS */}
           <div className="projectCard">
+            <div className="projectNumber">01</div>
 
-            <div className="projectNumber">
-              01
-            </div>
-
-            <h3>
-              JARVIS AI Assistant
-            </h3>
+            <h3>JARVIS AI Assistant</h3>
 
             <p>
               A personal AI assistant built with Python featuring voice
@@ -270,7 +253,6 @@ function App() {
             </div>
 
             <div className="projectLinks">
-
               <a
                 href="https://github.com/dionstacey03-dev/JARVIS-AI-Assistant"
                 className="projectButton"
@@ -279,22 +261,14 @@ function App() {
               >
                 View Project
               </a>
-
             </div>
-
           </div>
-
 
           {/* TOURISM PLANNER */}
           <div className="projectCard">
+            <div className="projectNumber">02</div>
 
-            <div className="projectNumber">
-              02
-            </div>
-
-            <h3>
-              AI Smart Tourism Planner
-            </h3>
+            <h3>AI Smart Tourism Planner</h3>
 
             <p>
               An AI-powered tourism planning concept designed to create
@@ -309,7 +283,6 @@ function App() {
             </div>
 
             <div className="projectLinks">
-
               <a
                 href="https://ai-smart-tourism-planner.vercel.app"
                 className="projectButton"
@@ -324,25 +297,17 @@ function App() {
                 className="projectButton"
                 target="_blank"
                 rel="noreferrer"
-                >
-                  GitHub
+              >
+                GitHub
               </a>
-
             </div>
-
           </div>
-
 
           {/* SOFTWARE ENGINEERING PROJECTS */}
           <div className="projectCard">
+            <div className="projectNumber">03</div>
 
-            <div className="projectNumber">
-              03
-            </div>
-
-            <h3>
-              Software Engineering Projects
-            </h3>
+            <h3>Software Engineering Projects</h3>
 
             <p>
               A collection of university projects demonstrating programming,
@@ -357,7 +322,6 @@ function App() {
             </div>
 
             <div className="projectLinks">
-
               <a
                 href="https://github.com/dionstacey03-dev"
                 className="projectButton"
@@ -366,29 +330,21 @@ function App() {
               >
                 View Projects
               </a>
-
             </div>
-
           </div>
 
         </div>
-
       </section>
-
 
       {/* ================= CONTACT ================= */}
       <section className="contact" id="contact">
-
         <div className="sectionTitle">
           <p>Let's connect</p>
           <h2>Contact Me</h2>
         </div>
 
         <div className="contactContent">
-
-          <h3>
-            Let's build something great.
-          </h3>
+          <h3>Let's build something great.</h3>
 
           <p>
             I'm always interested in learning, collaborating on projects,
@@ -397,7 +353,6 @@ function App() {
           </p>
 
           <div className="contactButtons">
-
             <a
               href="mailto:dion.stacey.03@gmail.com"
               className="primaryButton"
@@ -422,21 +377,15 @@ function App() {
             >
               LinkedIn
             </a>
-
           </div>
-
         </div>
-
       </section>
-
 
       {/* ================= FOOTER ================= */}
       <footer className="footer">
-
         <p>
           © 2026 Dion Stacey Sellar. Built with React.
         </p>
-
       </footer>
 
     </div>

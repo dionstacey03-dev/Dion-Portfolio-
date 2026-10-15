@@ -374,7 +374,7 @@ function App() {
               >
                 View Project
               </a>
-              <a href="/jarvis-demo" className="projectButton">Live Demo ↗</a>
+              <a href="/jarvis-demo" className="projectButton">Live Demo</a>
               <a href="/projects/jarvis" className="projectButton">Case Study ↗</a>
             </div>
           </div>

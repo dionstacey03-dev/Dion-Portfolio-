@@ -12,9 +12,17 @@ export default function JarvisDemo() {
   const [voiceEnabled,setVoiceEnabled] = useState(false)
   const [voiceSupported,setVoiceSupported] = useState(false)
   const [micSupported,setMicSupported] = useState(false)
+  const [availableVoices,setAvailableVoices] = useState([])
+  const [selectedVoice,setSelectedVoice] = useState(() => { try { return localStorage.getItem('jarvis-voice-choice') || 'auto' } catch { return 'auto' } })
   useEffect(() => {
     setVoiceSupported('speechSynthesis' in window)
     setMicSupported(Boolean(window.SpeechRecognition || window.webkitSpeechRecognition))
+    if ('speechSynthesis' in window) {
+      const loadVoices = () => setAvailableVoices(window.speechSynthesis.getVoices().filter(v => /^en[-_]/i.test(v.lang)))
+      loadVoices()
+      window.speechSynthesis.addEventListener?.('voiceschanged', loadVoices)
+      return () => { window.speechSynthesis.removeEventListener?.('voiceschanged', loadVoices); recognition.current?.abort(); window.speechSynthesis.cancel() }
+    }
     return () => { recognition.current?.abort(); window.speechSynthesis?.cancel() }
   }, [])
   function speak(text) {
@@ -25,7 +33,7 @@ export default function JarvisDemo() {
     utterance.rate = 0.94
     utterance.pitch = 0.83
     const voices = window.speechSynthesis.getVoices()
-    utterance.voice = voices.find(v => /en[-_]US/i.test(v.lang) && /male|david|guy|daniel/i.test(v.name)) || voices.find(v => /en[-_]US/i.test(v.lang)) || null
+    utterance.voice = (selectedVoice !== 'auto' ? voices.find(v => `${v.voiceURI}|${v.name}|${v.lang}` === selectedVoice) : null) || voices.find(v => /en[-_]US/i.test(v.lang) && /male|david|guy|daniel/i.test(v.name)) || voices.find(v => /en[-_]US/i.test(v.lang)) || null
     window.speechSynthesis.speak(utterance)
   }
   function toggleMic() {
@@ -85,7 +93,7 @@ export default function JarvisDemo() {
           {busy && <p className="demoThinking" role="status">JARVIS is thinking…</p>}<div ref={bottom} />
         </div>
         {error && <div className="demoError" role="alert">{error}</div>}
-        <div className="demoVoiceControls"><button type="button" onClick={() => { if (voiceEnabled) window.speechSynthesis?.cancel(); setVoiceEnabled(!voiceEnabled) }} disabled={!voiceSupported} aria-pressed={voiceEnabled}>{voiceEnabled ? 'Voice output: ON' : 'Voice output: OFF'}</button><button type="button" onClick={toggleMic} disabled={!micSupported || busy} aria-pressed={listening}>{listening ? 'Stop listening' : 'Use microphone'}</button></div><form className="demoComposer" onSubmit={e => { e.preventDefault(); send(input) }}><label className="demoInputLabel" htmlFor="demoInput">Message JARVIS</label><input id="demoInput" value={input} maxLength={1000} disabled={busy} onChange={e => setInput(e.target.value)} placeholder="Type your message to JARVIS…" autoComplete="off" /><button type="submit" disabled={busy || !input.trim()}>SEND ↗</button></form>
+        <div className="demoVoiceControls"><button type="button" onClick={() => { if (voiceEnabled) window.speechSynthesis?.cancel(); setVoiceEnabled(!voiceEnabled) }} disabled={!voiceSupported} aria-pressed={voiceEnabled}>{voiceEnabled ? 'Voice output: ON' : 'Voice output: OFF'}</button><label htmlFor="jarvisVoiceChoice" style={{display:"inline-flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>Voice <select id="jarvisVoiceChoice" aria-label="JARVIS speech voice" disabled={!voiceSupported} value={selectedVoice} onChange={e => { const choice=e.target.value; setSelectedVoice(choice); window.speechSynthesis?.cancel(); try { localStorage.setItem("jarvis-voice-choice",choice) } catch { /* Storage unavailable */ } }}><option value="auto">Original automatic voice</option>{availableVoices.map(v => <option key={`${v.voiceURI}|${v.name}|${v.lang}`} value={`${v.voiceURI}|${v.name}|${v.lang}`}>{v.name} ({v.lang})</option>)}</select></label><button type="button" disabled={!voiceSupported} onClick={() => { window.speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance("Good evening. JARVIS systems are online and ready."); u.rate=0.94; u.pitch=0.83; const voices=window.speechSynthesis.getVoices(); u.voice=(selectedVoice !== "auto" ? voices.find(v => `${v.voiceURI}|${v.name}|${v.lang}` === selectedVoice) : null) || voices.find(v => /en[-_]US/i.test(v.lang) && /male|david|guy|daniel/i.test(v.name)) || voices.find(v => /en[-_]US/i.test(v.lang)) || null; window.speechSynthesis.speak(u) }}>Test voice</button><button type="button" onClick={toggleMic} disabled={!micSupported || busy} aria-pressed={listening}>{listening ? 'Stop listening' : 'Use microphone'}</button></div><form className="demoComposer" onSubmit={e => { e.preventDefault(); send(input) }}><label className="demoInputLabel" htmlFor="demoInput">Message JARVIS</label><input id="demoInput" value={input} maxLength={1000} disabled={busy} onChange={e => setInput(e.target.value)} placeholder="Type your message to JARVIS…" autoComplete="off" /><button type="submit" disabled={busy || !input.trim()}>SEND ↗</button></form>
         <p className="demoFooter">Powered by Groq · Please don't share sensitive information.</p>
       </div>
     </section>

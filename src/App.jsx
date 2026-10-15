@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import './glass-theme.css'
 import JarvisShowcase from './JarvisShowcase'
+import { PortfolioEnhancements } from './PortfolioUpgrades'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -91,6 +92,8 @@ function App() {
           <a href="#skills" onClick={closeMenu}>Skills</a>
           <a href="#projects" onClick={closeMenu}>Projects</a>
           <a href="#jarvis" onClick={closeMenu}>JARVIS</a>
+          <a href="#case-studies" onClick={closeMenu}>Case Studies</a>
+          <a href="#recruiter" onClick={closeMenu}>Recruiter</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
           <button type="button" className="themeToggle" onClick={() => setTheme(current => current === 'dark' ? 'light' : 'dark')} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} aria-pressed={theme === 'light'}>{theme === 'dark' ? '☀ Light' : '☾ Dark'}</button>
         </div>
@@ -497,6 +500,8 @@ function App() {
 
         </div>
       </section>
+
+      <PortfolioEnhancements />
 
       {/* ================= CONTACT ================= */}
       <section className="contact" id="contact">

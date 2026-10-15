@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import './glass-theme.css'
+import JarvisShowcase from './JarvisShowcase'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -89,6 +90,7 @@ function App() {
           <a href="#about" onClick={closeMenu}>About</a>
           <a href="#skills" onClick={closeMenu}>Skills</a>
           <a href="#projects" onClick={closeMenu}>Projects</a>
+          <a href="#jarvis" onClick={closeMenu}>JARVIS</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
           <button type="button" className="themeToggle" onClick={() => setTheme(current => current === 'dark' ? 'light' : 'dark')} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} aria-pressed={theme === 'light'}>{theme === 'dark' ? '☀ Light' : '☾ Dark'}</button>
         </div>
@@ -104,8 +106,7 @@ function App() {
           <h2>Software Engineering Student</h2>
 
           <p className="description">
-            I build software solutions, explore artificial intelligence,
-            and turn ideas into practical digital experiences.
+            I’m a software engineering student who enjoys turning ideas into working applications. I build with Python and React, explore AI, and learn by creating real projects.
           </p>
 
           <div className="heroButtons">
@@ -154,15 +155,11 @@ function App() {
             </p>
 
             <p>
-              I enjoy building practical applications, learning new
-              technologies, solving problems, and turning ideas into real
-              digital solutions.
+              I learn best by building. From a Python voice assistant to web dashboards, I enjoy solving problems, testing ideas, and improving each project step by step.
             </p>
 
             <p>
-              My goal is to continuously improve my programming skills and
-              build meaningful software projects that demonstrate my
-              knowledge and creativity.
+              I’m currently strengthening my software engineering foundations while exploring how AI can make everyday tools more useful.
             </p>
           </div>
 
@@ -334,6 +331,8 @@ function App() {
           ))}
         </div>
       </section>
+
+      <JarvisShowcase />
 
       {/* ================= PROJECTS ================= */}
       <section className="projects" id="projects">

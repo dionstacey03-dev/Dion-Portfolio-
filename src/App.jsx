@@ -413,9 +413,27 @@ function App() {
             </div>
           </div>
 
-          {/* SOFTWARE ENGINEERING PROJECTS */}
+          {/* GREENROUTE AI */}
           <div className="projectCard">
             <div className="projectNumber">03</div>
+            <h3>GreenRoute AI</h3>
+            <p>
+              Completed and tested route-planning application for comparing journeys and tracking their carbon impact. Features route comparison, a Carbon Tracker, CSV export, and a hybrid satellite map. Production deployment preparation is the next step.
+            </p>
+            <div className="projectTech">
+              <span>Python</span>
+              <span>FastAPI</span>
+              <span>Route Planning</span>
+              <span>Carbon Tracking</span>
+            </div>
+            <div className="projectLinks">
+              <span className="projectButton" aria-label="Development complete; deployment pending">Development Complete · Deployment Pending</span>
+            </div>
+          </div>
+
+                    {/* SOFTWARE ENGINEERING PROJECTS */}
+          <div className="projectCard">
+            <div className="projectNumber">04</div>
 
             <h3>Software Engineering Projects</h3>
 

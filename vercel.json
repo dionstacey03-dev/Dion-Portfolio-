@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/jarvis-demo",
+      "destination": "/index.html"
+    }
+  ]
+}

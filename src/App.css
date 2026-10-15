@@ -1335,3 +1335,13 @@ body {
   }
 
 }
+/* Portfolio upgrade: depth-driven hero, responsive skills and polished transitions */
+.hero{perspective:1200px}
+.profileImageWrapper{transform-style:preserve-3d;position:relative;animation:portfolioFloat 8s ease-in-out infinite alternate;box-shadow:0 30px 90px #1fcaff22}
+.profileImageWrapper:before,.profileImageWrapper:after{content:"";position:absolute;inset:-17px;border:2px solid #49ddff66;border-radius:50%;pointer-events:none;transform:translateZ(-30px) rotateY(20deg);box-shadow:0 0 35px #1fdfff33}
+.profileImageWrapper:after{inset:-33px;border-style:dashed;opacity:.45;transform:translateZ(-70px) rotateX(55deg)}
+@keyframes portfolioFloat{from{transform:rotateY(-9deg) rotateX(4deg) translateY(0)}to{transform:rotateY(9deg) rotateX(-4deg) translateY(-14px)}}
+.skillCard{position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.skillCard:hover,.skillCard:focus-within{transform:translateY(-5px);box-shadow:0 15px 45px #22bfff26}
+.skillCard:after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:linear-gradient(90deg,transparent,#4ce6ff,transparent);opacity:.65}
+@media(prefers-reduced-motion:reduce){.profileImageWrapper{animation:none}.skillCard{transition:none}.skillCard:hover{transform:none}}

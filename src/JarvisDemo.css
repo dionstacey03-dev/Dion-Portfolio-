@@ -50,3 +50,5 @@
 @media(max-width:850px){.reactor3d{height:225px}.reactor3dStage{transform-origin:center;scale:.76}}
 /* User explicitly requested continuous motion regardless of device Reduce Motion preference. */
 @media(prefers-reduced-motion:reduce){.reactor3dStage,.reactor3dOuter,.reactor3dMiddle,.reactor3dInner,.reactor3dHeart{animation-play-state:running!important}}
+
+.demoVoiceControls{display:flex;flex-wrap:wrap;gap:10px;padding:12px 18px 4px}.demoVoiceControls button{border:1px solid rgba(80,215,255,.45);border-radius:10px;background:rgba(9,36,58,.8);color:#c8f7ff;padding:10px 14px;min-height:44px;cursor:pointer;font:inherit}.demoVoiceControls button[aria-pressed="true"]{background:rgba(0,151,188,.3);border-color:#6defff}.demoVoiceControls button:disabled{opacity:.45;cursor:not-allowed}.demoVoiceControls button:focus-visible{outline:2px solid #9ff8ff;outline-offset:2px}

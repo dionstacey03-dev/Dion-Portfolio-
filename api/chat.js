@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       upstream = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST', signal: controller.signal,
         headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: process.env.GROQ_MODEL || 'llama-3.1-8b-instant', temperature: 0.5, max_tokens: 240, messages: [{ role:'system', content:SYSTEM }, ...messages] })
+        body: JSON.stringify({ model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b', temperature: 0.5, max_tokens: 400, messages: [{ role:'system', content:SYSTEM }, ...messages] })
       })
     } finally { clearTimeout(timer) }
     if (!upstream.ok) {

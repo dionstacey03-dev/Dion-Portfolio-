@@ -371,6 +371,7 @@ function App() {
               >
                 View Project
               </a>
+              <a href="/jarvis-demo" className="projectButton">Live Demo ↗</a>
             </div>
           </div>
 

@@ -21,7 +21,16 @@ export default async function handler(req, res) {
         body: JSON.stringify({ model: process.env.GROQ_MODEL || 'llama-3.1-8b-instant', temperature: 0.5, max_tokens: 240, messages: [{ role:'system', content:SYSTEM }, ...messages] })
       })
     } finally { clearTimeout(timer) }
-    if (!upstream.ok) return res.status(502).json({ error: 'The AI service is unavailable right now.' })
+    if (!upstream.ok) {
+      const errorByStatus = {
+        400: 'Groq rejected the request. Please contact the site owner.',
+        401: 'Groq rejected the API key. Check the Groq key saved in Vercel.',
+        403: 'Groq access was denied. Check API key permissions and account status.',
+        404: 'The configured Groq model was not found.',
+        429: 'JARVIS has reached the Groq free-tier usage limit. Please try later.'
+      }
+      return res.status(502).json({ error: errorByStatus[upstream.status] || 'Groq is temporarily unavailable (status ' + upstream.status + ').' })
+    }
     const result = await upstream.json()
     const answer = result?.choices?.[0]?.message?.content
     if (typeof answer !== 'string' || !answer.trim()) throw new Error('Empty AI response')

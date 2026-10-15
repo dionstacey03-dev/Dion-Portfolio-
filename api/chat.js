@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('X-Content-Type-Options', 'nosniff')
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
-  const key = process.env.GROQ_API_KEY
+  const key = process.env.GROQ_API_KEY || process.env.Groq_Api_Key
   if (!key) return res.status(503).json({ error: 'Live AI is not configured yet. Please try again later.' })
   const messages = req.body?.messages
   if (!Array.isArray(messages) || messages.length < 1 || messages.length > LIMIT) return res.status(400).json({ error: 'Invalid conversation' })

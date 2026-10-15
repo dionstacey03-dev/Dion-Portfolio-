@@ -447,9 +447,26 @@ function App() {
             </div>
           </div>
 
-          {/* SOFTWARE ENGINEERING PROJECTS */}
+          {/* VISIONX AI */}
           <div className="projectCard">
             <div className="projectNumber">05</div>
+            <h3>VisionX AI</h3>
+            <p>
+              An AI vision project with core development completed. Currently undergoing refinement and polishing before a public release; further technical details and a demo will be shared when ready.
+            </p>
+            <div className="projectTech">
+              <span>Artificial Intelligence</span>
+              <span>Computer Vision</span>
+              <span>Polishing</span>
+            </div>
+            <div className="projectLinks">
+              <span className="projectButton" aria-label="Core development complete, polishing underway">Core Complete · Polishing</span>
+            </div>
+          </div>
+
+          {/* SOFTWARE ENGINEERING PROJECTS */}
+          <div className="projectCard">
+            <div className="projectNumber">06</div>
 
             <h3>Software Engineering Projects</h3>
 

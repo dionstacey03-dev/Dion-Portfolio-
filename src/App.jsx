@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import './glass-theme.css'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)

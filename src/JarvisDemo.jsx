@@ -7,6 +7,45 @@ export default function JarvisDemo() {
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const bottom = useRef(null)
+  const recognition = useRef(null)
+  const [listening,setListening] = useState(false)
+  const [voiceEnabled,setVoiceEnabled] = useState(false)
+  const [voiceSupported,setVoiceSupported] = useState(false)
+  const [micSupported,setMicSupported] = useState(false)
+  useEffect(() => {
+    setVoiceSupported('speechSynthesis' in window)
+    setMicSupported(Boolean(window.SpeechRecognition || window.webkitSpeechRecognition))
+    return () => { recognition.current?.abort(); window.speechSynthesis?.cancel() }
+  }, [])
+  function speak(text) {
+    if (!voiceEnabled || !('speechSynthesis' in window)) return
+    window.speechSynthesis.cancel()
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.lang = 'en-US'
+    utterance.rate = 0.94
+    utterance.pitch = 0.83
+    const voices = window.speechSynthesis.getVoices()
+    utterance.voice = voices.find(v => /en[-_]US/i.test(v.lang) && /male|david|guy|daniel/i.test(v.name)) || voices.find(v => /en[-_]US/i.test(v.lang)) || null
+    window.speechSynthesis.speak(utterance)
+  }
+  function toggleMic() {
+    if (listening) { recognition.current?.stop(); return }
+    const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    if (!Recognition) { setError('Voice input is not supported in this browser. Try Chrome or use the text box.'); return }
+    try {
+      const session = new Recognition()
+      recognition.current = session
+      session.lang = 'en-US'
+      session.interimResults = false
+      session.maxAlternatives = 1
+      session.onresult = event => { const transcript = event.results?.[0]?.[0]?.transcript; if (transcript) setInput(transcript) }
+      session.onerror = event => { setError(event.error === 'not-allowed' ? 'Microphone access was denied. Enable it in browser settings.' : 'Voice recognition failed. You can still type your message.') }
+      session.onend = () => setListening(false)
+      setError('')
+      setListening(true)
+      session.start()
+    } catch { setListening(false); setError('Microphone could not start. You can still type your message.') }
+  }
   useEffect(() => { bottom.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages, busy])
   async function send(value) {
     const question = value.trim()
@@ -21,6 +60,7 @@ export default function JarvisDemo() {
       const data = await response.json()
       if (!response.ok || typeof data.answer !== 'string') throw new Error(data.error || 'JARVIS is unavailable. Try again later.')
       setMessages(current => [...current, { role: 'assistant', content: data.answer }])
+      speak(data.answer)
     } catch (err) { setError(err.message || 'JARVIS is unavailable.') }
     finally { setBusy(false) }
   }
@@ -33,9 +73,9 @@ export default function JarvisDemo() {
         <div className={busy ? "reactor3d isThinking" : "reactor3d"} aria-hidden="true"><div className="reactor3dStage"><div className="reactor3dRing reactor3dOuter" /><div className="reactor3dRing reactor3dMiddle" /><div className="reactor3dRing reactor3dInner" /><div className="reactor3dHeart">J</div></div></div>
         <h1>JARVIS <span>AI</span></h1><p>Intelligent portfolio interface</p>
         <div className="demoDetail"><span>ENGINE</span><strong>Groq AI</strong></div>
-        <div className="demoDetail"><span>MODE</span><strong>Text conversation</strong></div>
+        <div className="demoDetail"><span>MODE</span><strong>Text + optional voice</strong></div>
         <div className="demoDetail"><span>ACCESS</span><strong>Browser demo</strong></div>
-        <p className="demoNotice">Web-only demo. JARVIS cannot control your computer, access local files, or use your microphone.</p>
+        <p className="demoNotice">Web-only demo. Microphone access is optional and only used for browser speech recognition. JARVIS cannot control your computer or access local files.</p>
       </aside>
       <div className="demoChat">
         <div className="demoChatHead"><div><small>COMMUNICATION CHANNEL</small><h2>Talk to JARVIS</h2></div><span className="demoLive">● INTERACTIVE</span></div>
@@ -45,7 +85,7 @@ export default function JarvisDemo() {
           {busy && <p className="demoThinking" role="status">JARVIS is thinking…</p>}<div ref={bottom} />
         </div>
         {error && <div className="demoError" role="alert">{error}</div>}
-        <form className="demoComposer" onSubmit={e => { e.preventDefault(); send(input) }}><label className="demoInputLabel" htmlFor="demoInput">Message JARVIS</label><input id="demoInput" value={input} maxLength={1000} disabled={busy} onChange={e => setInput(e.target.value)} placeholder="Type your message to JARVIS…" autoComplete="off" /><button type="submit" disabled={busy || !input.trim()}>SEND ↗</button></form>
+        <div className="demoVoiceControls"><button type="button" onClick={() => { if (voiceEnabled) window.speechSynthesis?.cancel(); setVoiceEnabled(!voiceEnabled) }} disabled={!voiceSupported} aria-pressed={voiceEnabled}>{voiceEnabled ? 'Voice output: ON' : 'Voice output: OFF'}</button><button type="button" onClick={toggleMic} disabled={!micSupported || busy} aria-pressed={listening}>{listening ? 'Stop listening' : 'Use microphone'}</button></div><form className="demoComposer" onSubmit={e => { e.preventDefault(); send(input) }}><label className="demoInputLabel" htmlFor="demoInput">Message JARVIS</label><input id="demoInput" value={input} maxLength={1000} disabled={busy} onChange={e => setInput(e.target.value)} placeholder="Type your message to JARVIS…" autoComplete="off" /><button type="submit" disabled={busy || !input.trim()}>SEND ↗</button></form>
         <p className="demoFooter">Powered by Groq · Please don't share sensitive information.</p>
       </div>
     </section>

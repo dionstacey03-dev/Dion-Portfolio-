@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './PortfolioUpgrades.css'
 
 const studies = [
@@ -13,9 +13,19 @@ export function CaseStudyPage({id}) {
 }
 export function PortfolioEnhancements() {
  const [recruiter,setRecruiter]=useState(false)
+ const [repos,setRepos]=useState([])
+ const [repoStatus,setRepoStatus]=useState('loading')
+ useEffect(()=>{
+  const controller=new AbortController()
+  fetch('https://api.github.com/users/dionstacey03-dev/repos?sort=updated&per_page=8',{signal:controller.signal,headers:{Accept:'application/vnd.github+json'}})
+   .then(response=>{if(!response.ok)throw new Error('GitHub unavailable');return response.json()})
+   .then(data=>{setRepos(Array.isArray(data)?data.filter(repo=>!repo.fork).slice(0,4):[]);setRepoStatus('ready')})
+   .catch(error=>{if(error.name!=='AbortError')setRepoStatus('error')})
+  return ()=>controller.abort()
+ },[])
  return <div className="enhancements">
  <section className="enhanceSection" id="case-studies"><div className="enhanceHeading"><p>THE WORK BEHIND THE INTERFACE</p><h2>Project case studies</h2><span>Real scope, current progress and engineering decisions—without claiming unfinished features are deployed.</span></div><div className="enhanceGrid">{studies.map((p,i)=><a className="enhanceCard" key={p.id} href={'/projects/'+p.id}><span>0{i+1} / CASE STUDY</span><h3>{p.name}</h3><p>{p.summary}</p><small>{p.status}</small><strong>Explore case study ↗</strong></a>)}</div></section>
  <section className="enhanceSection recruiterSection" id="recruiter"><div className="enhanceHeading"><p>FOR RECRUITERS & COLLABORATORS</p><h2>Recruiter mode</h2><span>A concise overview alongside the full cinematic portfolio.</span></div><button type="button" className="recruiterToggle" aria-expanded={recruiter} onClick={()=>setRecruiter(v=>!v)}>{recruiter?'Close recruiter overview':'Open recruiter overview'} ↗</button>{recruiter&&<div className="recruiterPanel"><h3>Dion Stacey Sellar</h3><p>BSc (Hons) Software Engineering student at NSBM Green University, University of Plymouth pathway. Building practical software with Python, React, FastAPI and AI tools.</p><h4>Selected work</h4><p>JARVIS AI Assistant · GreenRoute AI · PY Master AI</p><h4>Technical focus</h4><p>Python · JavaScript · React · FastAPI · SQL · Git · AI integrations</p><div className="caseActions"><a href="/Dion-Stacey-Sellar-CV.pdf" download>Download CV ↗</a><a href="https://github.com/dionstacey03-dev" target="_blank" rel="noreferrer">GitHub ↗</a><a href="mailto:dion.stacey.03@gmail.com">Email ↗</a></div></div>}</section>
- <section className="enhanceSection githubSection" id="github"><div className="enhanceHeading"><p>OPEN SOURCE & DEVELOPMENT</p><h2>Explore my GitHub</h2><span>Browse repositories, commits and ongoing experiments directly on GitHub. Activity counts are not displayed without verified live data.</span></div><a className="recruiterToggle" href="https://github.com/dionstacey03-dev" target="_blank" rel="noreferrer">View GitHub activity ↗</a></section>
+ <section className="enhanceSection githubSection" id="github"><div className="enhanceHeading"><p>OPEN SOURCE & DEVELOPMENT</p><h2>Explore my GitHub</h2><span>Browse repositories, commits and ongoing experiments directly on GitHub. Activity counts are not displayed without verified live data.</span></div><div aria-live="polite">{repoStatus==='loading'&&<p>Loading recent public repositories…</p>}{repoStatus==='error'&&<p>Live GitHub data is unavailable right now. You can still browse the profile.</p>}{repoStatus==='ready'&&repos.length===0&&<p>No public repositories available to display.</p>}</div><div className="enhanceGrid">{repos.map(repo=><a className="enhanceCard" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer"><span>{repo.language||'Repository'}</span><h3>{repo.name}</h3><p>{repo.description||'View source code and project details on GitHub.'}</p><small>Updated {new Date(repo.updated_at).toLocaleDateString()}</small><strong>View repository ↗</strong></a>)}</div><a className="recruiterToggle" href="https://github.com/dionstacey03-dev" target="_blank" rel="noreferrer">View all GitHub activity ↗</a></section>
  </div>
 }

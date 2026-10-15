@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('X-Content-Type-Options', 'nosniff')
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
-  const key = process.env.OPENAI_API_KEY
+  const key = process.env.GROQ_API_KEY
   if (!key) return res.status(503).json({ error: 'Live AI is not configured yet. Please try again later.' })
   const messages = req.body?.messages
   if (!Array.isArray(messages) || messages.length < 1 || messages.length > LIMIT) return res.status(400).json({ error: 'Invalid conversation' })
@@ -15,10 +15,10 @@ export default async function handler(req, res) {
     const timer = setTimeout(() => controller.abort(), 20000)
     let upstream
     try {
-      upstream = await fetch('https://api.openai.com/v1/chat/completions', {
+      upstream = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST', signal: controller.signal,
         headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: process.env.OPENAI_MODEL || 'gpt-4.1-mini', temperature: 0.5, max_tokens: 240, messages: [{ role:'system', content:SYSTEM }, ...messages] })
+        body: JSON.stringify({ model: process.env.GROQ_MODEL || 'llama-3.1-8b-instant', temperature: 0.5, max_tokens: 240, messages: [{ role:'system', content:SYSTEM }, ...messages] })
       })
     } finally { clearTimeout(timer) }
     if (!upstream.ok) return res.status(502).json({ error: 'The AI service is unavailable right now.' })

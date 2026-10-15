@@ -375,6 +375,7 @@ function App() {
                 View Project
               </a>
               <a href="/jarvis-demo" className="projectButton">Live Demo ↗</a>
+              <a href="/projects/jarvis" className="projectButton">Case Study ↗</a>
             </div>
           </div>
 
@@ -432,6 +433,7 @@ function App() {
             </div>
             <div className="projectLinks">
               <span className="projectButton" aria-label="Development complete; deployment pending">Development Complete · Deployment Pending</span>
+              <a href="/projects/greenroute" className="projectButton">Case Study ↗</a>
             </div>
           </div>
 

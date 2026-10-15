@@ -30,3 +30,23 @@
 @keyframes markIIIGlow{0%,100%{opacity:.65;transform:scale(.94)}50%{opacity:1;transform:scale(1.08)}}
 @media(max-width:850px){.demoCore{height:210px;min-height:210px}.demoCore:before,.demoCore:after{width:184px;height:184px}.demoCore .ringOne{width:170px;height:170px}.demoCore .ringTwo{width:135px;height:135px}.demoCore .ringThree{width:104px;height:104px}.demoCore .demoOrb{width:78px;height:78px;font-size:35px}}
 @media(prefers-reduced-motion:reduce){.demoCore:before,.demoCore:after,.demoCore .demoRing,.demoCore .demoOrb{animation:none!important}}
+
+/* 3D reactor: explicit always-on animation, including with system Reduce Motion enabled at user's request */
+.reactor3d{height:270px;position:relative;display:grid;place-items:center;perspective:650px;overflow:visible;isolation:isolate}
+.reactor3dStage{width:220px;height:220px;position:relative;transform-style:preserve-3d;animation:reactorTilt 9s ease-in-out infinite alternate}
+.reactor3dRing{position:absolute;inset:0;border-radius:50%;transform-style:preserve-3d;backface-visibility:visible;box-shadow:0 0 22px #18cfffaa,inset 0 0 22px #18cfff77}
+.reactor3dOuter{border:6px dashed #74f4ff;animation:reactorSpin 5s linear infinite}
+.reactor3dMiddle{inset:25px;border:7px solid #20d8ff;border-top-color:transparent;border-bottom-color:transparent;transform:rotateY(65deg);animation:reactorOrbit 4s linear infinite}
+.reactor3dInner{inset:51px;border:5px dotted #b5ffff;transform:rotateX(72deg);animation:reactorOrbitReverse 3s linear infinite}
+.reactor3dHeart{position:absolute;inset:72px;display:grid;place-items:center;border-radius:50%;color:white;font-size:36px;font-weight:900;background:radial-gradient(circle at 40% 30%,#d3ffff,#3bdcff 30%,#03519d 72%,#001e47);box-shadow:0 0 30px 15px #14d9ff99,inset 0 0 18px #e1ffff;animation:reactorHeartbeat 2s ease-in-out infinite;transform:translateZ(35px)}
+.reactor3d.isThinking .reactor3dOuter{animation-duration:1.6s}
+.reactor3d.isThinking .reactor3dMiddle{animation-duration:1.2s}
+.reactor3d.isThinking .reactor3dHeart{animation-duration:.5s}
+@keyframes reactorSpin{to{transform:rotateZ(360deg)}}
+@keyframes reactorOrbit{from{transform:rotateY(65deg) rotateZ(0deg)}to{transform:rotateY(65deg) rotateZ(360deg)}}
+@keyframes reactorOrbitReverse{from{transform:rotateX(72deg) rotateZ(360deg)}to{transform:rotateX(72deg) rotateZ(0deg)}}
+@keyframes reactorTilt{from{transform:rotateX(-16deg) rotateY(-18deg)}to{transform:rotateX(18deg) rotateY(20deg)}}
+@keyframes reactorHeartbeat{0%,100%{filter:brightness(.9);scale:.94}50%{filter:brightness(1.35);scale:1.08}}
+@media(max-width:850px){.reactor3d{height:225px}.reactor3dStage{transform-origin:center;scale:.76}}
+/* User explicitly requested continuous motion regardless of device Reduce Motion preference. */
+@media(prefers-reduced-motion:reduce){.reactor3dStage,.reactor3dOuter,.reactor3dMiddle,.reactor3dInner,.reactor3dHeart{animation-play-state:running!important}}

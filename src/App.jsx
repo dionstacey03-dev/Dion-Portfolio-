@@ -431,9 +431,25 @@ function App() {
             </div>
           </div>
 
-                    {/* SOFTWARE ENGINEERING PROJECTS */}
+                    {/* QR STUDIO */}
           <div className="projectCard">
             <div className="projectNumber">04</div>
+            <h3>QR Studio</h3>
+            <p>
+              A QR-code-focused software project currently in development. More details and a demo will be added as features are completed and tested.
+            </p>
+            <div className="projectTech">
+              <span>QR Codes</span>
+              <span>In Progress</span>
+            </div>
+            <div className="projectLinks">
+              <span className="projectButton" aria-label="QR Studio is in development">In Progress · Demo Coming Later</span>
+            </div>
+          </div>
+
+          {/* SOFTWARE ENGINEERING PROJECTS */}
+          <div className="projectCard">
+            <div className="projectNumber">05</div>
 
             <h3>Software Engineering Projects</h3>
 

@@ -240,28 +240,6 @@ function App() {
       </div>
     </article>
 
-    {/* Advanced Level */}
-    <article className="educationCard">
-      <div className="educationIcon">📜</div>
-
-      <div className="educationContent">
-        <h3>G.C.E. Advanced Level</h3>
-
-        <h4>
-          St. Michael&apos;s College
-          <span>Batticaloa</span>
-        </h4>
-
-        <span className="educationYear">2023 – 2025</span>
-
-        <p>
-          Commerce Stream
-          <span className="educationSubjects">
-            Business Studies · ICT · Accounting
-          </span>
-        </p>
-      </div>
-    </article>
 
     {/* Ordinary Level */}
     <article className="educationCard">
@@ -278,8 +256,7 @@ function App() {
         <span className="educationYear">2022 (2023)</span>
 
         <p>
-          Completed G.C.E. Ordinary Level studies before progressing to
-          Advanced Level in the Commerce stream.
+          Completed G.C.E. Ordinary Level examinations in 2023 (2022 academic year).
         </p>
       </div>
     </article>

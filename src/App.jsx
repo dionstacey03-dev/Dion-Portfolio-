@@ -1,8 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [theme, setTheme] = useState(() => {
+    try { return localStorage.getItem('portfolio-theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') }
+    catch { return 'dark' }
+  })
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try { localStorage.setItem('portfolio-theme', theme) } catch { /* Storage may be unavailable */ }
+  }, [theme])
   const [activeSkillCategory, setActiveSkillCategory] = useState('All')
 
   const closeMenu = () => {
@@ -81,6 +89,7 @@ function App() {
           <a href="#skills" onClick={closeMenu}>Skills</a>
           <a href="#projects" onClick={closeMenu}>Projects</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
+          <button type="button" className="themeToggle" onClick={() => setTheme(current => current === 'dark' ? 'light' : 'dark')} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} aria-pressed={theme === 'light'}>{theme === 'dark' ? '☀ Light' : '☾ Dark'}</button>
         </div>
       </nav>
 

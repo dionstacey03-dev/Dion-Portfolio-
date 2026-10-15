@@ -1,0 +1,53 @@
+/* Glassmorphism theme layer — keeps existing layout and content intact */
+:root[data-theme="dark"] {
+  --glass-text: #f1f5ff; --glass-muted: #bdc8de;
+  --glass-surface: rgba(20, 30, 58, .56);
+  --glass-border: rgba(196, 220, 255, .19);
+  --glass-bg: #070d20; --glass-accent: #7dd3fc;
+}
+:root[data-theme="light"] {
+  --glass-text: #15213d; --glass-muted: #40516d;
+  --glass-surface: rgba(255, 255, 255, .67);
+  --glass-border: rgba(255, 255, 255, .84);
+  --glass-bg: #e9f0ff; --glass-accent: #075cba;
+}
+html { scroll-padding-top: 95px; }
+body { background: var(--glass-bg); color: var(--glass-text); }
+.portfolio {
+  color: var(--glass-text);
+  background: radial-gradient(ellipse at 12% 12%, rgba(93, 157, 255, .18), transparent 40%),
+    radial-gradient(ellipse at 88% 44%, rgba(162, 107, 240, .16), transparent 38%), var(--glass-bg);
+  transition: background .3s ease, color .3s ease;
+}
+.navbar, .aboutCard, .educationCard, .skillCard, .projectCard, .contactCard, .profileImageWrapper {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 12px 38px rgba(6, 19, 46, .13), inset 0 1px 0 rgba(255,255,255,.08);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+}
+.navbar { background: var(--glass-surface); }
+.portfolio h1, .portfolio h2, .portfolio h3, .portfolio h4, .logo { color: var(--glass-text); }
+.portfolio p, .portfolio .description, .navLinks a { color: var(--glass-muted); }
+.navLinks a:hover { color: var(--glass-accent); }
+.themeToggle {
+  appearance: none; cursor: pointer; border-radius: 999px; padding: .65rem 1rem;
+  border: 1px solid var(--glass-border); background: var(--glass-surface);
+  color: var(--glass-text); font: inherit; white-space: nowrap;
+}
+.themeToggle:focus-visible { outline: 3px solid var(--glass-accent); outline-offset: 3px; }
+.projectCard, .skillCard, .educationCard, .aboutCard {
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+@media (hover: hover) {
+  .projectCard:hover, .skillCard:hover, .educationCard:hover, .aboutCard:hover {
+    transform: translateY(-4px); box-shadow: 0 18px 44px rgba(10, 20, 48, .18);
+  }
+}
+@media (max-width: 768px) {
+  .navLinks.navOpen { background: var(--glass-surface); backdrop-filter: blur(24px); }
+  .themeToggle { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

@@ -109,3 +109,57 @@ body { background: var(--glass-bg); color: var(--glass-text); }
   :root[data-theme="dark"] { --glass-surface: rgba(18, 28, 53, .95); }
   :root[data-theme="light"] { --glass-surface: rgba(245, 249, 255, .96); }
 }
+
+
+/* Liquid-glass inspired treatment: translucent material, rim light and refraction-like layers.
+   Original CSS interpretation; not Apple's proprietary rendering engine. */
+:root[data-theme="dark"] {
+  --liquid-rim: rgba(255,255,255,.38);
+  --liquid-inner: rgba(255,255,255,.12);
+  --liquid-glow: rgba(110,192,255,.13);
+}
+:root[data-theme="light"] {
+  --liquid-rim: rgba(255,255,255,.98);
+  --liquid-inner: rgba(255,255,255,.64);
+  --liquid-glow: rgba(120,165,240,.13);
+}
+.aboutCard, .educationCard, .skillCard, .projectCard, .contactCard {
+  border-radius: 26px;
+  border: 1px solid var(--liquid-rim);
+  background:
+    linear-gradient(155deg, var(--liquid-inner) 0%, transparent 42%, var(--liquid-glow) 100%),
+    var(--glass-surface);
+  box-shadow:
+    0 22px 56px -18px var(--glass-shadow),
+    inset 0 1.5px 1px var(--liquid-rim),
+    inset 0 -1px 0 rgba(255,255,255,.08);
+  -webkit-backdrop-filter: blur(32px) saturate(185%) brightness(1.05);
+  backdrop-filter: blur(32px) saturate(185%) brightness(1.05);
+}
+.aboutCard::after, .educationCard::after, .skillCard::after, .projectCard::after {
+  content: ""; pointer-events: none; position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 15% 0%, rgba(255,255,255,.15), transparent 48%);
+  z-index: -1;
+}
+.navbar {
+  background: linear-gradient(120deg, var(--liquid-inner), transparent 55%), var(--glass-surface);
+  border-bottom: 1px solid var(--liquid-rim);
+  -webkit-backdrop-filter: blur(34px) saturate(185%);
+  backdrop-filter: blur(34px) saturate(185%);
+}
+.themeToggle {
+  border-radius: 999px;
+  border-color: var(--liquid-rim);
+  background: linear-gradient(145deg, var(--liquid-inner), transparent), var(--glass-surface);
+  box-shadow: inset 0 1px 1px var(--liquid-rim), 0 6px 20px var(--glass-shadow);
+}
+@media (hover:hover) and (prefers-reduced-motion: no-preference) {
+  .aboutCard:hover, .educationCard:hover, .skillCard:hover, .projectCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 28px 60px -14px var(--glass-shadow), inset 0 1px 1px var(--liquid-rim);
+  }
+}
+@media (max-width:768px) {
+  .aboutCard, .educationCard, .skillCard, .projectCard, .contactCard { border-radius: 21px; }
+}

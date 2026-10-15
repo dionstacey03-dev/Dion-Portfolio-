@@ -30,7 +30,7 @@ export default function JarvisDemo() {
     <section className="demoWorkspace" aria-label="JARVIS interactive demo">
       <aside className="demoSide">
         <div className="demoSideHeading">ASSISTANT CONSOLE <span>01 / 01</span></div>
-        <div className="demoCore" aria-hidden="true"><div className="demoRing ringOne" /><div className="demoRing ringTwo" /><div className="demoRing ringThree" /><div className="demoOrb">J</div></div>
+        <div className={busy ? "demoCore isThinking" : input.trim() ? "demoCore isListening" : "demoCore isIdle"} aria-hidden="true"><div className="demoRing ringOne" /><div className="demoRing ringTwo" /><div className="demoRing ringThree" /><div className="demoOrb">J</div></div>
         <h1>JARVIS <span>AI</span></h1><p>Intelligent portfolio interface</p>
         <div className="demoDetail"><span>ENGINE</span><strong>Groq AI</strong></div>
         <div className="demoDetail"><span>MODE</span><strong>Text conversation</strong></div>

@@ -10,14 +10,12 @@ export default function JarvisDemo() {
   const recognition = useRef(null)
   const [listening,setListening] = useState(false)
   const [voiceEnabled,setVoiceEnabled] = useState(false)
-  const [voiceSupported,setVoiceSupported] = useState(false)
-  const [micSupported,setMicSupported] = useState(false)
+  const [voiceSupported] = useState(() => 'speechSynthesis' in window)
+  const [micSupported] = useState(() => Boolean(window.SpeechRecognition || window.webkitSpeechRecognition))
   const [availableVoices,setAvailableVoices] = useState([])
   const [selectedVoice,setSelectedVoice] = useState(() => { try { return localStorage.getItem('jarvis-voice-choice') || 'auto' } catch { return 'auto' } })
   useEffect(() => {
-    setVoiceSupported('speechSynthesis' in window)
-    setMicSupported(Boolean(window.SpeechRecognition || window.webkitSpeechRecognition))
-    if ('speechSynthesis' in window) {
+      if ('speechSynthesis' in window) {
       const loadVoices = () => setAvailableVoices(window.speechSynthesis.getVoices().filter(v => /^en[-_]/i.test(v.lang)))
       loadVoices()
       window.speechSynthesis.addEventListener?.('voiceschanged', loadVoices)

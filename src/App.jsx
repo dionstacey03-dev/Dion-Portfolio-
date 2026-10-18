@@ -15,6 +15,15 @@ function App() {
     try { localStorage.setItem('portfolio-theme', theme) } catch { /* Storage may be unavailable */ }
   }, [theme])
   const [activeSkillCategory, setActiveSkillCategory] = useState('All')
+  const [activeProjectCategory, setActiveProjectCategory] = useState('All Projects')
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   const closeMenu = () => {
     setMenuOpen(false)
@@ -66,11 +75,24 @@ function App() {
       ? skills
       : skills.filter((skill) => skill.category === activeSkillCategory)
 
+  const projectCategories = ['All Projects', 'AI & Machine Learning', 'Web Applications', 'Other Projects']
+  const projects = [
+    { number: '01', title: 'JARVIS AI Assistant', category: 'AI & Machine Learning', status: 'Working project · local assistant', description: 'A personal AI assistant built with Python featuring voice interaction, speech recognition, text-to-speech and AI-powered responses using Ollama.', technologies: ['Python', 'AI', 'Speech Recognition', 'Ollama'], links: [{ label: 'GitHub', href: 'https://github.com/dionstacey03-dev/JARVIS-AI-Assistant', external: true }, { label: 'Demo', href: '/jarvis-demo' }, { label: 'Case Study', href: '/projects/jarvis' }] },
+    { number: '02', title: 'AI Smart Tourism Planner', category: 'AI & Machine Learning', status: 'Concept with live demo', description: 'An AI-powered tourism planning concept designed to create personalized travel experiences in Sri Lanka while considering destinations and travel conditions.', technologies: ['Artificial Intelligence', 'Travel Planning', 'Smart Tourism'], links: [{ label: 'Live Demo', href: 'https://ai-smart-tourism-planner.vercel.app', external: true }, { label: 'GitHub', href: 'https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner', external: true }] },
+    { number: '03', title: 'GreenRoute AI', category: 'Web Applications', status: 'Prototype · deployment pending', description: 'A route-comparison prototype with journey comparisons, a Carbon Tracker, CSV export and a hybrid satellite map. Estimates and production deployment still need verification.', technologies: ['React', 'Python', 'FastAPI', 'Leaflet'], links: [{ label: 'Case Study', href: '/projects/greenroute' }] },
+    { number: '04', title: 'QR Studio', category: 'Web Applications', status: 'MVP tested · deployment pending', description: 'A QR-code tool that passed seven functional checks covering generation, saved history, search, deletion, theme persistence, mobile layout and PNG/SVG exports.', technologies: ['React', 'Vite', 'QR Generation'], links: [] },
+    { number: '05', title: 'VisionX AI', category: 'AI & Machine Learning', status: 'Core complete · polishing', description: 'An AI vision project undergoing refinement before a public release. Further technical details and a demo will be shared when ready.', technologies: ['Artificial Intelligence', 'Computer Vision'], links: [] },
+    { number: '06', title: 'Software Engineering Projects', category: 'Other Projects', status: 'Project collection', description: 'A collection of university and independent projects demonstrating programming, database management, problem solving and software engineering concepts.', technologies: ['Programming', 'SQL', 'Software Engineering'], links: [{ label: 'GitHub Profile', href: 'https://github.com/dionstacey03-dev', external: true }] },
+  ]
+  const activeProjectFilter = activeProjectCategory === 'All Projects' ? 'All' : activeProjectCategory
+  const filteredProjects = activeProjectFilter === 'All' ? projects : projects.filter((project) => project.category === activeProjectFilter)
+
   return (
     <div className="portfolio">
+      <a className="skipLink" href="#main-content">Skip to main content</a>
 
       {/* ================= NAVBAR ================= */}
-      <nav className="navbar">
+      <nav className="navbar" aria-label="Main navigation">
         <a href="#home" className="logo" onClick={closeMenu}>
           Dion<span>.</span>
         </a>
@@ -80,13 +102,15 @@ function App() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle navigation menu"
           aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+          type="button"
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <div className={`navLinks ${menuOpen ? 'navOpen' : ''}`}>
+        <div id="primary-navigation" className={`navLinks ${menuOpen ? 'navOpen' : ''}`}>
           <a href="#home" onClick={closeMenu}>Home</a>
           <a href="#about" onClick={closeMenu}>About</a>
           <a href="#skills" onClick={closeMenu}>Skills</a>
@@ -99,6 +123,7 @@ function App() {
         </div>
       </nav>
 
+      <main id="main-content">
       {/* ================= HERO ================= */}
       <section className="hero" id="home">
         <div className="heroContent heroAnimation">
@@ -281,6 +306,7 @@ function App() {
                   ? 'activeSkillFilter'
                   : ''
               }`}
+              aria-pressed={activeSkillCategory === category}
               onClick={() => setActiveSkillCategory(category)}
             >
               {category}
@@ -315,168 +341,54 @@ function App() {
       <JarvisShowcase />
 
       {/* ================= PROJECTS ================= */}
-      <section className="projects" id="projects">
+      <section className="projects" id="projects" aria-labelledby="projects-title">
         <div className="sectionTitle">
           <p>What I've built</p>
-          <h2>Featured Projects</h2>
+          <h2 id="projects-title">Featured Projects</h2>
         </div>
 
+        <div className="projectFilters" role="group" aria-label="Filter projects">
+          {projectCategories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              className={activeProjectCategory === category ? 'projectFilterButton activeProjectFilter' : 'projectFilterButton'}
+              aria-pressed={activeProjectCategory === category}
+              onClick={() => setActiveProjectCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        <p className="projectResultCount" aria-live="polite">
+          Showing {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'}
+        </p>
+
         <div className="projectsGrid">
-
-          {/* JARVIS */}
-          <div className="projectCard">
-            <div className="projectNumber">01</div>
-
-            <h3>JARVIS AI Assistant</h3>
-
-            <p>
-              A personal AI assistant built with Python featuring voice
-              interaction, speech recognition, text-to-speech and AI-powered
-              responses.
-            </p>
-
-            <div className="projectTech">
-              <span>Python</span>
-              <span>AI</span>
-              <span>Speech Recognition</span>
-              <span>Ollama</span>
-            </div>
-
-            <div className="projectLinks">
-              <a
-                href="https://github.com/dionstacey03-dev/JARVIS-AI-Assistant"
-                className="projectButton"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View Project
-              </a>
-              <a href="/jarvis-demo" className="projectButton">Live Demo</a>
-              <a href="/projects/jarvis" className="projectButton">Case Study ↗</a>
-            </div>
-          </div>
-
-          {/* TOURISM PLANNER */}
-          <div className="projectCard">
-            <div className="projectNumber">02</div>
-
-            <h3>AI Smart Tourism Planner</h3>
-
-            <p>
-              An AI-powered tourism planning concept designed to create
-              personalized travel experiences in Sri Lanka while considering
-              factors such as weather, destinations and travel conditions.
-            </p>
-
-            <div className="projectTech">
-              <span>Artificial Intelligence</span>
-              <span>Travel Planning</span>
-              <span>Smart Tourism</span>
-            </div>
-
-            <div className="projectLinks">
-              <a
-                href="https://ai-smart-tourism-planner.vercel.app"
-                className="projectButton"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Live Demo
-              </a>
-
-              <a
-                href="https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner"
-                className="projectButton"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-            </div>
-          </div>
-
-          {/* GREENROUTE AI */}
-          <div className="projectCard">
-            <div className="projectNumber">03</div>
-            <h3>GreenRoute AI</h3>
-            <p>
-              Completed and tested route-planning application for comparing journeys and tracking their carbon impact. Features route comparison, a Carbon Tracker, CSV export, and a hybrid satellite map. Production deployment preparation is the next step.
-            </p>
-            <div className="projectTech">
-              <span>Python</span>
-              <span>FastAPI</span>
-              <span>Route Planning</span>
-              <span>Carbon Tracking</span>
-            </div>
-            <div className="projectLinks">
-              <span className="projectButton" aria-label="Development complete; deployment pending">Development Complete · Deployment Pending</span>
-              <a href="/projects/greenroute" className="projectButton">Case Study ↗</a>
-            </div>
-          </div>
-
-                    {/* QR STUDIO */}
-          <div className="projectCard">
-            <div className="projectNumber">04</div>
-            <h3>QR Studio</h3>
-            <p>
-              A QR-code-focused software project currently in development. More details and a demo will be added as features are completed and tested.
-            </p>
-            <div className="projectTech">
-              <span>QR Codes</span>
-              <span>In Progress</span>
-            </div>
-            <div className="projectLinks">
-              <span className="projectButton" aria-label="QR Studio is in development">In Progress · Demo Coming Later</span>
-            </div>
-          </div>
-
-          {/* VISIONX AI */}
-          <div className="projectCard">
-            <div className="projectNumber">05</div>
-            <h3>VisionX AI</h3>
-            <p>
-              An AI vision project with core development completed. Currently undergoing refinement and polishing before a public release; further technical details and a demo will be shared when ready.
-            </p>
-            <div className="projectTech">
-              <span>Artificial Intelligence</span>
-              <span>Computer Vision</span>
-              <span>Polishing</span>
-            </div>
-            <div className="projectLinks">
-              <span className="projectButton" aria-label="Core development complete, polishing underway">Core Complete · Polishing</span>
-            </div>
-          </div>
-
-          {/* SOFTWARE ENGINEERING PROJECTS */}
-          <div className="projectCard">
-            <div className="projectNumber">06</div>
-
-            <h3>Software Engineering Projects</h3>
-
-            <p>
-              A collection of university projects demonstrating programming,
-              database management, problem solving and software engineering
-              concepts.
-            </p>
-
-            <div className="projectTech">
-              <span>Programming</span>
-              <span>SQL</span>
-              <span>Software Engineering</span>
-            </div>
-
-            <div className="projectLinks">
-              <a
-                href="https://github.com/dionstacey03-dev"
-                className="projectButton"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View Projects
-              </a>
-            </div>
-          </div>
-
+          {filteredProjects.map((project) => (
+            <article className="projectCard" key={project.title}>
+              <div className="projectNumber">{project.number}</div>
+              <p className="projectStatus">{project.status}</p>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <div className="projectTech" aria-label="Technologies">
+                {project.technologies.map((technology) => <span key={technology}>{technology}</span>)}
+              </div>
+              <div className="projectLinks">
+                {project.links.length > 0 ? project.links.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="projectButton"
+                    {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                  >
+                    {link.label}{link.external ? ' ↗' : ''}
+                  </a>
+                )) : <span className="projectUnavailable">Links coming soon</span>}
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -526,6 +438,8 @@ function App() {
           </div>
         </div>
       </section>
+
+      </main>
 
       {/* ================= FOOTER ================= */}
       <footer className="footer">

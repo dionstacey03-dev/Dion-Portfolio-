@@ -23,8 +23,12 @@ The portfolio includes my background, skills, featured projects, and contact det
 
 | Project | Description | Links |
 | --- | --- | --- |
-| **JARVIS AI Assistant** | A Python desktop assistant featuring voice interaction, speech recognition, text-to-speech, and AI responses using Ollama. | [GitHub Repository](https://github.com/dionstacey03-dev/JARVIS-AI-Assistant) · [Portfolio Demo Page](https://dion-portfolio-sigma.vercel.app/jarvis-demo) |
-| **AI Smart Tourism Planner** | A Sri Lanka travel-planning concept designed to help users explore destinations and consider travel conditions. | [Live Demo](https://ai-smart-tourism-planner.vercel.app) · [GitHub Repository](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
+| **JARVIS AI Assistant** | A Python desktop assistant featuring voice interaction, speech recognition, text-to-speech, and local Ollama responses. | [GitHub Repository](https://github.com/dionstacey03-dev/JARVIS-AI-Assistant) · [Portfolio Demo Page](https://dion-portfolio-sigma.vercel.app/jarvis-demo) |
+| **AI Smart Tourism Planner** | A Sri Lanka travel-planning concept. | [Live Demo](https://ai-smart-tourism-planner.vercel.app) · [GitHub Repository](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
+| **GreenRoute AI** | Route comparison prototype with carbon tracking and CSV export; deployment and estimates still require production verification. | [Portfolio Case Study](https://dion-portfolio-sigma.vercel.app/projects/greenroute) |
+| **QR Studio** | MVP that passed seven functional checks; public deployment is pending. | Portfolio project card (demo coming soon) |
+| **VisionX AI** | Core development complete; currently being polished. | Portfolio project card (demo coming soon) |
+| **Software Engineering Projects** | A collection of academic and independent software work. | [GitHub Profile](https://github.com/dionstacey03-dev) |
 
 ## Skills
 

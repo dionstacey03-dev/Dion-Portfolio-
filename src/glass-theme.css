@@ -1,0 +1,165 @@
+/* Glassmorphism theme layer — keeps existing layout and content intact */
+:root[data-theme="dark"] {
+  --glass-text: #f1f5ff; --glass-muted: #bdc8de;
+  --glass-surface: rgba(20, 30, 58, .56);
+  --glass-border: rgba(196, 220, 255, .19);
+  --glass-bg: #070d20; --glass-accent: #7dd3fc;
+}
+:root[data-theme="light"] {
+  --glass-text: #15213d; --glass-muted: #40516d;
+  --glass-surface: rgba(255, 255, 255, .67);
+  --glass-border: rgba(255, 255, 255, .84);
+  --glass-bg: #e9f0ff; --glass-accent: #075cba;
+}
+html { scroll-padding-top: 95px; }
+body { background: var(--glass-bg); color: var(--glass-text); }
+.portfolio {
+  color: var(--glass-text);
+  background: radial-gradient(ellipse at 12% 12%, rgba(93, 157, 255, .18), transparent 40%),
+    radial-gradient(ellipse at 88% 44%, rgba(162, 107, 240, .16), transparent 38%), var(--glass-bg);
+  transition: background .3s ease, color .3s ease;
+}
+.navbar, .aboutCard, .educationCard, .skillCard, .projectCard, .contactCard, .profileImageWrapper {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 12px 38px rgba(6, 19, 46, .13), inset 0 1px 0 rgba(255,255,255,.08);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+}
+.navbar { background: var(--glass-surface); }
+.portfolio h1, .portfolio h2, .portfolio h3, .portfolio h4, .logo { color: var(--glass-text); }
+.portfolio p, .portfolio .description, .navLinks a { color: var(--glass-muted); }
+.navLinks a:hover { color: var(--glass-accent); }
+.themeToggle {
+  appearance: none; cursor: pointer; border-radius: 999px; padding: .65rem 1rem;
+  border: 1px solid var(--glass-border); background: var(--glass-surface);
+  color: var(--glass-text); font: inherit; white-space: nowrap;
+}
+.themeToggle:focus-visible { outline: 3px solid var(--glass-accent); outline-offset: 3px; }
+.projectCard, .skillCard, .educationCard, .aboutCard {
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+@media (hover: hover) {
+  .projectCard:hover, .skillCard:hover, .educationCard:hover, .aboutCard:hover {
+    transform: translateY(-4px); box-shadow: 0 18px 44px rgba(10, 20, 48, .18);
+  }
+}
+@media (max-width: 768px) {
+  .navLinks.navOpen { background: var(--glass-surface); backdrop-filter: blur(24px); }
+  .themeToggle { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+
+/* Premium glass polish: layered reflections, depth and mobile legibility */
+:root[data-theme="dark"] {
+  --glass-surface: rgba(19, 29, 57, .46);
+  --glass-border: rgba(215, 231, 255, .24);
+  --glass-highlight: rgba(255, 255, 255, .11);
+  --glass-shadow: rgba(0, 4, 22, .38);
+}
+:root[data-theme="light"] {
+  --glass-surface: rgba(255, 255, 255, .52);
+  --glass-border: rgba(255, 255, 255, .9);
+  --glass-highlight: rgba(255, 255, 255, .72);
+  --glass-shadow: rgba(38, 67, 116, .14);
+}
+.portfolio {
+  background:
+    radial-gradient(circle at 8% 14%, rgba(66, 165, 245, .22), transparent 34%),
+    radial-gradient(circle at 95% 28%, rgba(166, 96, 255, .21), transparent 35%),
+    radial-gradient(circle at 38% 84%, rgba(42, 204, 218, .12), transparent 34%),
+    var(--glass-bg);
+}
+.navbar, .aboutCard, .educationCard, .skillCard, .projectCard, .contactCard, .profileImageWrapper {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: linear-gradient(145deg, var(--glass-highlight), transparent 48%), var(--glass-surface);
+  box-shadow: 0 18px 45px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+  -webkit-backdrop-filter: blur(28px) saturate(175%);
+  backdrop-filter: blur(28px) saturate(175%);
+}
+.navbar { overflow: visible; }
+.aboutCard::before, .educationCard::before, .skillCard::before, .projectCard::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+}
+.projectCard, .educationCard, .aboutCard, .skillCard {
+  border-radius: 22px;
+}
+.themeToggle {
+  border: 1px solid var(--glass-border);
+  background: linear-gradient(135deg, var(--glass-highlight), transparent), var(--glass-surface);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+}
+@media (max-width: 768px) {
+  .projectCard, .educationCard, .aboutCard, .skillCard { border-radius: 18px; }
+  .navLinks.navOpen {
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 18px 40px var(--glass-shadow);
+    -webkit-backdrop-filter: blur(30px); backdrop-filter: blur(30px);
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root[data-theme="dark"] { --glass-surface: rgba(18, 28, 53, .95); }
+  :root[data-theme="light"] { --glass-surface: rgba(245, 249, 255, .96); }
+}
+
+
+/* Liquid-glass inspired treatment: translucent material, rim light and refraction-like layers.
+   Original CSS interpretation; not Apple's proprietary rendering engine. */
+:root[data-theme="dark"] {
+  --liquid-rim: rgba(255,255,255,.38);
+  --liquid-inner: rgba(255,255,255,.12);
+  --liquid-glow: rgba(110,192,255,.13);
+}
+:root[data-theme="light"] {
+  --liquid-rim: rgba(255,255,255,.98);
+  --liquid-inner: rgba(255,255,255,.64);
+  --liquid-glow: rgba(120,165,240,.13);
+}
+.aboutCard, .educationCard, .skillCard, .projectCard, .contactCard {
+  border-radius: 26px;
+  border: 1px solid var(--liquid-rim);
+  background:
+    linear-gradient(155deg, var(--liquid-inner) 0%, transparent 42%, var(--liquid-glow) 100%),
+    var(--glass-surface);
+  box-shadow:
+    0 22px 56px -18px var(--glass-shadow),
+    inset 0 1.5px 1px var(--liquid-rim),
+    inset 0 -1px 0 rgba(255,255,255,.08);
+  -webkit-backdrop-filter: blur(32px) saturate(185%) brightness(1.05);
+  backdrop-filter: blur(32px) saturate(185%) brightness(1.05);
+}
+.aboutCard::after, .educationCard::after, .skillCard::after, .projectCard::after {
+  content: ""; pointer-events: none; position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 15% 0%, rgba(255,255,255,.15), transparent 48%);
+  z-index: -1;
+}
+.navbar {
+  background: linear-gradient(120deg, var(--liquid-inner), transparent 55%), var(--glass-surface);
+  border-bottom: 1px solid var(--liquid-rim);
+  -webkit-backdrop-filter: blur(34px) saturate(185%);
+  backdrop-filter: blur(34px) saturate(185%);
+}
+.themeToggle {
+  border-radius: 999px;
+  border-color: var(--liquid-rim);
+  background: linear-gradient(145deg, var(--liquid-inner), transparent), var(--glass-surface);
+  box-shadow: inset 0 1px 1px var(--liquid-rim), 0 6px 20px var(--glass-shadow);
+}
+@media (hover:hover) and (prefers-reduced-motion: no-preference) {
+  .aboutCard:hover, .educationCard:hover, .skillCard:hover, .projectCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 28px 60px -14px var(--glass-shadow), inset 0 1px 1px var(--liquid-rim);
+  }
+}
+@media (max-width:768px) {
+  .aboutCard, .educationCard, .skillCard, .projectCard, .contactCard { border-radius: 21px; }
+}

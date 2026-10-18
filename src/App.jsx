@@ -1,8 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
+import './glass-theme.css'
+import JarvisShowcase from './JarvisShowcase'
+import { PortfolioEnhancements } from './PortfolioUpgrades'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [theme, setTheme] = useState(() => {
+    try { return localStorage.getItem('portfolio-theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') }
+    catch { return 'dark' }
+  })
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try { localStorage.setItem('portfolio-theme', theme) } catch { /* Storage may be unavailable */ }
+  }, [theme])
   const [activeSkillCategory, setActiveSkillCategory] = useState('All')
 
   const closeMenu = () => {
@@ -80,7 +91,11 @@ function App() {
           <a href="#about" onClick={closeMenu}>About</a>
           <a href="#skills" onClick={closeMenu}>Skills</a>
           <a href="#projects" onClick={closeMenu}>Projects</a>
+          <a href="#jarvis" onClick={closeMenu}>JARVIS</a>
+          <a href="#case-studies" onClick={closeMenu}>Case Studies</a>
+          <a href="#recruiter" onClick={closeMenu}>Recruiter</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
+          <button type="button" className="themeToggle" onClick={() => setTheme(current => current === 'dark' ? 'light' : 'dark')} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} aria-pressed={theme === 'light'}>{theme === 'dark' ? '☀ Light' : '☾ Dark'}</button>
         </div>
       </nav>
 
@@ -94,8 +109,7 @@ function App() {
           <h2>Software Engineering Student</h2>
 
           <p className="description">
-            I build software solutions, explore artificial intelligence,
-            and turn ideas into practical digital experiences.
+            I’m a software engineering student who enjoys turning ideas into working applications. I build with Python and React, explore AI, and learn by creating real projects.
           </p>
 
           <div className="heroButtons">
@@ -144,15 +158,11 @@ function App() {
             </p>
 
             <p>
-              I enjoy building practical applications, learning new
-              technologies, solving problems, and turning ideas into real
-              digital solutions.
+              I learn best by building. From a Python voice assistant to web dashboards, I enjoy solving problems, testing ideas, and improving each project step by step.
             </p>
 
             <p>
-              My goal is to continuously improve my programming skills and
-              build meaningful software projects that demonstrate my
-              knowledge and creativity.
+              I’m currently strengthening my software engineering foundations while exploring how AI can make everyday tools more useful.
             </p>
           </div>
 
@@ -230,28 +240,6 @@ function App() {
       </div>
     </article>
 
-    {/* Advanced Level */}
-    <article className="educationCard">
-      <div className="educationIcon">📜</div>
-
-      <div className="educationContent">
-        <h3>G.C.E. Advanced Level</h3>
-
-        <h4>
-          St. Michael&apos;s College
-          <span>Batticaloa</span>
-        </h4>
-
-        <span className="educationYear">2023 – 2025</span>
-
-        <p>
-          Commerce Stream
-          <span className="educationSubjects">
-            Business Studies · ICT · Accounting
-          </span>
-        </p>
-      </div>
-    </article>
 
     {/* Ordinary Level */}
     <article className="educationCard">
@@ -268,8 +256,7 @@ function App() {
         <span className="educationYear">2022 (2023)</span>
 
         <p>
-          Completed G.C.E. Ordinary Level studies before progressing to
-          Advanced Level in the Commerce stream.
+          Completed G.C.E. Ordinary Level examinations in 2023 (2022 academic year).
         </p>
       </div>
     </article>
@@ -325,6 +312,8 @@ function App() {
         </div>
       </section>
 
+      <JarvisShowcase />
+
       {/* ================= PROJECTS ================= */}
       <section className="projects" id="projects">
         <div className="sectionTitle">
@@ -362,6 +351,8 @@ function App() {
               >
                 View Project
               </a>
+              <a href="/jarvis-demo" className="projectButton">Live Demo</a>
+              <a href="/projects/jarvis" className="projectButton">Case Study ↗</a>
             </div>
           </div>
 
@@ -404,9 +395,61 @@ function App() {
             </div>
           </div>
 
-          {/* SOFTWARE ENGINEERING PROJECTS */}
+          {/* GREENROUTE AI */}
           <div className="projectCard">
             <div className="projectNumber">03</div>
+            <h3>GreenRoute AI</h3>
+            <p>
+              Completed and tested route-planning application for comparing journeys and tracking their carbon impact. Features route comparison, a Carbon Tracker, CSV export, and a hybrid satellite map. Production deployment preparation is the next step.
+            </p>
+            <div className="projectTech">
+              <span>Python</span>
+              <span>FastAPI</span>
+              <span>Route Planning</span>
+              <span>Carbon Tracking</span>
+            </div>
+            <div className="projectLinks">
+              <span className="projectButton" aria-label="Development complete; deployment pending">Development Complete · Deployment Pending</span>
+              <a href="/projects/greenroute" className="projectButton">Case Study ↗</a>
+            </div>
+          </div>
+
+                    {/* QR STUDIO */}
+          <div className="projectCard">
+            <div className="projectNumber">04</div>
+            <h3>QR Studio</h3>
+            <p>
+              A QR-code-focused software project currently in development. More details and a demo will be added as features are completed and tested.
+            </p>
+            <div className="projectTech">
+              <span>QR Codes</span>
+              <span>In Progress</span>
+            </div>
+            <div className="projectLinks">
+              <span className="projectButton" aria-label="QR Studio is in development">In Progress · Demo Coming Later</span>
+            </div>
+          </div>
+
+          {/* VISIONX AI */}
+          <div className="projectCard">
+            <div className="projectNumber">05</div>
+            <h3>VisionX AI</h3>
+            <p>
+              An AI vision project with core development completed. Currently undergoing refinement and polishing before a public release; further technical details and a demo will be shared when ready.
+            </p>
+            <div className="projectTech">
+              <span>Artificial Intelligence</span>
+              <span>Computer Vision</span>
+              <span>Polishing</span>
+            </div>
+            <div className="projectLinks">
+              <span className="projectButton" aria-label="Core development complete, polishing underway">Core Complete · Polishing</span>
+            </div>
+          </div>
+
+          {/* SOFTWARE ENGINEERING PROJECTS */}
+          <div className="projectCard">
+            <div className="projectNumber">06</div>
 
             <h3>Software Engineering Projects</h3>
 
@@ -436,6 +479,8 @@ function App() {
 
         </div>
       </section>
+
+      <PortfolioEnhancements />
 
       {/* ================= CONTACT ================= */}
       <section className="contact" id="contact">

@@ -1,31 +1,41 @@
-﻿# Dion Stacey Sellar â€” Portfolio
+# Dion Stacey Sellar — Portfolio
 
-A responsive portfolio showcasing my software development and AI projects. I am a Software Engineering student at NSBM Green University, studying for a BSc in Software Engineering (University of Plymouth).
+A responsive personal portfolio showcasing my software development work, AI projects, technical skills, and academic background.
 
-**[View the portfolio](https://dion-portfolio-sigma.vercel.app)** Â· [GitHub profile](https://github.com/dionstacey03-dev) Â· [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/)
+**[🌐 View Live Portfolio](https://dion-portfolio-sigma.vercel.app)** · **[🤖 JARVIS Demo Page](https://dion-portfolio-sigma.vercel.app/jarvis-demo)** · [GitHub Profile](https://github.com/dionstacey03-dev) · [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/)
 
-## About this site
+## About
 
-The site has sections for my background, skills, featured projects, and contact details. It includes responsive navigation and a downloadable CV.
+I'm a Software Engineering student at NSBM Green University, studying for a BSc in Software Engineering awarded by the University of Plymouth. I enjoy building practical applications, experimenting with AI, and improving my development skills through hands-on projects.
 
-**Stack:** React 19, JavaScript, CSS, and Vite 8. The project uses ESLint and is deployed on Vercel.
+The portfolio includes my background, skills, featured projects, and contact details. It also provides responsive navigation and a downloadable CV.
 
-## Featured projects
+## Built With
 
-| Project | Overview | Links |
+- React 19
+- JavaScript
+- CSS
+- Vite 8
+- ESLint
+- Vercel for production deployment
+
+## Featured Projects
+
+| Project | Description | Links |
 | --- | --- | --- |
-| **JARVIS AI Assistant** | A Python desktop assistant with voice interaction, speech recognition, text to speech, and AI responses using Ollama. | [GitHub](https://github.com/dionstacey03-dev/JARVIS-AI-Assistant) |
-| **AI Smart Tourism Planner** | A Sri Lanka travel planning concept that considers destinations, weather, and travel conditions. | [Live demo](https://ai-smart-tourism-planner.vercel.app) Â· [GitHub](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
-
-JARVIS is a desktop project, so its repository is the project link; no browser demo is listed.
+| **JARVIS AI Assistant** | A Python desktop assistant featuring voice interaction, speech recognition, text-to-speech, and AI responses using Ollama. | [GitHub Repository](https://github.com/dionstacey03-dev/JARVIS-AI-Assistant) · [Portfolio Demo Page](https://dion-portfolio-sigma.vercel.app/jarvis-demo) |
+| **AI Smart Tourism Planner** | A Sri Lanka travel-planning concept designed to help users explore destinations and consider travel conditions. | [Live Demo](https://ai-smart-tourism-planner.vercel.app) · [GitHub Repository](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
 
 ## Skills
 
-Python Â· JavaScript Â· React Â· SQL Â· Artificial Intelligence Â· Git & GitHub
+- **Languages:** Python, JavaScript, SQL
+- **Frontend:** React, HTML, CSS, Vite
+- **Tools:** Git, GitHub, VS Code
+- **Areas of interest:** Artificial Intelligence, software development, and building useful digital products
 
-## Run locally
+## Run Locally
 
-Install [Node.js](https://nodejs.org/) and npm, then:
+You'll need [Node.js](https://nodejs.org/) and npm installed.
 
 ```bash
 git clone https://github.com/dionstacey03-dev/Dion-Portfolio-.git
@@ -34,29 +44,37 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. Other available commands:
+Open the local URL printed by Vite.
+
+### Available Scripts
 
 ```bash
-npm run lint       # check the source with ESLint
-npm run build      # create the production build in dist/
-npm run preview    # serve the production build locally
+npm run dev      # Start the development server
+npm run lint     # Check the source with ESLint
+npm run build    # Build the production version in dist/
+npm run preview  # Preview the production build locally
 ```
 
 ## Deployment
 
-The portfolio is deployed on Vercel. For a new deployment, import this GitHub repository into Vercel, select the **Vite** framework preset, use `npm run build` as the build command, and publish the `dist` output directory. Keep deployment visibility settings appropriate to your intended audience.
+The portfolio is deployed to Vercel:
+
+**Production URL:** https://dion-portfolio-sigma.vercel.app
+
+The project uses Vite. The standard production build command is `npm run build`, and the build output directory is `dist`.
 
 ## Screenshots
 
-Desktop preview from the latest source, running locally:
+### Desktop
 
 ![Desktop view of Dion's portfolio](docs/portfolio-desktop.png)
 
-Mobile preview at a 390 px viewport:
+### Mobile
 
-![Mobile view of Dion's portfolio](docs/portfolio-mobile.png)
+![Mobile view of Dion's portfolio at a 390 px viewport](docs/portfolio-mobile.png)
 
 ## Contact
 
-[Email](mailto:dion.stacey.03@gmail.com) Â· [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/) Â· [GitHub](https://github.com/dionstacey03-dev)
-
+- [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/)
+- [GitHub](https://github.com/dionstacey03-dev)
+- Email: [dion.stacey.03@gmail.com](mailto:dion.stacey.03@gmail.com)

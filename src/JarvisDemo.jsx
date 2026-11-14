@@ -86,7 +86,7 @@ export default function JarvisDemo() {
       <div className="demoChat">
         <div className="demoChatHead"><div><small>COMMUNICATION CHANNEL</small><h2>Talk to JARVIS</h2></div><span className="demoLive">● INTERACTIVE</span></div>
         <div className="demoMessages" aria-live="polite" aria-label="Conversation">
-          {messages.length === 0 && <div className="demoWelcome"><div className="demoWelcomeIcon">✦</div><h3>Welcome to JARVIS.</h3><p>Ask about Dion's projects, technologies and software engineering journey.</p><div className="demoPrompts">{['Introduce yourself','Tell me about GreenRoute AI','What has Dion built?'].map(p => <button key={p} type="button" onClick={() => send(p)} disabled={busy}>{p} ↗</button>)}</div></div>}
+          {messages.length === 0 && <div className="demoWelcome"><div className="demoWelcomeIcon">✦</div><h3>Welcome to JARVIS.</h3><p>Ask about Dion's latest projects, technologies, and software engineering journey. Explore VELTRIX Marketplace, NEXORA AI, GreenRoute AI, and more.</p><div className="demoPrompts">{['Introduce yourself','Tell me about VELTRIX Marketplace','What is NEXORA AI?','Tell me about GreenRoute AI','What has Dion built?'].map(p => <button key={p} type="button" onClick={() => send(p)} disabled={busy}>{p} ↗</button>)}</div></div>}
           {messages.map((m,i) => <div key={i} className={'demoMessage ' + (m.role === 'user' ? 'fromUser' : 'fromJarvis')}><span>{m.role === 'user' ? 'YOU' : 'JARVIS'}</span><p>{m.content}</p></div>)}
           {busy && <p className="demoThinking" role="status">JARVIS is thinking…</p>}<div ref={bottom} />
         </div>

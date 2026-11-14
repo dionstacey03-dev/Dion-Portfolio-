@@ -128,3 +128,16 @@
 @media(prefers-reduced-motion:reduce){
   .demoVoiceControls button{transition:none}
 }
+
+
+/* Keep the empty-state welcome content from shrinking/clipping inside the chat scroller. */
+.demoMessages{align-items:stretch;overscroll-behavior:contain}
+.demoWelcome{
+  flex:0 0 auto;
+  width:100%;
+  min-height:min-content;
+  margin:0 auto;
+  padding:8px 0 18px;
+}
+.demoWelcomeIcon,.demoWelcome h3,.demoWelcome p,.demoPrompts{flex-shrink:0}
+.demoMessage,.demoThinking{flex-shrink:0}

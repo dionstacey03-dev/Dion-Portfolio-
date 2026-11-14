@@ -27,7 +27,6 @@ The portfolio includes my background, skills, featured projects, and contact det
 | **AI Smart Tourism Planner** | A Sri Lanka travel-planning concept. | [Live Demo](https://ai-smart-tourism-planner.vercel.app) · [GitHub Repository](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
 | **GreenRoute AI** | Route comparison prototype with carbon tracking and CSV export; deployment and estimates still require production verification. | [GitHub Repository](https://github.com/dionstacey03-dev/GreenRoute-AI) · [Portfolio Case Study](https://dion-portfolio-sigma.vercel.app/projects/greenroute) |
 | **QR Studio** | MVP that passed seven functional checks; public deployment is pending. | Portfolio project card (demo coming soon) |
-| **VisionX AI** | Core development complete; currently being polished. | Portfolio project card (demo coming soon) |
 | **Software Engineering Projects** | A collection of academic and independent software work. | [GitHub Profile](https://github.com/dionstacey03-dev) |
 
 | **VELTRIX Marketplace** | A glassmorphism-inspired precision hardware marketplace with product discovery, multi-currency pricing, customer checkout, seller storefronts, inventory and order fulfilment workflows. Production deployment is live; backend and integration checks are ongoing. | [Live Demo](https://veltrix-marketplace.vercel.app) · [GitHub Repository](https://github.com/dionstacey03-dev/veltrix-marketplace) |

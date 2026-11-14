@@ -52,3 +52,79 @@
 @media(prefers-reduced-motion:reduce){.reactor3dStage,.reactor3dOuter,.reactor3dMiddle,.reactor3dInner,.reactor3dHeart{animation-play-state:running!important}}
 
 .demoVoiceControls{display:flex;flex-wrap:wrap;gap:10px;padding:12px 18px 4px}.demoVoiceControls button{border:1px solid rgba(80,215,255,.45);border-radius:10px;background:rgba(9,36,58,.8);color:#c8f7ff;padding:10px 14px;min-height:44px;cursor:pointer;font:inherit}.demoVoiceControls button[aria-pressed="true"]{background:rgba(0,151,188,.3);border-color:#6defff}.demoVoiceControls button:disabled{opacity:.45;cursor:not-allowed}.demoVoiceControls button:focus-visible{outline:2px solid #9ff8ff;outline-offset:2px}
+
+
+/* JARVIS voice controls — consistent holographic control styling */
+.demoVoiceControls{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  padding:16px 22px 10px;
+}
+.demoVoiceControls button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  padding:11px 17px;
+  border:1px solid rgba(91,211,247,.42);
+  border-radius:12px;
+  background:linear-gradient(135deg,rgba(16,58,83,.88),rgba(7,29,49,.92));
+  color:#d8f7ff;
+  box-shadow:inset 0 1px 0 rgba(210,249,255,.07);
+  font:600 14px/1.2 inherit;
+  cursor:pointer;
+  transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.demoVoiceControls button:hover:not(:disabled){
+  background:linear-gradient(135deg,rgba(24,91,121,.9),rgba(9,43,68,.96));
+  border-color:#72e5ff;
+  box-shadow:0 0 18px rgba(48,196,239,.16);
+  transform:translateY(-1px);
+}
+.demoVoiceControls button[aria-pressed="true"]{
+  color:#aaf4ff;
+  background:rgba(0,157,194,.2);
+  border-color:#65e7ff;
+  box-shadow:0 0 0 2px rgba(75,218,255,.08),0 0 18px rgba(48,196,239,.13);
+}
+.demoVoiceControls button:disabled{opacity:.42;cursor:not-allowed;transform:none;box-shadow:none}
+.demoVoiceControls button:focus-visible,
+.demoVoiceControls select:focus-visible{
+  outline:2px solid #a2f4ff;
+  outline-offset:3px;
+}
+.demoVoiceControls label{
+  color:#c8e8f5;
+  gap:10px!important;
+  font-size:14px;
+  font-weight:600;
+}
+.demoVoiceControls select{
+  appearance:none;
+  -webkit-appearance:none;
+  min-height:44px;
+  max-width:100%;
+  padding:10px 38px 10px 14px;
+  border:1px solid rgba(91,211,247,.38);
+  border-radius:12px;
+  color:#dff8ff;
+  background-color:rgba(8,28,48,.94);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238feaff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 13px center;
+  font:500 13px/1.2 inherit;
+  cursor:pointer;
+}
+.demoVoiceControls select option{background:#09182b;color:#e5f7ff}
+.demoVoiceControls select:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:600px){
+  .demoVoiceControls{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:14px 14px 8px}
+  .demoVoiceControls>button{width:100%;min-width:0;padding:10px 9px;font-size:13px}
+  .demoVoiceControls label{grid-column:1/-1;display:grid!important;grid-template-columns:auto minmax(0,1fr);align-items:center;font-size:13px}
+  .demoVoiceControls select{width:100%;min-width:0;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .demoVoiceControls button{transition:none}
+}

@@ -30,6 +30,8 @@ The portfolio includes my background, skills, featured projects, and contact det
 | **VisionX AI** | Core development complete; currently being polished. | Portfolio project card (demo coming soon) |
 | **Software Engineering Projects** | A collection of academic and independent software work. | [GitHub Profile](https://github.com/dionstacey03-dev) |
 
+| **VELTRIX Marketplace** | A glassmorphism-inspired precision hardware marketplace with product discovery, multi-currency pricing, customer checkout, seller storefronts, inventory and order fulfilment workflows. Production deployment is live; backend and integration checks are ongoing. | [Live Demo](https://veltrix-marketplace.vercel.app) · [GitHub Repository](https://github.com/dionstacey03-dev/veltrix-marketplace) |
+
 ## Skills
 
 - **Languages:** Python, JavaScript, SQL

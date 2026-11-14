@@ -41,7 +41,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
   // Normalize the secret to avoid invalid HTTP header values from pasted whitespace or a duplicated Bearer prefix.
   const rawKey = process.env.GROQ_API_KEY || process.env.Groq_Api_Key || ''
-  const key = rawKey.trim().replace(/^Bearer\\s+/i, '').trim()
+  const key = rawKey.trim().replace(/^Bearer\\s+/i, '').replace(/\\s+/g, '')
   if (!key) return res.status(503).json({ error: 'Live AI is not configured. Add GROQ_API_KEY in Vercel Environment Variables.' })
   const messages = req.body?.messages
   if (!Array.isArray(messages) || messages.length < 1 || messages.length > LIMIT) return res.status(400).json({ error: 'Invalid conversation' })

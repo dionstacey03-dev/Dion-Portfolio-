@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import './glass-theme.css'
 import JarvisShowcase from './JarvisShowcase'
-import { PortfolioEnhancements } from './PortfolioUpgrades'
+import { PortfolioEnhancements, CaseStudyPage } from './PortfolioUpgrades'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -88,6 +88,8 @@ function App() {
   ]
   const activeProjectFilter = activeProjectCategory === 'All Projects' ? 'All' : activeProjectCategory
   const filteredProjects = activeProjectFilter === 'All' ? projects : projects.filter((project) => project.category === activeProjectFilter)
+  const caseStudyMatch = window.location.pathname.match(/^\\/projects\\/([^/]+)\\/?$/)
+  if (caseStudyMatch) return <CaseStudyPage id={decodeURIComponent(caseStudyMatch[1])} />
 
   return (
     <div className="portfolio">

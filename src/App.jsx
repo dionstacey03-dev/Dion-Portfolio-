@@ -88,7 +88,7 @@ function App() {
   ]
   const activeProjectFilter = activeProjectCategory === 'All Projects' ? 'All' : activeProjectCategory
   const filteredProjects = activeProjectFilter === 'All' ? projects : projects.filter((project) => project.category === activeProjectFilter)
-  const caseStudyMatch = window.location.pathname.match(/^\\/projects\\/([^/]+)\\/?$/)
+  const caseStudyMatch = window.location.pathname.match(/^\/projects\/([^/]+)\/?$/)
   if (caseStudyMatch) return <CaseStudyPage id={decodeURIComponent(caseStudyMatch[1])} />
 
   return (

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './JarvisShowcase.css'
 
-const suggestions = ['Tell me about Dion’s projects', 'What technologies does Dion use?', 'What is the JARVIS desktop project?']
+const suggestions = ['Show me Dion’s latest projects', 'What technical skills does Dion have?', 'Tell me about VELTRIX Marketplace']
 export default function JarvisShowcase() {
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')

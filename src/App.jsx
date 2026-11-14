@@ -43,6 +43,7 @@ function App() {
     // Languages
     { icon: '🐍', title: 'Python', category: 'Languages' },
     { icon: '⚡', title: 'JavaScript', category: 'Languages' },
+    { icon: '🔷', title: 'TypeScript', category: 'Languages' },
     { icon: '☕', title: 'Java', category: 'Languages' },
     { icon: '🌐', title: 'HTML', category: 'Languages' },
     { icon: '🎨', title: 'CSS', category: 'Languages' },
@@ -51,17 +52,27 @@ function App() {
     // Frontend
     { icon: '⚛️', title: 'React', category: 'Frontend' },
     { icon: '⚡', title: 'Vite', category: 'Frontend' },
+    { icon: '🌬️', title: 'Tailwind CSS', category: 'Frontend' },
+    { icon: '📱', title: 'Responsive Design', category: 'Frontend' },
+    { icon: '🗺️', title: 'React Leaflet', category: 'Frontend' },
 
     // Backend
     { icon: '🚀', title: 'FastAPI', category: 'Backend' },
+    { icon: '🟢', title: 'Node.js', category: 'Backend' },
+    { icon: '🛠️', title: 'Express.js', category: 'Backend' },
+    { icon: '🔌', title: 'REST APIs', category: 'Backend' },
 
     // AI / ML
     { icon: '🤖', title: 'Artificial Intelligence', category: 'AI / ML' },
     { icon: '🧠', title: 'LLMs', category: 'AI / ML' },
     { icon: '🦙', title: 'Ollama', category: 'AI / ML' },
+    { icon: '✨', title: 'Google Gemini', category: 'AI / ML' },
+    { icon: '🔗', title: 'AI API Integration', category: 'AI / ML' },
 
     // Databases
     { icon: '🐬', title: 'MySQL', category: 'Databases' },
+    { icon: '🗃️', title: 'SQLite', category: 'Databases' },
+    { icon: '🔥', title: 'Firebase', category: 'Databases' },
 
     // Tools
     { icon: '🌿', title: 'Git', category: 'Tools' },

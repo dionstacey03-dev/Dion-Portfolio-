@@ -39,8 +39,10 @@ export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('X-Content-Type-Options', 'nosniff')
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
-  const key = process.env.GROQ_API_KEY || process.env.Groq_Api_Key
-  if (!key) return res.status(503).json({ error: 'Live AI is not configured yet. Please try again later.' })
+  // Normalize the secret to avoid invalid HTTP header values from pasted whitespace or a duplicated Bearer prefix.
+  const rawKey = process.env.GROQ_API_KEY || process.env.Groq_Api_Key || ''
+  const key = rawKey.trim().replace(/^Bearer\\s+/i, '').trim()
+  if (!key) return res.status(503).json({ error: 'Live AI is not configured. Add GROQ_API_KEY in Vercel Environment Variables.' })
   const messages = req.body?.messages
   if (!Array.isArray(messages) || messages.length < 1 || messages.length > LIMIT) return res.status(400).json({ error: 'Invalid conversation' })
   if (!messages.every(m => m && ['user','assistant'].includes(m.role) && typeof m.content === 'string' && m.content.length <= 1600)) return res.status(400).json({ error: 'Invalid message format' })
@@ -70,7 +72,14 @@ export default async function handler(req, res) {
     const answer = result?.choices?.[0]?.message?.content
     if (typeof answer !== 'string' || !answer.trim()) throw new Error('Empty AI response')
     return res.status(200).json({ answer: answer.trim() })
-  } catch {
-    return res.status(502).json({ error: 'JARVIS could not respond. Please try again.' })
+  } catch (error) {
+    // Log diagnostic metadata only; never log the API key or request headers.
+    console.error('JARVIS chat request failed:', { name: error?.name || 'Error', message: error?.message || 'Unknown error' })
+    const message = error?.name === 'TypeError'
+      ? 'JARVIS could not create a valid Groq request. Check the GROQ_API_KEY value in Vercel (paste the key only, without quotes or a Bearer prefix).'
+      : error?.name === 'AbortError'
+        ? 'Groq took too long to respond. Please try again.'
+        : 'JARVIS could not respond. Check the Vercel function logs for the request diagnostic.'
+    return res.status(502).json({ error: message })
   }
 }

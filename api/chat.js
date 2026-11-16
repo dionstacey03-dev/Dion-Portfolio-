@@ -35,29 +35,58 @@ RESPONSE RULES
 - Use simple language, avoid exaggerated marketing claims, and answer only what is relevant to the visitor's question.\`
 
 const LIMIT = 12
+const WINDOW_MS = 10 * 60 * 1000
+const MAX_REQUESTS_PER_WINDOW = 12
+// Best-effort per-instance throttling. Serverless instances are ephemeral; use a
+// shared store (for example Upstash Redis) for enforceable cross-instance limits.
+const requestBuckets = new Map()
+function isRateLimited(req) {
+  const forwarded = req.headers?.['x-forwarded-for']
+  const ip = (Array.isArray(forwarded) ? forwarded[0] : String(forwarded || '').split(',')[0]).trim() || 'unknown'
+  const now = Date.now()
+  let bucket = requestBuckets.get(ip)
+  if (!bucket || now - bucket.startedAt >= WINDOW_MS) bucket = { startedAt: now, count: 0 }
+  bucket.count += 1
+  requestBuckets.set(ip, bucket)
+  if (requestBuckets.size > 5000) {
+    for (const [key, value] of requestBuckets) if (now - value.startedAt >= WINDOW_MS) requestBuckets.delete(key)
+  }
+  return bucket.count > MAX_REQUESTS_PER_WINDOW
+}
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('X-Content-Type-Options', 'nosniff')
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST')
+    return res.status(405).json({ error: 'Method not allowed' })
+  }
+  if (isRateLimited(req)) {
+    res.setHeader('Retry-After', String(Math.ceil(WINDOW_MS / 1000)))
+    return res.status(429).json({ error: 'Too many requests. Please wait a few minutes before trying again.' })
+  }
   // Normalize the secret to avoid invalid HTTP header values from pasted whitespace or a duplicated Bearer prefix.
   const rawKey = process.env.GROQ_API_KEY || process.env.Groq_Api_Key || ''
   const key = rawKey.trim().replace(/^Bearer\\s+/i, '').replace(/\\s+/g, '')
   if (!key) return res.status(503).json({ error: 'Live AI is not configured. Add GROQ_API_KEY in Vercel Environment Variables.' })
   const messages = req.body?.messages
   if (!Array.isArray(messages) || messages.length < 1 || messages.length > LIMIT) return res.status(400).json({ error: 'Invalid conversation' })
-  if (!messages.every(m => m && ['user','assistant'].includes(m.role) && typeof m.content === 'string' && m.content.length <= 1600)) return res.status(400).json({ error: 'Invalid message format' })
+  if (!messages.every(m => m && ['user','assistant'].includes(m.role) && typeof m.content === 'string' && m.content.length <= 1000)) return res.status(400).json({ error: 'Invalid message format' })
   if (messages[messages.length-1].role !== 'user') return res.status(400).json({ error: 'A user message is required' })
   try {
     const controller = new AbortController()
     const timer = setTimeout(() => controller.abort(), 20000)
     let upstream
+    let result
     try {
       upstream = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST', signal: controller.signal,
         headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b', temperature: 0.5, max_tokens: 400, messages: [{ role:'system', content:SYSTEM }, ...messages] })
       })
-    } finally { clearTimeout(timer) }
+      if (upstream.ok) result = await upstream.json()
+    } finally {
+      clearTimeout(timer)
+    }
     if (!upstream.ok) {
       const errorByStatus = {
         400: 'Groq rejected the request. Please contact the site owner.',
@@ -68,7 +97,6 @@ export default async function handler(req, res) {
       }
       return res.status(502).json({ error: errorByStatus[upstream.status] || 'Groq is temporarily unavailable (status ' + upstream.status + ').' })
     }
-    const result = await upstream.json()
     const answer = result?.choices?.[0]?.message?.content
     if (typeof answer !== 'string' || !answer.trim()) throw new Error('Empty AI response')
     return res.status(200).json({ answer: answer.trim() })

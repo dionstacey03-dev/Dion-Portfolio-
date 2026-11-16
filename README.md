@@ -1,46 +1,32 @@
 # Dion Stacey Sellar — Portfolio
 
-A responsive personal portfolio showcasing my software development work, AI projects, technical skills, and academic background.
+A responsive personal portfolio showcasing software engineering projects, technical skills, academic background, and an interactive JARVIS portfolio assistant.
 
-**[🌐 View Live Portfolio](https://dion-portfolio-sigma.vercel.app)** · **[🤖 JARVIS Demo Page](https://dion-portfolio-sigma.vercel.app/jarvis-demo)** · [GitHub Profile](https://github.com/dionstacey03-dev) · [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/)
-
-## About
-
-I'm a Software Engineering student at NSBM Green University, studying for a BSc in Software Engineering awarded by the University of Plymouth. I enjoy building practical applications, experimenting with AI, and improving my development skills through hands-on projects.
-
-The portfolio includes my background, skills, featured projects, and contact details. It also provides responsive navigation and a downloadable CV.
+**[🌐 Live Portfolio](https://dion-portfolio-sigma.vercel.app)** · **[🤖 JARVIS Demo](https://dion-portfolio-sigma.vercel.app/jarvis-demo)** · [GitHub Profile](https://github.com/dionstacey03-dev) · [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/)
 
 ## Built With
 
-- React 19
-- JavaScript
-- CSS
-- Vite 8
-- ESLint
-- Vercel for production deployment
+- React 19, JavaScript, CSS
+- Vite 8 and ESLint
+- Vercel hosting and serverless functions
+- Groq API for the optional JARVIS portfolio chatbot
 
 ## Featured Projects
 
-| Project | Description | Links |
+| Project | Current description | Links |
 | --- | --- | --- |
-| **JARVIS AI Assistant** | A Python desktop assistant featuring voice interaction, speech recognition, text-to-speech, and local Ollama responses. | [GitHub Repository](https://github.com/dionstacey03-dev/JARVIS-AI-Assistant) · [Portfolio Demo Page](https://dion-portfolio-sigma.vercel.app/jarvis-demo) |
-| **AI Smart Tourism Planner** | A Sri Lanka travel-planning concept. | [Live Demo](https://ai-smart-tourism-planner.vercel.app) · [GitHub Repository](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
-| **GreenRoute AI** | Route comparison prototype with carbon tracking and CSV export; deployment and estimates still require production verification. | [GitHub Repository](https://github.com/dionstacey03-dev/GreenRoute-AI) · [Portfolio Case Study](https://dion-portfolio-sigma.vercel.app/projects/greenroute) |
-| **QR Studio** | MVP that passed seven functional checks; public deployment is pending. | Portfolio project card (demo coming soon) |
-| **Software Engineering Projects** | A collection of academic and independent software work. | [GitHub Profile](https://github.com/dionstacey03-dev) |
-
-| **VELTRIX Marketplace** | A glassmorphism-inspired precision hardware marketplace with product discovery, multi-currency pricing, customer checkout, seller storefronts, inventory and order fulfilment workflows. Production deployment is live; backend and integration checks are ongoing. | [Live Demo](https://veltrix-marketplace.vercel.app) · [GitHub Repository](https://github.com/dionstacey03-dev/veltrix-marketplace) |
-
-## Skills
-
-- **Languages:** Python, JavaScript, SQL
-- **Frontend:** React, HTML, CSS, Vite
-- **Tools:** Git, GitHub, VS Code
-- **Areas of interest:** Artificial Intelligence, software development, and building useful digital products
+| JARVIS AI Assistant | Python desktop assistant with voice interaction, local Ollama models, FastAPI and persistent memory. The portfolio chatbot is a separate web demo. | [GitHub](https://github.com/dionstacey03-dev/JARVIS-AI-Assistant) · [Web demo](https://dion-portfolio-sigma.vercel.app/jarvis-demo) |
+| AI Smart Tourism Planner | AI-assisted Sri Lankan travel-planning project. | [Live demo](https://ai-smart-tourism-planner.vercel.app) · [GitHub](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
+| GreenRoute AI | Route-comparison prototype with carbon tracking, CSV export and a Leaflet map. Production deployment and emissions estimates require verification. | [GitHub](https://github.com/dionstacey03-dev/GreenRoute-AI) |
+| QR Studio | Deployed QR generation and scanning application; final functional checks passed 7/7. | [Live demo](https://qr-studio-fawn-three.vercel.app) · [GitHub](https://github.com/dion-stacey03-dev/qr-studio) |
+| FocusFlow Mini | Productivity app with Pomodoro timer, task management and daily progress tracking. | [Live demo](https://focusflow-mini.vercel.app) · [GitHub](https://github.com/dion-stacey03-dev/focusflow-mini) |
+| STUDIQ AI | Deployed AI learning platform with study assistance, summarization, quizzes and planning tools. | [Live demo](https://studiq-ai-zeta.vercel.app/) · [GitHub](https://github.com/dion-stacey03-dev/studiq-ai) |
+| VELTRIX Marketplace | Precision-hardware marketplace with customer and seller workflows. Deployment is live; integrations and production workflows should be described as under testing until independently verified. | [Live demo](https://veltrix-marketplace.vercel.app) · [GitHub](https://github.com/dion-stacey03-dev/veltrix-marketplace) |
+| NEXORA AI | AI-assisted software project builder using Google Gemini. | [GitHub](https://github.com/dion-stacey03-dev/nexora-ai) |
 
 ## Run Locally
 
-You'll need [Node.js](https://nodejs.org/) and npm installed.
+Requirements: Node.js and npm.
 
 ```bash
 git clone https://github.com/dionstacey03-dev/Dion-Portfolio-.git
@@ -49,37 +35,29 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite.
-
-### Available Scripts
+## Available Scripts
 
 ```bash
-npm run dev      # Start the development server
-npm run lint     # Check the source with ESLint
-npm run build    # Build the production version in dist/
-npm run preview  # Preview the production build locally
+npm run dev      # Start the Vite development server
+npm run lint     # Run ESLint
+npm run build    # Create the production build in dist/
+npm run preview  # Preview the production build
 ```
+
+## JARVIS Environment Configuration
+
+The browser-based JARVIS demo uses the server-side `/api/chat` function. Configure `GROQ_API_KEY` in the Vercel project environment variables. Never put provider secrets in frontend code or commit them to Git.
+
+The API includes request validation, a response timeout and best-effort per-instance throttling. Because Vercel functions can run on multiple ephemeral instances, the in-memory throttle is not a durable global rate limit. For stronger production protection, configure a shared rate-limit store such as Upstash Redis.
 
 ## Deployment
 
-The portfolio is deployed to Vercel:
+Hosted on Vercel: https://dion-portfolio-sigma.vercel.app
 
-**Production URL:** https://dion-portfolio-sigma.vercel.app
-
-The project uses Vite. The standard production build command is `npm run build`, and the build output directory is `dist`.
-
-## Screenshots
-
-### Desktop
-
-![Desktop view of Dion's portfolio](docs/portfolio-desktop.png)
-
-### Mobile
-
-![Mobile view of Dion's portfolio at a 390 px viewport](docs/portfolio-mobile.png)
+Build command: `npm run build` · Output directory: `dist`
 
 ## Contact
 
 - [LinkedIn](https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/)
 - [GitHub](https://github.com/dionstacey03-dev)
-- Email: [dion.stacey.03@gmail.com](mailto:dion.stacey.03@gmail.com)
+- [Email](mailto:dion.stacey.03@gmail.com)

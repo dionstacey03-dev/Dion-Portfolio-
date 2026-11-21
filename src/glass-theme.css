@@ -163,3 +163,96 @@ body { background: var(--glass-bg); color: var(--glass-text); }
 @media (max-width:768px) {
   .aboutCard, .educationCard, .skillCard, .projectCard, .contactCard { border-radius: 21px; }
 }
+
+/* Theme consistency patch: make every section respond to the selected theme.
+   Keep the dark art direction, while giving light mode its own readable surfaces. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --glass-text: #f1f6ff;
+  --glass-muted: #b9c9dc;
+  --glass-bg: #050a17;
+  --glass-surface: rgba(18, 31, 55, .82);
+  --glass-border: rgba(113, 203, 239, .25);
+  --glass-accent: #67ddff;
+  --theme-page: #050a17;
+  --theme-section: #071326;
+  --theme-section-alt: #091a30;
+  --theme-card: #10243b;
+  --theme-card-border: rgba(119, 213, 246, .28);
+  --theme-heading: #f1f6ff;
+  --theme-copy: #bdcddd;
+  --theme-nav: rgba(5, 12, 27, .9);
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --glass-text: #14233d;
+  --glass-muted: #435875;
+  --glass-bg: #eef5ff;
+  --glass-surface: rgba(255, 255, 255, .82);
+  --glass-border: rgba(87, 135, 184, .22);
+  --glass-accent: #0879b8;
+  --theme-page: #edf4fc;
+  --theme-section: #f4f8ff;
+  --theme-section-alt: #e7f0fb;
+  --theme-card: rgba(255,255,255,.88);
+  --theme-card-border: rgba(79, 125, 172, .24);
+  --theme-heading: #142642;
+  --theme-copy: #455c78;
+  --theme-nav: rgba(246, 250, 255, .92);
+}
+html, body { background: var(--theme-page); color: var(--glass-text); }
+.portfolio { color: var(--glass-text); background: var(--theme-page); }
+.navbar { background: var(--theme-nav); border-bottom: 1px solid var(--theme-card-border); }
+.logo, .portfolio h1, .portfolio h2, .portfolio h3, .portfolio h4 { color: var(--theme-heading); }
+.navLinks a, .portfolio p, .portfolio .description { color: var(--theme-copy); }
+.themeToggle { color: var(--theme-heading); border-color: var(--theme-card-border); background: var(--theme-card); }
+.hero { background: radial-gradient(ellipse at 78% 42%,rgba(20,145,190,.15),transparent 38%),radial-gradient(ellipse at 12% 100%,rgba(8,127,157,.09),transparent 35%),linear-gradient(135deg,var(--theme-section),var(--theme-section-alt)); }
+.hero h1 { background: linear-gradient(105deg,var(--theme-heading) 12%,#8bcbe9 58%,#27a9d5 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
+.hero h2 { color: var(--theme-heading); }
+.hero .description { color: var(--theme-copy); }
+.about, .education, .skills, .projects, #case-studies, .contact { background-color: var(--theme-section); }
+.aboutCard, .educationCard, .skillCard, .projectCard, .contactContent, .githubRepoCard, .enhanceCard {
+  color: var(--theme-heading);
+  background: linear-gradient(145deg,var(--theme-card),var(--theme-section-alt));
+  border-color: var(--theme-card-border);
+}
+.aboutText p, .educationContent p, .educationContent h4 span, .contactContent>p { color: var(--theme-copy); }
+.aboutCard p, .educationContent h3, .contactContent h3 { color: var(--theme-heading); }
+.sectionTitle h2, .enhanceHeading h2, .projects .sectionTitle h2, .skills .sectionTitle h2, .education .sectionTitle h2, .about .sectionTitle h2 {
+  background: linear-gradient(100deg,var(--theme-heading),#55bde6);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
+}
+:root[data-theme="light"] .hero {
+  background: radial-gradient(ellipse at 82% 40%,rgba(48,157,218,.15),transparent 38%),linear-gradient(135deg,#f4f8ff 0%,#e6f1ff 58%,#f7fbff 100%);
+}
+:root[data-theme="light"] .hero:before { opacity:.12; }
+:root[data-theme="light"] .hero:after { border-color:rgba(22,115,168,.18); box-shadow:0 0 0 35px rgba(22,115,168,.045),0 0 0 75px rgba(22,115,168,.025); }
+:root[data-theme="light"] .hero .intro, :root[data-theme="light"] .about .sectionTitle p, :root[data-theme="light"] .education .sectionTitle p { color:#0879a9; }
+:root[data-theme="light"] .hero h1 { background:linear-gradient(105deg,#122744 10%,#155b8d 58%,#0796bd 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+:root[data-theme="light"] .hero h2 { color:#1c3654; }
+:root[data-theme="light"] .hero .description { color:#455c78; }
+:root[data-theme="light"] .heroButtons .secondaryButton { color:#0879a9; border-color:#168fbe; background:rgba(255,255,255,.52); }
+:root[data-theme="light"] .about, :root[data-theme="light"] .education, :root[data-theme="light"] .skills, :root[data-theme="light"] .projects, :root[data-theme="light"] #case-studies { background:linear-gradient(180deg,#f5f9ff,#eaf2fc); }
+:root[data-theme="light"] .aboutText { background:linear-gradient(90deg,rgba(18,130,180,.07),transparent); }
+:root[data-theme="light"] .aboutText p, :root[data-theme="light"] .educationContent p { color:#455c78; }
+:root[data-theme="light"] .aboutCard, :root[data-theme="light"] .educationCard, :root[data-theme="light"] .skillCard, :root[data-theme="light"] .projectCard, :root[data-theme="light"] .enhanceCard {
+  background:linear-gradient(145deg,#ffffff,#edf5ff);
+  border-color:rgba(70,122,171,.25);
+  box-shadow:0 15px 36px rgba(35,71,112,.09),inset 0 1px #fff;
+}
+:root[data-theme="light"] .aboutCard h3, :root[data-theme="light"] .educationContent h3, :root[data-theme="light"] .enhanceCard h3 { color:#173452; }
+:root[data-theme="light"] .aboutCard p, :root[data-theme="light"] .educationContent h4 span, :root[data-theme="light"] .educationContent p, :root[data-theme="light"] .enhanceCard p { color:#4b6078; }
+:root[data-theme="light"] .educationContent h4, :root[data-theme="light"] .educationYear, :root[data-theme="light"] .enhanceCard strong { color:#0879a9; }
+:root[data-theme="light"] .contact { background:linear-gradient(180deg,#eaf3ff,#f6f9ff); }
+:root[data-theme="light"] .contactHeading h2, :root[data-theme="light"] .contactContent h3 { color:#173452; }
+:root[data-theme="light"] .contactHeading>p, :root[data-theme="light"] .contactContent>p { color:#4b6078; }
+:root[data-theme="light"] .contactContent { background:linear-gradient(145deg,#fff,#edf5ff); border-color:rgba(70,122,171,.25); }
+:root[data-theme="light"] .contactCardBottom { color:#58718c; }
+:root[data-theme="light"] .contactAction.secondaryButton { color:#0879a9; border-color:#168fbe; }
+:root[data-theme="light"] .githubHero, :root[data-theme="light"] .githubRepoCard { background:linear-gradient(145deg,#fff,#edf5ff); color:#173452; }
+:root[data-theme="light"] .githubHeroCopy h2, :root[data-theme="light"] .githubRepoCard h3 { color:#173452; }
+:root[data-theme="light"] .githubHeroCopy>span, :root[data-theme="light"] .githubRepoCard>p { color:#4b6078; }
+:root[data-theme="light"] .footer { background:#e5eef9; color:#4b6078; }
+:root[data-theme="light"] .navbar .logo { color:#172b47; }
+:root[data-theme="light"] .navLinks a { color:#344b68; }
+:root[data-theme="light"] .themeToggle { color:#173452; }

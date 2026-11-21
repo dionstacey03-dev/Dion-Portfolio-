@@ -1,6 +1,79 @@
 import { useState } from 'react'
 import './JarvisShowcase.css'
 
+function renderInline(text) {
+  return text.split(/(\\*\\*[^*]+\\*\\*)/g).map((part, index) =>
+    part.startsWith('**') && part.endsWith('**')
+      ? <strong key={index}>{part.slice(2, -2)}</strong>
+      : part
+  )
+}
+
+function MessageContent({ content }) {
+  const lines = content.split('\\n')
+  const blocks = []
+  let index = 0
+
+  while (index < lines.length) {
+    const line = lines[index].trim()
+    if (!line) { index += 1; continue }
+
+    const isTableRow = value => value.includes('|') && value.replace(/[|\\s:-]/g, '') !== ''
+    const isSeparator = value => /^\\|?\\s*:?-{3,}:?\\s*(\\|\\s*:?-{3,}:?\\s*)+\\|?$/.test(value)
+
+    if (isTableRow(line) && index + 1 < lines.length && isSeparator(lines[index + 1].trim())) {
+      const cells = value => value.trim().replace(/^\\|/, '').replace(/\\|$/, '').split('|').map(cell => cell.trim())
+      const headers = cells(line)
+      index += 2
+      const rows = []
+      while (index < lines.length && isTableRow(lines[index].trim())) {
+        rows.push(cells(lines[index]))
+        index += 1
+      }
+      blocks.push(
+        <div className="jarvisTableWrap" key={blocks.length}>
+          <table className="jarvisTable">
+            <thead><tr>{headers.map((cell, i) => <th key={i}>{renderInline(cell)}</th>)}</tr></thead>
+            <tbody>{rows.map((row, r) => <tr key={r}>{headers.map((_, c) => <td key={c}>{renderInline(row[c] || '')}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+      )
+      continue
+    }
+
+    if (/^[-*]\\s+/.test(line)) {
+      const items = []
+      while (index < lines.length && /^\\s*[-*]\\s+/.test(lines[index])) {
+        items.push(lines[index].replace(/^\\s*[-*]\\s+/, '').trim())
+        index += 1
+      }
+      blocks.push(<ul key={blocks.length}>{items.map((item, i) => <li key={i}>{renderInline(item)}</li>)}</ul>)
+      continue
+    }
+
+    if (/^\\d+\\.\\s+/.test(line)) {
+      const items = []
+      while (index < lines.length && /^\\s*\\d+\\.\\s+/.test(lines[index])) {
+        items.push(lines[index].replace(/^\\s*\\d+\\.\\s+/, '').trim())
+        index += 1
+      }
+      blocks.push(<ol key={blocks.length}>{items.map((item, i) => <li key={i}>{renderInline(item)}</li>)}</ol>)
+      continue
+    }
+
+    if (/^#{1,3}\\s+/.test(line)) {
+      blocks.push(<h4 key={blocks.length}>{renderInline(line.replace(/^#{1,3}\\s+/, ''))}</h4>)
+      index += 1
+      continue
+    }
+
+    blocks.push(<p key={blocks.length}>{renderInline(line.replace(/\\s{2,}/g, ' '))}</p>)
+    index += 1
+  }
+
+  return <div className="jarvisMessageContent">{blocks}</div>
+}
+
 const suggestions = ['Show me Dion’s latest projects', 'What technical skills does Dion have?', 'Tell me about VELTRIX Marketplace']
 export default function JarvisShowcase() {
   const [messages, setMessages] = useState([])
@@ -27,7 +100,7 @@ export default function JarvisShowcase() {
       <p className="jarvisIntro">Ask me about Dion's projects, skills and software engineering journey. Please don't share private or sensitive information.</p>
       <div className="jarvisConversation" aria-live="polite" aria-label="Conversation">
         {messages.length === 0 && <p>Ask me anything about Dion's portfolio to begin.</p>}
-        {messages.map((m,i)=><div className={m.role === 'user' ? 'jarvisBubble user' : 'jarvisBubble assistant'} key={i}><strong>{m.role === 'user' ? 'You' : 'JARVIS'}</strong><p>{m.content}</p></div>)}
+        {messages.map((m,i)=><div className={m.role === 'user' ? 'jarvisBubble user' : 'jarvisBubble assistant'} key={i}><strong>{m.role === 'user' ? 'You' : 'JARVIS'}</strong><MessageContent content={m.content} /></div>)}
         {busy && <p role="status">JARVIS is thinking…</p>}
       </div>
       {messages.length === 0 && <div className="jarvisQuestions">{suggestions.map(s=><button type="button" className="jarvisQuestion" key={s} onClick={()=>send(s)}>{s}</button>)}</div>}

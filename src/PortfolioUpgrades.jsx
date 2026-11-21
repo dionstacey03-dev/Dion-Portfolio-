@@ -40,7 +40,28 @@ export function PortfolioEnhancements() {
  },[])
  return <div className="enhancements">
  <section className="enhanceSection" id="case-studies"><div className="enhanceHeading"><p>THE WORK BEHIND THE INTERFACE</p><h2>Project case studies</h2><span>Project goals, implementation details, technologies, engineering challenges and current status.</span></div><div className="enhanceGrid">{studies.map((p,i)=><a className="enhanceCard" key={p.id} href={'/projects/'+p.id}><span>0{i+1} / CASE STUDY</span><h3>{p.name}</h3><p>{p.summary}</p><small>{p.status}</small><strong>Explore case study ↗</strong></a>)}</div></section>
- <section className="enhanceSection recruiterSection" id="recruiter"><div className="enhanceHeading"><p>FOR RECRUITERS & COLLABORATORS</p><h2>Recruiter mode</h2><span>A concise overview alongside the full portfolio.</span></div><button type="button" className="recruiterToggle" aria-expanded={recruiter} onClick={()=>setRecruiter(v=>!v)}>{recruiter?'Close recruiter overview':'Open recruiter overview'} ↗</button>{recruiter&&<div className="recruiterPanel"><h3>Dion Stacey Sellar</h3><p>BSc (Hons) Software Engineering student at NSBM Green University, University of Plymouth pathway. Building practical software with Python, React, FastAPI and AI tools.</p><h4>Selected work</h4><p>JARVIS AI Assistant · GreenRoute AI · VELTRIX Marketplace · QR Studio · FocusFlow Mini · Studiq-AI · NEXORA AI</p><h4>Technical focus</h4><p>Python · JavaScript · React · TypeScript · FastAPI · SQL · Git · AI integrations</p><div className="caseActions"><a href="/Dion-Stacey-Sellar-CV.pdf" download>Download CV ↗</a><a href="https://github.com/dionstacey03-dev" target="_blank" rel="noreferrer">GitHub ↗</a><a href="mailto:dion.stacey.03@gmail.com">Email ↗</a></div></div>}</section>
+ <section className="enhanceSection recruiterSection" id="recruiter">
+  <div className="enhanceHeading">
+    <p>FOR RECRUITERS & COLLABORATORS</p>
+    <h2>Recruiter overview</h2>
+    <span>A quick introduction, selected projects and technical strengths — all in one place.</span>
+  </div>
+  <button type="button" className="recruiterToggle" aria-expanded={recruiter} onClick={()=>setRecruiter(v=>!v)}>
+    <span>{recruiter ? 'Hide professional profile' : 'View professional profile'}</span><span aria-hidden="true">{recruiter ? '−' : '+'}</span>
+  </button>
+  {recruiter&&<div className="recruiterPanel">
+    <div className="recruiterProfileHead">
+      <div className="recruiterAvatar" aria-hidden="true">DS</div>
+      <div><span className="recruiterKicker">SOFTWARE ENGINEERING · PORTFOLIO</span><h3>Dion Stacey Sellar</h3><p>BSc (Hons) Software Engineering student · NSBM Green University · University of Plymouth pathway</p></div>
+    </div>
+    <div className="recruiterIntro"><p>I enjoy turning ideas into useful software. My work spans web applications, AI-assisted tools and practical development projects, with a focus on learning through building, testing and iteration.</p></div>
+    <div className="recruiterDetails">
+      <section className="recruiterDetail"><span className="recruiterLabel">SELECTED PROJECTS</span><div className="recruiterChips">{['JARVIS AI Assistant','OPTIVEX AI','NEXORA AI','VELTRIX Marketplace','STUDIQ AI','QR Studio','FocusFlow Mini','GreenRoute AI'].map(item=><span key={item}>{item}</span>)}</div></section>
+      <section className="recruiterDetail"><span className="recruiterLabel">TECHNICAL FOCUS</span><div className="recruiterChips">{['Python','JavaScript','TypeScript','React','FastAPI','Node.js','SQL','Ollama','Google Gemini','Git & GitHub'].map(item=><span key={item}>{item}</span>)}</div></section>
+    </div>
+    <div className="recruiterActions"><a className="recruiterPrimary" href="/Dion-Stacey-Sellar-CV.pdf" download><span>Download CV</span><span aria-hidden="true">↗</span></a><a href="https://github.com/dionstacey03-dev" target="_blank" rel="noreferrer"><span>Explore GitHub</span><span aria-hidden="true">↗</span></a><a href="mailto:dion.stacey.03@gmail.com"><span>Contact by email</span><span aria-hidden="true">↗</span></a></div>
+  </div>}
+</section>
  <section className="enhanceSection githubSection" id="github"><div className="enhanceHeading"><p>OPEN SOURCE & DEVELOPMENT</p><h2>Explore my GitHub</h2><span>Browse repositories, commits and ongoing experiments directly on GitHub. Activity counts are not displayed without verified live data.</span></div><div aria-live="polite">{repoStatus==='loading'&&<p>Loading recent public repositories…</p>}{repoStatus==='error'&&<p>Live GitHub data is unavailable right now. You can still browse the profile.</p>}{repoStatus==='ready'&&repos.length===0&&<p>No public repositories available to display.</p>}</div><div className="enhanceGrid">{repos.map(repo=><a className="enhanceCard" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer"><span>{repo.language||'Repository'}</span><h3>{repo.name}</h3><p>{repo.description||'View source code and project details on GitHub.'}</p><small>Updated {new Date(repo.updated_at).toLocaleDateString()}</small><strong>View repository ↗</strong></a>)}</div><a className="recruiterToggle" href="https://github.com/dionstacey03-dev" target="_blank" rel="noreferrer">View all GitHub activity ↗</a></section>
  </div>
 }

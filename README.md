@@ -13,16 +13,27 @@ A responsive personal portfolio showcasing software engineering projects, techni
 
 ## Featured Projects
 
-| Project | Current description | Links |
+The portfolio currently showcases 16 projects across AI, web applications and experimental work. Project labels distinguish live deployments from prototypes and active development.
+
+| Project | Current status | Links |
 | --- | --- | --- |
-| JARVIS AI Assistant | Python desktop assistant with voice interaction, local Ollama models, FastAPI and persistent memory. The portfolio chatbot is a separate web demo. | [GitHub](https://github.com/dionstacey03-dev/JARVIS-AI-Assistant) · [Web demo](https://dion-portfolio-sigma.vercel.app/jarvis-demo) |
-| AI Smart Tourism Planner | AI-assisted Sri Lankan travel-planning project. | [Live demo](https://ai-smart-tourism-planner.vercel.app) · [GitHub](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
-| GreenRoute AI | Route-comparison prototype with carbon tracking, CSV export and a Leaflet map. Production deployment and emissions estimates require verification. | [GitHub](https://github.com/dionstacey03-dev/GreenRoute-AI) |
-| QR Studio | Deployed QR generation and scanning application; final functional checks passed 7/7. | [Live demo](https://qr-studio-fawn-three.vercel.app) · [GitHub](https://github.com/dion-stacey03-dev/qr-studio) |
-| FocusFlow Mini | Productivity app with Pomodoro timer, task management and daily progress tracking. | [Live demo](https://focusflow-mini.vercel.app) · [GitHub](https://github.com/dion-stacey03-dev/focusflow-mini) |
-| STUDIQ AI | Deployed AI learning platform with study assistance, summarization, quizzes and planning tools. | [Live demo](https://studiq-ai-zeta.vercel.app/) · [GitHub](https://github.com/dion-stacey03-dev/studiq-ai) |
-| VELTRIX Marketplace | Precision-hardware marketplace with customer and seller workflows. Deployment is live; integrations and production workflows should be described as under testing until independently verified. | [Live demo](https://veltrix-marketplace.vercel.app) · [GitHub](https://github.com/dion-stacey03-dev/veltrix-marketplace) |
-| NEXORA AI | AI-assisted software project builder using Google Gemini. | [GitHub](https://github.com/dion-stacey03-dev/nexora-ai) |
+| JARVIS AI Assistant | Local assistant; browser demo available | [GitHub](https://github.com/dionstacey03-dev/JARVIS-AI-Assistant) · [Web demo](https://dion-portfolio-sigma.vercel.app/jarvis-demo) |
+| AI Smart Tourism Planner | Project with live demo | [Live demo](https://ai-smart-tourism-planner.vercel.app) · [GitHub](https://github.com/dionstacey03-dev/AI-Smart-Tourism-Planner) |
+| GreenRoute AI | Prototype; production verification pending | [GitHub](https://github.com/dionstacey03-dev/GreenRoute-AI) |
+| FocusFlow Mini | Live; LinkedIn launch published | [Live demo](https://focusflow-mini.vercel.app) · [GitHub](https://github.com/dionstacey03-dev/focusflow-mini) |
+| QR Studio | Completed; final functional checks passed 7/7 | [Live demo](https://qr-studio-fawn-three.vercel.app) · [GitHub](https://github.com/dionstacey03-dev/qr-studio) |
+| STUDIQ AI | Live on Vercel | [Live demo](https://studiq-ai-zeta.vercel.app/) · [GitHub](https://github.com/dionstacey03-dev/studiq-ai) |
+| VELTRIX Marketplace | Deployed; end-to-end testing completed | [Live demo](https://veltrix-marketplace.vercel.app) · [GitHub](https://github.com/dionstacey03-dev/veltrix-marketplace) |
+| NEXORA AI | Deployed; active development | [GitHub](https://github.com/dionstacey03-dev/nexora-ai) |
+| OPTIVEX AI | Production deployment READY; physical webcam test pending | [Live demo](https://optivex-ai-delta.vercel.app) · [GitHub](https://github.com/dionstacey03-dev/optivex-ai) |
+| FINORA Bank Management System | In development; repository audit | [GitHub](https://github.com/dionstacey03-dev/finora-bank-management-system) |
+| NexPOS | In development | [GitHub](https://github.com/dionstacey03-dev/Nex-POS) |
+| CodeVerse Academy | In development; frontend repository published | [GitHub](https://github.com/dionstacey03-dev/CodeVerse-Academy) |
+| CampusAI | Early-stage development | [GitHub](https://github.com/dionstacey03-dev/CampusAI) |
+| VISIONX AI | Browser-based object-detection project | [GitHub](https://github.com/dionstacey03-dev/VISIONX-AI) |
+| PYMASTER AI | Python learning platform; development milestone | [GitHub](https://github.com/dionstacey03-dev/PYMASTER-AI) |
+| 3D Liquid Glass Portfolio | Experimental portfolio concept | [GitHub](https://github.com/dionstacey03-dev/dion-3d-portfolio) |
+
 
 ## Run Locally
 

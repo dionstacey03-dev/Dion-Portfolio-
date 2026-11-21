@@ -62,6 +62,27 @@ export function PortfolioEnhancements() {
     <div className="recruiterActions"><a className="recruiterPrimary" href="/Dion-Stacey-Sellar-CV.pdf" download><span>Download CV</span><span aria-hidden="true">↗</span></a><a href="https://github.com/dionstacey03-dev" target="_blank" rel="noreferrer"><span>Explore GitHub</span><span aria-hidden="true">↗</span></a><a href="mailto:dion.stacey.03@gmail.com"><span>Contact by email</span><span aria-hidden="true">↗</span></a></div>
   </div>}
 </section>
- <section className="enhanceSection githubSection" id="github"><div className="enhanceHeading"><p>OPEN SOURCE & DEVELOPMENT</p><h2>Explore my GitHub</h2><span>Browse repositories, commits and ongoing experiments directly on GitHub. Activity counts are not displayed without verified live data.</span></div><div aria-live="polite">{repoStatus==='loading'&&<p>Loading recent public repositories…</p>}{repoStatus==='error'&&<p>Live GitHub data is unavailable right now. You can still browse the profile.</p>}{repoStatus==='ready'&&repos.length===0&&<p>No public repositories available to display.</p>}</div><div className="enhanceGrid">{repos.map(repo=><a className="enhanceCard" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer"><span>{repo.language||'Repository'}</span><h3>{repo.name}</h3><p>{repo.description||'View source code and project details on GitHub.'}</p><small>Updated {new Date(repo.updated_at).toLocaleDateString()}</small><strong>View repository ↗</strong></a>)}</div><a className="recruiterToggle" href="https://github.com/dionstacey03-dev" target="_blank" rel="noreferrer">View all GitHub activity ↗</a></section>
+ <section className="enhanceSection githubSection" id="github">
+  <div className="githubHero">
+    <div className="githubMark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" role="img" focusable="false"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.93.1-.72.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.62 5.24-5.11 5.52.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>
+    </div>
+    <div className="githubHeroCopy">
+      <p>OPEN SOURCE & DEVELOPMENT</p>
+      <h2>Explore my GitHub</h2>
+      <span>Ideas in progress, projects in motion, and code built through curiosity.</span>
+      <div className="githubHandle"><span className="githubLiveDot"></span>@dionstacey03-dev <span className="githubHandleDivider">·</span> Public repositories</div>
+    </div>
+    <a className="githubProfileButton" href="https://github.com/dionstacey03-dev" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.93.1-.72.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.62 5.24-5.11 5.52.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>Visit GitHub <span>↗</span></a>
+  </div>
+  <div className="githubSectionBar"><span>RECENTLY UPDATED REPOSITORIES</span><span className="githubRefreshNote">Live public data from GitHub</span></div>
+  <div className="githubFeedback" aria-live="polite">{repoStatus==='loading'&&<p><span className="githubSpinner"></span> Loading your latest public repositories…</p>}{repoStatus==='error'&&<p>GitHub data is temporarily unavailable. Visit the profile to browse all repositories.</p>}{repoStatus==='ready'&&repos.length===0&&<p>No public repositories available to display right now.</p>}</div>
+  <div className="enhanceGrid githubRepoGrid">{repos.map(repo=><a className="enhanceCard githubRepoCard" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer">
+    <div className="githubRepoTop"><span className="githubRepoLanguage"><i></i>{repo.language||'Repository'}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.93.1-.72.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.62 5.24-5.11 5.52.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg></div>
+    <h3>{repo.name}</h3><p>{repo.description||'Explore the source code, implementation and development notes in this repository.'}</p>
+    <div className="githubRepoMeta"><small>Updated {new Date(repo.updated_at).toLocaleDateString()}</small><strong>View repository <span>↗</span></strong></div>
+  </a>)}</div>
+  <div className="githubFooter"><span>More experiments. More things to build.</span><a href="https://github.com/dionstacey03-dev?tab=repositories" target="_blank" rel="noreferrer">Explore all repositories <span>↗</span></a></div>
+</section>
  </div>
 }

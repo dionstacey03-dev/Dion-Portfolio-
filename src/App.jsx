@@ -436,7 +436,7 @@ function App() {
           </div>
           <div className="contactCardBottom"><span>Usually happy to talk about ideas, code and collaboration.</span><a href="mailto:dion.stacey.03@gmail.com">dion.stacey.03@gmail.com</a></div>
         </div>
-      </section>>
+      </section>
 
       </main>
 

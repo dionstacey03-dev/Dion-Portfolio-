@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { triggerHaptic } from './utils/haptics'
 import './PortfolioUpgrades.css'
 
 const studies = [
@@ -46,7 +47,7 @@ export function PortfolioEnhancements() {
     <h2>Recruiter overview</h2>
     <span>A quick introduction, selected projects and technical strengths — all in one place.</span>
   </div>
-  <button type="button" className="recruiterToggle" aria-expanded={recruiter} onClick={()=>setRecruiter(v=>!v)}>
+  <button type="button" className="recruiterToggle" aria-expanded={recruiter} onClick={()=>{triggerHaptic(10);setRecruiter(v=>!v)}}>
     <span>{recruiter ? 'Hide professional profile' : 'View professional profile'}</span><span aria-hidden="true">{recruiter ? '−' : '+'}</span>
   </button>
   {recruiter&&<div className="recruiterPanel">

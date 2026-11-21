@@ -26,32 +26,49 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  // Premium glass reveal: staggered 3D lift, soft focus and light sweep on scroll.
+  // Premium glass reveal. Also observes asynchronously rendered content (e.g. GitHub API cards).
   useEffect(() => {
     const selector = '.glass-panel, .glass-card, .glass-sidebar, .glass-topbar, .aboutCard, .educationCard, .skillCard, .enhanceCard, .githubRepoCard, .contactContent, .sectionTitle, .enhanceHeading, .jarvisPanel'
-    const targets = Array.from(document.querySelectorAll(selector))
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (reduceMotion || !('IntersectionObserver' in window)) {
-      targets.forEach((element) => element.classList.add('scroll-glass-visible'))
+      document.querySelectorAll(selector).forEach((element) => element.classList.add('scroll-glass-visible'))
       return
     }
 
-    targets.forEach((element, index) => {
-      element.classList.add('scroll-glass-ready')
-      element.style.setProperty('--glass-reveal-delay', `${(index % 5) * 85}ms`)
-    })
-
-    const observer = new IntersectionObserver((entries) => {
+    let sequence = 0
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return
         entry.target.classList.add('scroll-glass-visible')
-        observer.unobserve(entry.target)
+        revealObserver.unobserve(entry.target)
       })
-    }, { threshold: 0.16, rootMargin: '0px 0px -64px 0px' })
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
 
-    targets.forEach((element) => observer.observe(element))
-    return () => observer.disconnect()
+    const register = (root) => {
+      const elements = []
+      if (root instanceof Element && root.matches(selector)) elements.push(root)
+      if (root.querySelectorAll) elements.push(...root.querySelectorAll(selector))
+      elements.forEach((element) => {
+        if (element.classList.contains('scroll-glass-ready') || element.classList.contains('scroll-glass-visible')) return
+        element.classList.add('scroll-glass-ready')
+        element.style.setProperty('--glass-reveal-delay', `${(sequence++ % 5) * 75}ms`)
+        revealObserver.observe(element)
+      })
+    }
+
+    register(document)
+    const mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => mutation.addedNodes.forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE) register(node)
+      }))
+    })
+    mutationObserver.observe(document.body, { childList: true, subtree: true })
+
+    return () => {
+      mutationObserver.disconnect()
+      revealObserver.disconnect()
+    }
   }, [])
 
   const closeMenu = () => {

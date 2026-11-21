@@ -36,3 +36,51 @@
 .recruiterPanel a:focus-visible,.recruiterToggle:focus-visible{outline:3px solid #7deaff;outline-offset:4px}
 @media(max-width:680px){.recruiterDetails{grid-template-columns:1fr}.recruiterProfileHead{align-items:flex-start;gap:15px}.recruiterAvatar{width:60px;height:60px;flex-basis:60px;border-radius:18px;font-size:21px}.recruiterActions{display:grid;grid-template-columns:1fr}.recruiterActions a{width:100%}.recruiterToggle{width:100%;max-width:100%}}
 @media(prefers-reduced-motion:reduce){.recruiterToggle,.recruiterActions a{transition:none}.recruiterToggle:hover,.recruiterActions a:hover{transform:none}}
+
+/* GitHub showcase — branded, editorial repository gallery */
+.githubSection{position:relative;overflow:hidden}
+.githubSection:before{content:"";position:absolute;pointer-events:none;top:20px;right:-150px;width:430px;height:430px;border-radius:50%;background:#0b9acb;filter:blur(150px);opacity:.12}
+.githubHero{position:relative;display:flex;align-items:center;gap:26px;margin-bottom:52px;padding:clamp(24px,4vw,42px);border:1px solid #80dfff35;border-radius:28px;background:linear-gradient(120deg,#0d2b43dd,#0a1b30bb 65%,#102e48aa);box-shadow:0 24px 65px #0005,inset 0 1px #ffffff12}
+.githubMark{flex:0 0 86px;width:86px;height:86px;display:grid;place-items:center;border:1px solid #8beaff55;border-radius:25px;background:linear-gradient(145deg,#164a69,#0a263e);color:#dffaff;box-shadow:0 12px 35px #00bce52b}
+.githubMark svg{width:53px;height:53px}
+.githubHeroCopy{min-width:0;flex:1}
+.githubHeroCopy>p{margin:0 0 8px;color:#75e5ff;font-size:11px;font-weight:800;letter-spacing:.2em}
+.githubHeroCopy h2{margin:0 0 8px;font-size:clamp(32px,4.5vw,54px);letter-spacing:-.045em;line-height:1.08}
+.githubHeroCopy>span{display:block;color:#b9cfdf;font-size:16px;line-height:1.65}
+.githubHandle{display:flex;align-items:center;gap:9px;margin-top:17px;color:#d5eaf5;font-size:13px;font-weight:700}
+.githubLiveDot{width:8px;height:8px;border-radius:50%;background:#55e6ad;box-shadow:0 0 12px #55e6ad}
+.githubHandleDivider{color:#6b91a9}
+.githubProfileButton{flex:0 0 auto;display:inline-flex;align-items:center;gap:11px;padding:13px 17px;border:1px solid #7de5ff77;border-radius:13px;background:#0b3b58;color:#edfbff;text-decoration:none;font-size:14px;font-weight:750;transition:transform .2s,background .2s,border-color .2s}
+.githubProfileButton:hover{transform:translateY(-3px);background:#105273;border-color:#8bf0ff}
+.githubProfileButton svg{width:22px;height:22px}
+.githubProfileButton span,.githubFooter a span{color:#7ceaff}
+.githubSectionBar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:18px}
+.githubSectionBar>span:first-child{color:#79def8;font-size:11px;font-weight:800;letter-spacing:.16em}
+.githubRefreshNote{color:#829fb3;font-size:12px}
+.githubRepoGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.githubRepoCard{position:relative;min-height:300px;padding:25px 26px 23px;border-radius:21px;background:linear-gradient(150deg,#142f45e8,#0d1c2fe8 80%);border-color:#72d9ff35;box-shadow:0 17px 42px #0004,inset 0 1px #ffffff0c}
+.githubRepoCard:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(125deg,#7ceaff0b,transparent 48%);opacity:0;transition:opacity .25s}
+.githubRepoCard:hover{transform:translateY(-6px);border-color:#7deaffaa;box-shadow:0 24px 50px #0006,0 0 28px #00bce51a}
+.githubRepoCard:hover:after{opacity:1}
+.githubRepoTop{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.githubRepoTop>svg{width:23px;height:23px;color:#8bdff7;opacity:.85}
+.githubRepoLanguage{display:inline-flex;align-items:center;gap:8px;color:#86dff7;font-size:11px;font-weight:750;letter-spacing:.06em}
+.githubRepoLanguage i{width:7px;height:7px;border-radius:50%;background:#63d9fa;box-shadow:0 0 9px #63d9fa}
+.githubRepoCard h3{margin:22px 0 10px;font-size:clamp(19px,2vw,23px);line-height:1.25;overflow-wrap:anywhere}
+.githubRepoCard>p{margin:0;color:#b9cddd;font-size:14px;line-height:1.75}
+.githubRepoMeta{display:flex;flex-direction:column;gap:15px;margin-top:auto;padding-top:25px}
+.githubRepoMeta small{color:#8bb5cd;font-size:12px}
+.githubRepoMeta strong{display:flex;align-items:center;gap:8px;color:#86edff;font-size:14px}
+.githubRepoMeta strong span{transition:transform .2s}
+.githubRepoCard:hover .githubRepoMeta strong span{transform:translate(3px,-3px)}
+.githubFeedback{min-height:0;color:#a9c4d6;font-size:13px}
+.githubFeedback p{display:flex;align-items:center;gap:10px}
+.githubSpinner{width:13px;height:13px;border:2px solid #5e879e;border-top-color:#75e5ff;border-radius:50%;animation:githubSpin .8s linear infinite}
+@keyframes githubSpin{to{transform:rotate(360deg)}}
+.githubFooter{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:28px;padding-top:22px;border-top:1px solid #8bdfff25;color:#91adbf;font-size:13px}
+.githubFooter a{display:inline-flex;gap:8px;color:#dcf8ff;text-decoration:none;font-weight:750}
+.githubFooter a:hover{color:#7beaff}
+.githubProfileButton:focus-visible,.githubRepoCard:focus-visible,.githubFooter a:focus-visible{outline:3px solid #7deaff;outline-offset:4px}
+@media(max-width:1050px){.githubRepoGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.githubHero{align-items:flex-start;flex-wrap:wrap;gap:18px;margin-bottom:35px}.githubMark{width:64px;height:64px;flex-basis:64px;border-radius:19px}.githubMark svg{width:40px;height:40px}.githubHeroCopy{flex-basis:calc(100% - 90px)}.githubProfileButton{margin-left:82px}.githubRepoGrid{grid-template-columns:1fr}.githubRepoCard{min-height:260px}.githubSectionBar,.githubFooter{align-items:flex-start;flex-direction:column}.githubRefreshNote{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.githubProfileButton,.githubRepoCard,.githubRepoCard:after,.githubRepoMeta strong span{transition:none}.githubProfileButton:hover,.githubRepoCard:hover{transform:none}.githubSpinner{animation:none}}

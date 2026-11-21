@@ -116,8 +116,8 @@ function App() {
 
       {/* ================= NAVBAR ================= */}
       <nav className="navbar" aria-label="Main navigation">
-        <a href="#home" className="logo" onClick={closeMenu}>
-          Dion<span>.</span>
+        <a href="#home" className="logo" onClick={closeMenu} aria-label="Dion Stacey — Home">
+          <span className="logoFirst">DION</span><span className="logoLast">STACEY</span><i className="logoDot" aria-hidden="true"></i>
         </a>
 
         <button

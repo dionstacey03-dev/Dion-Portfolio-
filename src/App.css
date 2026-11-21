@@ -1735,3 +1735,66 @@ body{scroll-behavior:smooth}
   .glass-panel,.glass-card,.glass-sidebar,.glass-topbar,.aboutCard,.educationCard,
   .skillCard,.enhanceCard,.githubRepoCard,.contactContent,.sectionTitle,.enhanceHeading,.jarvisPanel{transition:none!important}
 }
+
+/* Premium glass scroll choreography */
+.scroll-glass-ready{
+  opacity:0;
+  transform:perspective(1100px) translate3d(0,54px,0) rotateX(7deg) scale(.965);
+  filter:blur(9px) saturate(.72);
+  transform-origin:50% 85%;
+  transition:
+    opacity .9s cubic-bezier(.16,1,.3,1) var(--glass-reveal-delay,0ms),
+    transform 1.05s cubic-bezier(.16,1,.3,1) var(--glass-reveal-delay,0ms),
+    filter .95s cubic-bezier(.16,1,.3,1) var(--glass-reveal-delay,0ms);
+  backface-visibility:hidden;
+}
+.scroll-glass-ready:after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  border-radius:inherit;opacity:0;
+  background:linear-gradient(112deg,transparent 18%,rgba(185,242,255,.13) 43%,rgba(255,255,255,.035) 51%,transparent 72%);
+  transform:translateX(-115%);
+}
+.scroll-glass-ready.scroll-glass-visible{
+  opacity:1;
+  transform:perspective(1100px) translate3d(0,0,0) rotateX(0) scale(1);
+  filter:blur(0) saturate(1);
+}
+.scroll-glass-ready.scroll-glass-visible:after{
+  animation:glassLightSweep 1.25s cubic-bezier(.2,.7,.2,1) both;
+  animation-delay:calc(var(--glass-reveal-delay,0ms) + 100ms);
+}
+@keyframes glassLightSweep{
+  0%{opacity:0;transform:translateX(-115%)}
+  18%{opacity:1}
+  100%{opacity:0;transform:translateX(115%)}
+}
+/* Cards feel like layered glass when they settle and respond to pointer hover. */
+.aboutCard.scroll-glass-visible,.educationCard.scroll-glass-visible,
+.skillCard.scroll-glass-visible,.enhanceCard.scroll-glass-visible,
+.githubRepoCard.scroll-glass-visible,.contactContent.scroll-glass-visible,
+.glass-card.scroll-glass-visible,.glass-panel.scroll-glass-visible{
+  box-shadow:0 22px 55px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.12);
+}
+.aboutCard,.educationCard,.skillCard,.enhanceCard,.githubRepoCard,.glass-card{
+  transition:
+    opacity .9s cubic-bezier(.16,1,.3,1),
+    transform .38s cubic-bezier(.2,.8,.2,1),
+    border-color .3s ease,box-shadow .38s ease,filter .9s ease;
+}
+.aboutCard.scroll-glass-visible:hover,.educationCard.scroll-glass-visible:hover,
+.skillCard.scroll-glass-visible:hover,.enhanceCard.scroll-glass-visible:hover,
+.githubRepoCard.scroll-glass-visible:hover,.glass-card.scroll-glass-visible:hover{
+  transform:translate3d(0,-7px,0) scale(1.012);
+  border-color:rgba(119,226,255,.62);
+  box-shadow:0 28px 65px rgba(0,0,0,.24),0 0 28px rgba(70,204,245,.10),inset 0 1px 0 rgba(255,255,255,.18);
+}
+@media(max-width:700px){
+  .scroll-glass-ready{transform:translate3d(0,34px,0) scale(.975);filter:blur(6px)}
+  .scroll-glass-ready.scroll-glass-visible{transform:translate3d(0,0,0) scale(1)}
+}
+@media(prefers-reduced-motion:reduce){
+  .scroll-glass-ready,.scroll-glass-ready.scroll-glass-visible{
+    opacity:1;transform:none;filter:none;transition:none!important
+  }
+  .scroll-glass-ready:after{display:none;animation:none!important}
+}

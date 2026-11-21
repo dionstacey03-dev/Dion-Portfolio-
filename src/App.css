@@ -1491,3 +1491,27 @@ section[id]{scroll-margin-top:96px}
 .projectResultCount{display:table;margin:22px auto 34px;padding:8px 14px;border:1px solid #6edcff25;border-radius:999px;background:#0e2238a8;color:#9fc0d4;font-size:12px;font-weight:650;letter-spacing:.03em}
 @media(max-width:600px){.projects .sectionTitle{margin-bottom:36px}.projectFilters{display:flex;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding:8px;border-radius:17px;scrollbar-width:thin}.projectFilterButton{flex:0 0 auto;min-height:43px;padding:9px 14px}.projectResultCount{margin-top:18px}}
 @media(prefers-reduced-motion:reduce){.projectFilterButton{transition:none}.projectFilterButton:hover{transform:none}}
+
+/* Skills section — luminous heading, refined filter dock and skill tiles */
+.skills{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#0b2b451f,transparent 55%),#050816}
+.skills:before{content:"";position:absolute;z-index:-1;top:70px;left:50%;width:min(780px,95vw);height:350px;transform:translateX(-50%);background:radial-gradient(ellipse,#10b9e51a,transparent 68%);pointer-events:none}
+.skills .sectionTitle{position:relative;margin-bottom:48px}
+.skills .sectionTitle p{display:inline-flex;align-items:center;gap:11px;margin:0 0 16px;color:#7de7ff;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.skills .sectionTitle p:before,.skills .sectionTitle p:after{content:"";width:24px;height:1px;background:linear-gradient(90deg,transparent,#6bdfff)}
+.skills .sectionTitle p:after{transform:rotate(180deg)}
+.skills .sectionTitle h2{font-size:clamp(40px,5.5vw,66px);line-height:1.04;letter-spacing:-.055em;background:linear-gradient(100deg,#f4f8ff 15%,#b9eaff 70%,#70dcff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.skillFilters{position:relative;max-width:1100px;margin:0 auto 38px;padding:9px;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;border:1px solid #7bdfff22;border-radius:22px;background:linear-gradient(120deg,#0e2035c7,#0a1728c7);box-shadow:0 18px 45px #0003;backdrop-filter:blur(14px)}
+.skillFilterButton{min-height:47px;padding:11px 21px;border:1px solid transparent;border-radius:15px;background:#ffffff06;color:#b8cadd;font-size:13px;font-weight:750;letter-spacing:.01em;transition:transform .22s ease,color .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease}
+.skillFilterButton:hover{transform:translateY(-2px);border-color:#65dfff55;background:#53d9ff12;color:#e8faff}
+.skillFilterButton.activeSkillFilter{border-color:#91f0ff;background:linear-gradient(115deg,#4ed9f1,#80e9ff);color:#062033;box-shadow:0 8px 25px #26c9e944,inset 0 1px #ffffff80}
+.skillsGrid{gap:16px}
+.skillCard{position:relative;overflow:hidden;min-height:155px;border-radius:19px;border-color:#73dfff27;background:linear-gradient(145deg,#112a40b8,#0b192bbd);box-shadow:0 14px 38px #0003,inset 0 1px #ffffff09;backdrop-filter:blur(10px)}
+.skillCard:before{content:"";position:absolute;top:-65px;right:-55px;width:140px;height:140px;border-radius:50%;background:#10bce8;filter:blur(65px);opacity:.08;transition:opacity .25s}
+.skillCard:hover{border-color:#70e1ff88;background:linear-gradient(145deg,#153750e8,#0c1c30f5);box-shadow:0 20px 45px #0005,0 0 25px #00bce51a}
+.skillCard:hover:before{opacity:.22}
+.skillIcon{width:58px;height:58px;border:1px solid #79dcff2b;border-radius:17px;background:linear-gradient(145deg,#1a4660aa,#0c263caa);box-shadow:inset 0 1px #ffffff12}
+.skillInfo h3{font-size:15px}
+.skillCategory{color:#78cde8;font-size:10px;letter-spacing:.13em}
+@media(max-width:600px){.skills{padding:75px 6%}.skills .sectionTitle{margin-bottom:36px}.skillFilters{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding:8px;border-radius:17px;scrollbar-width:thin;margin-bottom:28px}.skillFilterButton{flex:0 0 auto;min-height:43px;padding:9px 15px}.skillsGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.skillCard{min-height:140px;padding:18px 10px}.skillInfo h3{font-size:13px}}
+@media(max-width:360px){.skillsGrid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.skillFilterButton,.skillCard,.skillCard:before{transition:none}.skillFilterButton:hover,.skillCard:hover{transform:none}}

@@ -419,48 +419,24 @@ function App() {
 
       {/* ================= CONTACT ================= */}
       <section className="contact" id="contact">
-        <div className="sectionTitle">
-          <p>Let's connect</p>
-          <h2>Contact Me</h2>
+        <div className="contactAtmosphere" aria-hidden="true"></div>
+        <div className="contactHeading">
+          <span className="contactEyebrow"><i></i> LET'S CREATE SOMETHING MEANINGFUL</span>
+          <h2>Have an idea?<br/><span>Let's make it happen.</span></h2>
+          <p>Whether you have a project in mind, an opportunity to share, or simply want to connect — my inbox is open.</p>
         </div>
-
         <div className="contactContent">
+          <div className="contactCardTop"><span className="contactAvailability"><i></i> OPEN TO COLLABORATION</span><span className="contactCardSpark" aria-hidden="true">✳</span></div>
           <h3>Let's build something great.</h3>
-
-          <p>
-            I'm always interested in learning, collaborating on projects,
-            and exploring new opportunities in software development and
-            artificial intelligence.
-          </p>
-
+          <p>I'm interested in software development, artificial intelligence, creative ideas and opportunities to learn by building together.</p>
           <div className="contactButtons">
-            <a
-              href="mailto:dion.stacey.03@gmail.com"
-              className="primaryButton"
-            >
-              Email Me
-            </a>
-
-            <a
-              href="https://github.com/dionstacey03-dev"
-              className="secondaryButton"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/"
-              className="secondaryButton"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
+            <a href="mailto:dion.stacey.03@gmail.com" className="primaryButton contactAction"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H3zM3.5 6l8.5 7 8.5-7" /></svg><span>Email me</span><b>↗</b></a>
+            <a href="https://github.com/dionstacey03-dev" className="secondaryButton contactAction" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.93.1-.72.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.62 5.24-5.11 5.52.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg><span>GitHub</span><b>↗</b></a>
+            <a href="https://www.linkedin.com/in/dion-stacey-sellar-1066a7339/" className="secondaryButton contactAction" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8.5V19M5 5v.1M10 19v-6.1c0-2 1.1-3.2 2.9-3.2s2.8 1.2 2.8 3.2V19M10 10v9M19 19v-6.1c0-2-1.1-3.2-2.9-3.2"/></svg><span>LinkedIn</span><b>↗</b></a>
           </div>
+          <div className="contactCardBottom"><span>Usually happy to talk about ideas, code and collaboration.</span><a href="mailto:dion.stacey.03@gmail.com">dion.stacey.03@gmail.com</a></div>
         </div>
-      </section>
+      </section>>
 
       </main>
 

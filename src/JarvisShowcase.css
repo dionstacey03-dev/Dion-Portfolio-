@@ -13,3 +13,16 @@
 .jarvisTable tr:last-child td{border-bottom:0}
 .jarvisBubble.assistant{max-width:100%;width:fit-content}
 .jarvisBubble.assistant .jarvisMessageContent{overflow-wrap:anywhere}
+
+/* JARVIS showcase heading — cinematic AI identity */
+.jarvisSection{position:relative;isolation:isolate;overflow:hidden;padding-top:clamp(82px,9vw,125px);padding-bottom:clamp(75px,8vw,110px);background:radial-gradient(ellipse at 50% 0%,#27356b55,transparent 56%)}
+.jarvisSection:before{content:"";position:absolute;z-index:-1;top:-110px;left:50%;width:min(760px,100vw);height:330px;transform:translateX(-50%);background:radial-gradient(ellipse,#5666d52b,transparent 68%);filter:blur(15px);pointer-events:none}
+.jarvisSection>.sectionTitle{margin-bottom:42px}
+.jarvisSection>.sectionTitle p{display:inline-flex;align-items:center;gap:11px;margin:0 0 16px;color:#9baeff;font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+.jarvisSection>.sectionTitle p:before,.jarvisSection>.sectionTitle p:after{content:"";width:25px;height:1px;background:linear-gradient(90deg,transparent,#9aafff)}
+.jarvisSection>.sectionTitle p:after{transform:rotate(180deg)}
+.jarvisSection>.sectionTitle h2{font-size:clamp(40px,5.5vw,66px);line-height:1.04;letter-spacing:-.055em;background:linear-gradient(100deg,#f4f7ff 18%,#c7d5ff 58%,#8ceaff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.jarvisSection .jarvisPanel{border-color:#92aaff42;background:linear-gradient(145deg,#19264bdb,#0b1930ed 70%,#091426f2);box-shadow:0 28px 75px #0007,0 0 45px #6378e51a,inset 0 1px #ffffff18}
+.jarvisSection .jarvisOrb{width:70px;height:70px;background:radial-gradient(circle at 30% 25%,#e0faff,#83b8ff 35%,#6d66d9 70%,#282e6e);box-shadow:0 0 32px #799dff70,inset 0 2px 8px #ffffff88}
+@media(max-width:600px){.jarvisSection{padding:68px 18px}.jarvisSection>.sectionTitle{margin-bottom:30px}}
+@media(prefers-reduced-motion:reduce){.jarvisSection *{scroll-behavior:auto}}

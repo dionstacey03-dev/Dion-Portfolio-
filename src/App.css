@@ -1687,3 +1687,51 @@ section[id]{scroll-margin-top:96px}
 :root[data-theme="light"] .navbar .logoLast{color:#087eae;text-shadow:none}
 :root[data-theme="light"] .navbar .logoDot{background:linear-gradient(135deg,#078fc0,#637cf0)}
 @media(max-width:768px){.navbar .logo{font-size:21px;letter-spacing:-1px;gap:4px}}
+
+/* Smooth navigation + scroll-triggered glass reveal */
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{scroll-behavior:smooth}
+.glass-panel,.glass-card,.glass-sidebar,.glass-topbar,.aboutCard,.educationCard,.skillCard,.enhanceCard,.githubRepoCard,.contactContent,.sectionTitle,.enhanceHeading,.jarvisPanel{
+  will-change:transform,opacity,filter;
+}
+.glass-panel:not(.scroll-glass-visible),
+.glass-card:not(.scroll-glass-visible),
+.glass-sidebar:not(.scroll-glass-visible),
+.glass-topbar:not(.scroll-glass-visible),
+.aboutCard:not(.scroll-glass-visible),
+.educationCard:not(.scroll-glass-visible),
+.skillCard:not(.scroll-glass-visible),
+.enhanceCard:not(.scroll-glass-visible),
+.githubRepoCard:not(.scroll-glass-visible),
+.contactContent:not(.scroll-glass-visible),
+.sectionTitle:not(.scroll-glass-visible),
+.enhanceHeading:not(.scroll-glass-visible),
+.jarvisPanel:not(.scroll-glass-visible){
+  opacity:0;transform:translate3d(0,28px,0) scale(.985);filter:blur(5px);
+}
+.glass-panel.scroll-glass-visible,.glass-card.scroll-glass-visible,
+.glass-sidebar.scroll-glass-visible,.glass-topbar.scroll-glass-visible,
+.aboutCard.scroll-glass-visible,.educationCard.scroll-glass-visible,
+.skillCard.scroll-glass-visible,.enhanceCard.scroll-glass-visible,
+.githubRepoCard.scroll-glass-visible,.contactContent.scroll-glass-visible,
+.sectionTitle.scroll-glass-visible,.enhanceHeading.scroll-glass-visible,
+.jarvisPanel.scroll-glass-visible{
+  opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0);
+  transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1),filter .75s cubic-bezier(.2,.7,.2,1);
+}
+.glass-panel.scroll-glass-visible,.glass-card.scroll-glass-visible,
+.glass-sidebar.scroll-glass-visible,.glass-topbar.scroll-glass-visible{
+  transition-duration:.85s;
+}
+@media(prefers-reduced-motion:reduce){
+  html,body{scroll-behavior:auto!important}
+  .glass-panel:not(.scroll-glass-visible),.glass-card:not(.scroll-glass-visible),
+  .glass-sidebar:not(.scroll-glass-visible),.glass-topbar:not(.scroll-glass-visible),
+  .aboutCard:not(.scroll-glass-visible),.educationCard:not(.scroll-glass-visible),
+  .skillCard:not(.scroll-glass-visible),.enhanceCard:not(.scroll-glass-visible),
+  .githubRepoCard:not(.scroll-glass-visible),.contactContent:not(.scroll-glass-visible),
+  .sectionTitle:not(.scroll-glass-visible),.enhanceHeading:not(.scroll-glass-visible),
+  .jarvisPanel:not(.scroll-glass-visible){opacity:1;transform:none;filter:none}
+  .glass-panel,.glass-card,.glass-sidebar,.glass-topbar,.aboutCard,.educationCard,
+  .skillCard,.enhanceCard,.githubRepoCard,.contactContent,.sectionTitle,.enhanceHeading,.jarvisPanel{transition:none!important}
+}

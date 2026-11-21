@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './JarvisShowcase.css'
 
 function renderInline(text) {
-  return text.split(/(\\*\\*[^*]+\\*\\*)/g).map((part, index) =>
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) =>
     part.startsWith('**') && part.endsWith('**')
       ? <strong key={index}>{part.slice(2, -2)}</strong>
       : part
@@ -10,7 +10,7 @@ function renderInline(text) {
 }
 
 function MessageContent({ content }) {
-  const lines = content.split('\\n')
+  const lines = content.split('\n')
   const blocks = []
   let index = 0
 
@@ -18,11 +18,11 @@ function MessageContent({ content }) {
     const line = lines[index].trim()
     if (!line) { index += 1; continue }
 
-    const isTableRow = value => value.includes('|') && value.replace(/[|\\s:-]/g, '') !== ''
-    const isSeparator = value => /^\\|?\\s*:?-{3,}:?\\s*(\\|\\s*:?-{3,}:?\\s*)+\\|?$/.test(value)
+    const isTableRow = value => value.includes('|') && value.replace(/[|\s:-]/g, '') !== ''
+    const isSeparator = value => /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(value)
 
     if (isTableRow(line) && index + 1 < lines.length && isSeparator(lines[index + 1].trim())) {
-      const cells = value => value.trim().replace(/^\\|/, '').replace(/\\|$/, '').split('|').map(cell => cell.trim())
+      const cells = value => value.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(cell => cell.trim())
       const headers = cells(line)
       index += 2
       const rows = []
@@ -41,33 +41,33 @@ function MessageContent({ content }) {
       continue
     }
 
-    if (/^[-*]\\s+/.test(line)) {
+    if (/^[-*]\s+/.test(line)) {
       const items = []
-      while (index < lines.length && /^\\s*[-*]\\s+/.test(lines[index])) {
-        items.push(lines[index].replace(/^\\s*[-*]\\s+/, '').trim())
+      while (index < lines.length && /^\s*[-*]\s+/.test(lines[index])) {
+        items.push(lines[index].replace(/^\s*[-*]\s+/, '').trim())
         index += 1
       }
       blocks.push(<ul key={blocks.length}>{items.map((item, i) => <li key={i}>{renderInline(item)}</li>)}</ul>)
       continue
     }
 
-    if (/^\\d+\\.\\s+/.test(line)) {
+    if (/^\d+\.\s+/.test(line)) {
       const items = []
-      while (index < lines.length && /^\\s*\\d+\\.\\s+/.test(lines[index])) {
-        items.push(lines[index].replace(/^\\s*\\d+\\.\\s+/, '').trim())
+      while (index < lines.length && /^\s*\d+\.\s+/.test(lines[index])) {
+        items.push(lines[index].replace(/^\s*\d+\.\s+/, '').trim())
         index += 1
       }
       blocks.push(<ol key={blocks.length}>{items.map((item, i) => <li key={i}>{renderInline(item)}</li>)}</ol>)
       continue
     }
 
-    if (/^#{1,3}\\s+/.test(line)) {
-      blocks.push(<h4 key={blocks.length}>{renderInline(line.replace(/^#{1,3}\\s+/, ''))}</h4>)
+    if (/^#{1,3}\s+/.test(line)) {
+      blocks.push(<h4 key={blocks.length}>{renderInline(line.replace(/^#{1,3}\s+/, ''))}</h4>)
       index += 1
       continue
     }
 
-    blocks.push(<p key={blocks.length}>{renderInline(line.replace(/\\s{2,}/g, ' '))}</p>)
+    blocks.push(<p key={blocks.length}>{renderInline(line.replace(/\s{2,}/g, ' '))}</p>)
     index += 1
   }
 

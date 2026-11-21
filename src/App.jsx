@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { triggerHaptic } from './utils/haptics'
 import './App.css'
 import './glass-theme.css'
 import JarvisShowcase from './JarvisShowcase'
@@ -48,6 +49,7 @@ function App() {
   }, [])
 
   const closeMenu = () => {
+    triggerHaptic(8)
     setMenuOpen(false)
   }
 
@@ -144,7 +146,7 @@ function App() {
 
         <button
           className={`menuButton ${menuOpen ? 'menuActive' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => { triggerHaptic(12); setMenuOpen(!menuOpen) }}
           aria-label="Toggle navigation menu"
           aria-expanded={menuOpen}
           aria-controls="primary-navigation"
@@ -164,7 +166,7 @@ function App() {
           <a href="#case-studies" onClick={closeMenu}>Case Studies</a>
           <a href="#recruiter" onClick={closeMenu}>Recruiter</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
-          <button type="button" className="themeToggle" onClick={() => setTheme(current => current === 'dark' ? 'light' : 'dark')} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} aria-pressed={theme === 'light'}>{theme === 'dark' ? '☀ Light' : '☾ Dark'}</button>
+          <button type="button" className="themeToggle" onClick={() => { triggerHaptic([10, 35, 10]); setTheme(current => current === 'dark' ? 'light' : 'dark') }} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} aria-pressed={theme === 'light'}>{theme === 'dark' ? '☀ Light' : '☾ Dark'}</button>
         </div>
       </nav>
 
@@ -352,7 +354,7 @@ function App() {
                   : ''
               }`}
               aria-pressed={activeSkillCategory === category}
-              onClick={() => setActiveSkillCategory(category)}
+              onClick={() => { triggerHaptic(7); setActiveSkillCategory(category) }}
             >
               {category}
             </button>
@@ -399,7 +401,7 @@ function App() {
               type="button"
               className={activeProjectCategory === category ? 'projectFilterButton activeProjectFilter' : 'projectFilterButton'}
               aria-pressed={activeProjectCategory === category}
-              onClick={() => setActiveProjectCategory(category)}
+              onClick={() => { triggerHaptic(7); setActiveProjectCategory(category) }}
             >
               {category}
             </button>

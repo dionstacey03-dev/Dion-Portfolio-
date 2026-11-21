@@ -1665,3 +1665,25 @@ section[id]{scroll-margin-top:96px}
   .navbar,.logo,.navLinks>a,.navLinks>a:before,.themeToggle{transition:none}
   .logo:hover,.navLinks>a:hover,.themeToggle:hover{transform:none}
 }
+
+/* Full-name signature wordmark */
+.navbar .logo{
+  display:inline-flex;align-items:baseline;gap:5px;white-space:nowrap;
+  font-size:clamp(20px,1.65vw,25px);font-weight:900;letter-spacing:-1.25px;
+  line-height:1;text-decoration:none;
+}
+.navbar .logoFirst{color:#f2f8ff}
+.navbar .logoLast{
+  color:#8beaff;font-weight:750;letter-spacing:-.9px;
+  text-shadow:0 0 20px rgba(83,218,255,.18);
+}
+.navbar .logoDot{
+  width:6px;height:6px;flex:0 0 6px;margin-left:1px;margin-bottom:2px;
+  border-radius:2px;background:linear-gradient(135deg,#6deaff,#8e9cff);
+  box-shadow:0 0 13px rgba(85,218,255,.8);transform:skew(-12deg);
+}
+.navbar .logo:hover .logoLast{color:#c5f5ff}
+:root[data-theme="light"] .navbar .logoFirst{color:#172b47}
+:root[data-theme="light"] .navbar .logoLast{color:#087eae;text-shadow:none}
+:root[data-theme="light"] .navbar .logoDot{background:linear-gradient(135deg,#078fc0,#637cf0)}
+@media(max-width:768px){.navbar .logo{font-size:21px;letter-spacing:-1px;gap:4px}}

@@ -1515,3 +1515,61 @@ section[id]{scroll-margin-top:96px}
 @media(max-width:600px){.skills{padding:75px 6%}.skills .sectionTitle{margin-bottom:36px}.skillFilters{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding:8px;border-radius:17px;scrollbar-width:thin;margin-bottom:28px}.skillFilterButton{flex:0 0 auto;min-height:43px;padding:9px 15px}.skillsGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.skillCard{min-height:140px;padding:18px 10px}.skillInfo h3{font-size:13px}}
 @media(max-width:360px){.skillsGrid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.skillFilterButton,.skillCard,.skillCard:before{transition:none}.skillFilterButton:hover,.skillCard:hover{transform:none}}
+
+/* HERO — signature introduction */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 78% 42%,#14517a55 0%,transparent 38%),radial-gradient(ellipse at 12% 100%,#087f9d20,transparent 35%),linear-gradient(135deg,#071326 0%,#0b1d38 52%,#08172b 100%)}
+.hero:before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(#8edfff0b 1px,transparent 1px),linear-gradient(90deg,#8edfff0b 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(90deg,#000,transparent 82%)}
+.hero:after{content:"";position:absolute;z-index:-1;right:8%;top:12%;width:300px;height:300px;border:1px solid #7ceaff20;border-radius:50%;box-shadow:0 0 0 35px #7ceaff08,0 0 0 75px #7ceaff05;pointer-events:none}
+.heroContent{position:relative;z-index:1;max-width:900px}
+.hero .intro{display:flex;align-items:center;gap:12px;color:#8ceaff;font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+.hero .intro:before{content:"";width:30px;height:2px;background:linear-gradient(90deg,#5ce4ff,transparent)}
+.hero h1{font-size:clamp(52px,7.5vw,100px);line-height:.98;letter-spacing:-.065em;background:linear-gradient(105deg,#fff 12%,#d4eaff 55%,#75ddff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance}
+.hero h2{font-size:clamp(23px,3vw,36px);letter-spacing:-.025em;color:#d6e9fb}
+.hero .description{max-width:760px;color:#b5c9dd;font-size:clamp(16px,1.8vw,20px);line-height:1.85}
+.heroButtons{gap:13px}
+.heroButtons a{display:inline-flex;align-items:center;justify-content:center;min-height:55px;padding:14px 22px;border-radius:13px;font-weight:750;transition:transform .22s,box-shadow .22s,border-color .22s,background .22s}
+.heroButtons a:hover{transform:translateY(-4px);box-shadow:0 15px 34px #0005}
+.heroButtons .primaryButton{background:linear-gradient(110deg,#4ed8f5,#76caff);color:#04182a;box-shadow:0 10px 30px #27bfe833}
+.heroButtons .secondaryButton{border:1px solid #69dfff77;background:#ffffff08;color:#9ceaff}
+.heroButtons .secondaryButton:hover{border-color:#a1efff;background:#3bcaff16}
+.profileImageWrapper{border:1px solid #8deaff77;box-shadow:0 0 0 9px #5bdfff0c,0 0 65px #26bfff36,0 28px 75px #0008}
+.profileImage{border-color:#091b30}
+@media(max-width:760px){.hero:after{right:-120px;top:6%;width:220px;height:220px}.hero h1{font-size:clamp(48px,12vw,74px)}.heroButtons{display:flex;flex-wrap:wrap}.heroButtons a{flex:1 1 170px}}
+@media(prefers-reduced-motion:reduce){.heroButtons a{transition:none}.heroButtons a:hover{transform:none}}
+
+/* ABOUT — balanced editorial layout and information panels */
+.about{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 88% 55%,#0b4a6b20,transparent 38%),#07101f}
+.about:before{content:"";position:absolute;z-index:-1;top:5%;left:-160px;width:360px;height:360px;border-radius:50%;background:#0ca9d8;filter:blur(150px);opacity:.12}
+.about .sectionTitle p,.education .sectionTitle p{display:inline-flex;align-items:center;gap:10px;color:#7de5ff;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.about .sectionTitle p:before,.about .sectionTitle p:after,.education .sectionTitle p:before,.education .sectionTitle p:after{content:"";width:24px;height:1px;background:linear-gradient(90deg,transparent,#7de5ff)}
+.about .sectionTitle p:after,.education .sectionTitle p:after{transform:rotate(180deg)}
+.about .sectionTitle h2,.education .sectionTitle h2{font-size:clamp(40px,5.2vw,64px);letter-spacing:-.05em;line-height:1.05;background:linear-gradient(100deg,#f4f8ff,#b9eaff 75%,#79dcff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.aboutContent{align-items:stretch;gap:clamp(30px,5vw,72px)}
+.aboutText{align-self:center;padding:clamp(22px,3vw,38px);border-left:2px solid #65dfff77;background:linear-gradient(90deg,#59dfff0b,transparent 90%);border-radius:0 18px 18px 0}
+.aboutText p{color:#c0d2e3;font-size:clamp(15px,1.45vw,18px);line-height:1.95}
+.aboutCards{gap:16px}
+.aboutCard{position:relative;overflow:hidden;padding:25px 27px;border-radius:21px;border:1px solid #83dcff38;background:linear-gradient(145deg,#183252d9,#0d1d34ed);box-shadow:0 17px 42px #0004,inset 0 1px #ffffff16;transition:transform .25s,border-color .25s,box-shadow .25s}
+.aboutCard:before{content:"";position:absolute;top:-65px;right:-55px;width:140px;height:140px;border-radius:50%;background:#2fcaff;filter:blur(70px);opacity:.12}
+.aboutCard:hover{transform:translateX(6px);border-color:#83eaff9c;box-shadow:0 22px 48px #0006,0 0 25px #1bcaff17}
+.aboutCard h3{position:relative;color:#82e6ff;font-size:17px;letter-spacing:.01em}
+.aboutCard p{position:relative;color:#e1edf8;font-size:16px;line-height:1.6}
+
+/* ACADEMIC BACKGROUND — timeline-inspired cards */
+.education{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#113a5b26,transparent 55%),#050816}
+.education:before{content:"";position:absolute;z-index:-1;top:20%;left:50%;width:min(780px,95vw);height:340px;transform:translateX(-50%);background:radial-gradient(ellipse,#10b9e51a,transparent 68%);pointer-events:none}
+.education .sectionTitle{margin-bottom:52px}
+.educationGrid{position:relative;gap:20px}
+.educationGrid:before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(transparent,#65dfff44 15%,#65dfff44 85%,transparent);pointer-events:none}
+.educationCard{position:relative;overflow:hidden;display:flex;align-items:flex-start;gap:20px;padding:clamp(23px,3vw,32px);border:1px solid #78dcff35;border-radius:24px;background:linear-gradient(145deg,#122c43e8,#0b1a2ef2 75%);box-shadow:0 18px 48px #0004,inset 0 1px #ffffff10;transition:transform .25s,border-color .25s,box-shadow .25s}
+.educationCard:before{content:"";position:absolute;top:-85px;right:-75px;width:190px;height:190px;border-radius:50%;background:#0fbce9;filter:blur(85px);opacity:.1;transition:opacity .25s}
+.educationCard:hover{transform:translateY(-6px);border-color:#7ce8ff9c;box-shadow:0 25px 60px #0006,0 0 30px #13bde51a}
+.educationCard:hover:before{opacity:.22}
+.educationIcon{position:relative;flex:0 0 58px;width:58px;height:58px;display:grid;place-items:center;border:1px solid #7de4ff55;border-radius:17px;background:linear-gradient(145deg,#1b526e,#102a49);font-size:27px;box-shadow:0 8px 24px #00bce522}
+.educationContent{position:relative;min-width:0}
+.educationContent h3{margin:0 0 13px;color:#f0f7ff;font-size:clamp(18px,2vw,23px);line-height:1.35;letter-spacing:-.02em}
+.educationContent h4{margin:0 0 13px;color:#9beaff;font-size:15px;line-height:1.6}
+.educationContent h4 span{display:block;color:#b7cadd;font-size:13px;font-weight:500}
+.educationYear{display:inline-flex;margin:0 0 15px;padding:7px 11px;border:1px solid #72dcff38;border-radius:999px;background:#4acfff12;color:#83e4ff;font-size:11px;font-weight:750;letter-spacing:.04em}
+.educationContent p{margin:0;color:#b6c9da;font-size:14px;line-height:1.8}
+@media(max-width:760px){.about{padding:75px 6%}.aboutContent{grid-template-columns:1fr;gap:22px}.aboutText{padding:20px}.education{padding:75px 6%}.educationGrid{grid-template-columns:1fr}.educationGrid:before{display:none}.educationCard{padding:22px;gap:15px}.educationIcon{flex-basis:50px;width:50px;height:50px;border-radius:15px;font-size:23px}}
+@media(prefers-reduced-motion:reduce){.aboutCard,.educationCard{transition:none}.aboutCard:hover,.educationCard:hover{transform:none}}

@@ -25,6 +25,28 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
+  // Reveal glass surfaces smoothly as they enter the viewport.
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const targets = document.querySelectorAll(
+      '.glass-panel, .glass-card, .glass-sidebar, .glass-topbar, .aboutCard, .educationCard, .skillCard, .enhanceCard, .githubRepoCard, .contactContent, .sectionTitle, .enhanceHeading, .jarvisPanel'
+    )
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      targets.forEach((element) => element.classList.add('scroll-glass-visible'))
+      return
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('scroll-glass-visible')
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' })
+    targets.forEach((element) => observer.observe(element))
+    return () => observer.disconnect()
+  }, [])
+
   const closeMenu = () => {
     setMenuOpen(false)
   }

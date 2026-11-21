@@ -84,3 +84,28 @@
 @media(max-width:1050px){.githubRepoGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.githubHero{align-items:flex-start;flex-wrap:wrap;gap:18px;margin-bottom:35px}.githubMark{width:64px;height:64px;flex-basis:64px;border-radius:19px}.githubMark svg{width:40px;height:40px}.githubHeroCopy{flex-basis:calc(100% - 90px)}.githubProfileButton{margin-left:82px}.githubRepoGrid{grid-template-columns:1fr}.githubRepoCard{min-height:260px}.githubSectionBar,.githubFooter{align-items:flex-start;flex-direction:column}.githubRefreshNote{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.githubProfileButton,.githubRepoCard,.githubRepoCard:after,.githubRepoMeta strong span{transition:none}.githubProfileButton:hover,.githubRepoCard:hover{transform:none}.githubSpinner{animation:none}}
+
+/* Case studies — editorial hero treatment */
+#case-studies{position:relative;isolation:isolate;padding-top:clamp(82px,9vw,132px);padding-bottom:clamp(82px,9vw,125px)}
+#case-studies:before{content:"";position:absolute;z-index:-1;top:30px;left:4%;width:360px;height:260px;background:radial-gradient(ellipse,#13bde51b,transparent 70%);filter:blur(18px);pointer-events:none}
+#case-studies .enhanceHeading{max-width:100%;margin-bottom:48px;position:relative}
+#case-studies .enhanceHeading>p{display:flex;align-items:center;gap:12px;margin:0 0 20px;color:#70e4ff;font-size:11px;letter-spacing:.22em}
+#case-studies .enhanceHeading>p:before{content:"";width:30px;height:1px;background:linear-gradient(90deg,#55dcff,transparent)}
+#case-studies .enhanceHeading h2{max-width:900px;margin:0 0 13px;font-size:clamp(42px,6.2vw,76px);line-height:1.02;letter-spacing:-.055em;color:#f1f7ff}
+#case-studies .enhanceHeading>span{display:block;max-width:850px;font-size:clamp(15px,1.7vw,19px);color:#a9c2d5;line-height:1.75}
+#case-studies .enhanceGrid{gap:18px}
+#case-studies .enhanceCard{position:relative;isolation:isolate;overflow:hidden;min-height:315px;padding:clamp(23px,2.4vw,32px);border-radius:25px;border:1px solid #6bdcff30;background:linear-gradient(145deg,#112a40e8 0%,#0c1c30f5 70%,#0b1728 100%);box-shadow:0 20px 55px #0004,inset 0 1px #ffffff0d;transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+#case-studies .enhanceCard:before{content:"";position:absolute;z-index:-1;top:-95px;right:-85px;width:210px;height:210px;border-radius:50%;background:#16bce8;filter:blur(85px);opacity:.10;transition:opacity .28s ease}
+#case-studies .enhanceCard:after{content:"↗";position:absolute;top:23px;right:25px;display:grid;place-items:center;width:34px;height:34px;border:1px solid #7de7ff33;border-radius:50%;color:#81eaff;font-size:15px;opacity:.75;transition:transform .28s ease,background .28s ease}
+#case-studies .enhanceCard:hover{transform:translateY(-7px);border-color:#72e2ff88;box-shadow:0 28px 70px #0007,0 0 35px #20caff12}
+#case-studies .enhanceCard:hover:before{opacity:.25}
+#case-studies .enhanceCard:hover:after{transform:translate(2px,-2px);background:#48cfff20}
+#case-studies .enhanceCard>span{font-size:10px;font-weight:800;letter-spacing:.18em;color:#73dcfa}
+#case-studies .enhanceCard h3{margin:34px 0 11px;font-size:clamp(21px,2vw,27px);letter-spacing:-.025em;color:#f0f7ff}
+#case-studies .enhanceCard p{margin:0 0 20px;color:#b5c9da;font-size:14px;line-height:1.75}
+#case-studies .enhanceCard small{display:inline-flex;align-self:flex-start;max-width:100%;margin-top:auto;padding:7px 10px;border:1px solid #68dfff2c;border-radius:999px;background:#4ccfff0c;color:#9ddff4;font-size:11px;line-height:1.5}
+#case-studies .enhanceCard strong{display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:#83eaff;font-size:14px}
+#case-studies .enhanceCard:focus-visible{outline:3px solid #80eaff;outline-offset:5px}
+@media(max-width:780px){#case-studies .enhanceGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#case-studies .enhanceGrid{grid-template-columns:1fr}#case-studies .enhanceCard{min-height:275px}#case-studies .enhanceHeading{margin-bottom:32px}}
+@media(prefers-reduced-motion:reduce){#case-studies .enhanceCard,#case-studies .enhanceCard:after,#case-studies .enhanceCard:before{transition:none}#case-studies .enhanceCard:hover{transform:none}}

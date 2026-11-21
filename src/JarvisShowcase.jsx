@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { triggerHaptic } from './utils/haptics'
 import './JarvisShowcase.css'
 
 function renderInline(text) {
@@ -103,11 +104,11 @@ export default function JarvisShowcase() {
         {messages.map((m,i)=><div className={m.role === 'user' ? 'jarvisBubble user' : 'jarvisBubble assistant'} key={i}><strong>{m.role === 'user' ? 'You' : 'JARVIS'}</strong><MessageContent content={m.content} /></div>)}
         {busy && <p role="status">JARVIS is thinking…</p>}
       </div>
-      {messages.length === 0 && <div className="jarvisQuestions">{suggestions.map(s=><button type="button" className="jarvisQuestion" key={s} onClick={()=>send(s)}>{s}</button>)}</div>}
+      {messages.length === 0 && <div className="jarvisQuestions">{suggestions.map(s=><button type="button" className="jarvisQuestion" key={s} onClick={()=>{triggerHaptic(8);send(s)}}>{s}</button>)}</div>}
       <form className="jarvisForm" onSubmit={e=>{e.preventDefault();send(input)}}>
         <label htmlFor="jarvisInput" className="jarvisLabel">Your message</label>
         <input id="jarvisInput" value={input} maxLength={1000} disabled={busy} onChange={e=>setInput(e.target.value)} placeholder="Ask JARVIS a question…" autoComplete="off" />
-        <button type="submit" disabled={busy || !input.trim()}>Send</button>
+        <button type="submit" onClick={()=>triggerHaptic(12)} disabled={busy || !input.trim()}>Send</button>
       </form>
       {error && <p className="jarvisError" role="alert">{error}</p>}
     </div>

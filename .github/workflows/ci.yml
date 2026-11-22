@@ -2,7 +2,7 @@ name: Portfolio CI
 
 on:
   push:
-    branches: [main, portfolio-fixes-oct-2026]
+    branches: [main, portfolio-fixes-oct-2026, security-phase-1]
   pull_request:
     branches: [main]
 

@@ -92,7 +92,7 @@ export default async function handler(req, res) {
       upstream = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST', signal: controller.signal,
         headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b', temperature: 0.5, max_tokens: 400, messages: [{ role:'system', content:SYSTEM }, ...messages] })
+        body: JSON.stringify({ model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b', temperature: 0.5, reasoning_effort: 'low', include_reasoning: false, max_completion_tokens: 800, messages: [{ role:'system', content:SYSTEM }, ...messages] })
       })
       if (upstream.ok) result = await upstream.json()
     } finally {
@@ -108,8 +108,18 @@ export default async function handler(req, res) {
       }
       return res.status(502).json({ error: errorByStatus[upstream.status] || 'Groq is temporarily unavailable (status ' + upstream.status + ').' })
     }
-    const answer = result?.choices?.[0]?.message?.content
-    if (typeof answer !== 'string' || !answer.trim()) throw new Error('Empty AI response')
+    const choice = result?.choices?.[0]
+    const answer = choice?.message?.content
+    if (typeof answer !== 'string' || !answer.trim()) {
+      // Log response metadata only. Never log model content, prompts, or credentials.
+      console.error('JARVIS received an empty completion:', {
+        model: result?.model || process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+        finishReason: choice?.finish_reason || 'unknown',
+        messageFields: Object.keys(choice?.message || {}),
+        usage: result?.usage ? { completionTokens: result.usage.completion_tokens, totalTokens: result.usage.total_tokens } : undefined
+      })
+      return res.status(502).json({ error: 'The AI model did not return a text answer. Please try again.' })
+    }
     return res.status(200).json({ answer: answer.trim() })
   } catch (error) {
     // Log diagnostic metadata only; never log the API key or request headers.
